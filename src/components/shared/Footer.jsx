@@ -2,95 +2,162 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <footer className="border-t border-white/10 bg-[#0c1216]/80 px-6 py-12 backdrop-blur-xl lg:px-20">
+        <footer
+            className="
+                border-t
+                border-white/[.05]
+                bg-black/[.25]
+                px-6
+                py-16
+                text-white
+                backdrop-blur-xl
+                lg:px-12
+            "
+        >
 
-            <section className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-3">
+            <section
+                className="
+                    mx-auto
+                    grid
+                    max-w-[1600px]
+                    gap-10
+                    md:grid-cols-3
+                "
+            >
 
                 {/* INFORMACIÓN */}
                 <article>
 
                     <img
-                        src="/images/logo/logo.png"
+                        src="/images/logo/logo.jpeg"
                         alt="Logo de SIGNA-TECH-APP"
-                        className="mb-4 h-[60px] w-[60px] object-contain"
+                        className="
+                            h-[60px]
+                            w-[60px]
+                            rounded-full
+                            object-cover
+                        "
                     />
 
-                    <h2 className="text-xl font-bold text-white">
+                    <h1
+                        id="sobrenosotros"
+                        className="
+                            mt-4
+                            text-xl
+                            font-bold
+                        "
+                    >
                         SIGNA-TECH-APP
-                    </h2>
+                    </h1>
 
-                    <p className="mt-3 max-w-sm text-sm leading-7 text-[#c7d0d9]">
-                        Tecnología que traduce inclusión.
-                        Una propuesta tecnológica para facilitar
-                        la comunicación mediante voz, texto y
-                        lenguaje de señas colombiano.
+                    <p
+                        className="
+                            mt-4
+                            max-w-sm
+                            text-sm
+                            leading-7
+                            text-[#c7d0d9]
+                        "
+                    >
+                        Comunicación accesible para todos.
+                        Conectando personas más allá del lenguaje.
                     </p>
 
                 </article>
 
-                {/* NAVEGACIÓN */}
-                <nav>
 
-                    <h2 className="mb-4 text-lg font-semibold text-white">
-                        Navegación
-                    </h2>
+                {/* PRODUCTO */}
+                <article>
 
-                    <ul className="space-y-3">
+                    <span
+                        className="
+                            text-lg
+                            font-semibold
+                            text-white
+                        "
+                    >
+                        Producto
+                    </span>
 
-                        <li>
-                            <Link
-                                to="/"
-                                className="text-sm text-[#c7d0d9] transition duration-300 hover:text-[#00CCFF]"
-                            >
-                                Inicio
-                            </Link>
-                        </li>
+                    <ul className="mt-4 space-y-4">
 
                         <li>
                             <Link
                                 to="/product"
-                                className="text-sm text-[#c7d0d9] transition duration-300 hover:text-[#00CCFF]"
+                                className="
+                                    text-sm
+                                    text-[#c7d0d9]
+                                    transition
+                                    duration-300
+                                    hover:text-[#00CCFF]
+                                "
                             >
-                                Producto
+                                Características
                             </Link>
                         </li>
 
                         <li>
-                            <Link
-                                to="/support"
-                                className="text-sm text-[#c7d0d9] transition duration-300 hover:text-[#00CCFF]"
+                            <a
+                                href="/documentos/ficha-producto-signa-tech.pdf"
+                                download
+                                className="
+                                    text-sm
+                                    text-[#c7d0d9]
+                                    transition
+                                    duration-300
+                                    hover:text-[#00CCFF]
+                                "
                             >
-                                Soporte
-                            </Link>
+                                Descargar ficha PDF
+                            </a>
                         </li>
 
                     </ul>
 
-                </nav>
-
-                {/* PROYECTO */}
-                <article>
-
-                    <h2 className="mb-4 text-lg font-semibold text-white">
-                        SIGNA-TECH-APP
-                    </h2>
-
-                    <p className="text-sm leading-7 text-[#c7d0d9]">
-                        Tecnología orientada a reducir las
-                        barreras de comunicación y promover
-                        una experiencia más accesible e inclusiva.
-                    </p>
-
                 </article>
 
-            </section>
 
-            {/* COPYRIGHT */}
-            <section className="mx-auto mt-10 max-w-[1600px] border-t border-white/10 pt-6 text-center">
+                {/* CONTACTO */}
+                <article>
 
-                <p className="text-sm text-[#8995a1]">
-                    © 2026 SIGNA-TECH-APP. Todos los derechos reservados.
-                </p>
+                    <span
+                        className="
+                            text-lg
+                            font-semibold
+                            text-white
+                        "
+                    >
+                        Contáctanos
+                    </span>
+
+                    <ul
+                        className="
+                            mt-4
+                            space-y-4
+                            text-sm
+                            text-[#c7d0d9]
+                        "
+                    >
+
+                        <li>
+                            Correo
+                        </li>
+
+                        <li>
+                            yamithmeneses122@gmail.com
+                        </li>
+
+                        <li>
+                            Contacto
+                        </li>
+
+                        <li>
+                            3127567859
+                        </li>
+
+                    </ul>
+
+                </article>
 
             </section>
 

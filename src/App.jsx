@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PublicLayout from "../src/Routes/PublicLayout";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import HomeView from "./Features/Public/Homeview";
+import PublicLayout from "./Routes/PublicLayout";
+import HomeView from "./Features/Public/view/Homeview";
 
 function App() {
     return (
@@ -11,9 +11,23 @@ function App() {
 
                 <Route element={<PublicLayout />}>
 
-                    <Route path="/home" element={<HomeView />} />
+                    <Route
+                        path="/"
+                        element={<HomeView />}
+                    />
+
+                    <Route
+                        path="/home"
+                        element={<HomeView />}
+                    />
 
                 </Route>
+
+                {/* Si entran a una ruta inexistente */}
+                <Route
+                    path="*"
+                    element={<Navigate to="/" replace />}
+                />
 
             </Routes>
 

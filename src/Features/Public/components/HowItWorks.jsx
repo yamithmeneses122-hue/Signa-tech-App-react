@@ -1,73 +1,147 @@
-function HowItWorks() {
+export default function HowItWorks() {
+    const steps = [
+        {
+            number: "1",
+            title: "Regístrate",
+            description:
+                "Crea tu cuenta gratuita en menos de 2 minutos.",
+        },
+        {
+            number: "2",
+            title: "Configura",
+            description:
+                "Personaliza la experiencia según tus necesidades.",
+        },
+        {
+            number: "3",
+            title: "Comunícate",
+            description:
+                "Empieza conversaciones inclusivas en tiempo real.",
+        },
+    ];
+
     return (
-        <section className="mt-16 border-t border-b border-white/5 bg-gradient-to-b from-[#00CCFF]/10 to-[#00CCFF]/[0.03] px-6 py-16 lg:px-12">
+        <section
+            className="
+                mt-20
+                border-y
+                border-white/[.05]
+                bg-gradient-to-b
+                from-[rgba(0,204,255,.08)]
+                to-[rgba(0,204,255,.03)]
+                px-6
+                py-16
+                lg:px-12
+            "
+        >
 
-            <header className="mb-10 text-center">
+            {/* TÍTULO */}
+            <article
+                className="
+                    mb-12
+                    text-center
+                "
+            >
 
-                <h2 className="text-3xl font-bold text-[#00CCFF] sm:text-4xl">
+                <h1
+                    id="comofunciona"
+                    className="
+                        text-4xl
+                        font-bold
+                        text-[#00CCFF]
+                    "
+                >
                     Cómo funciona
-                </h2>
+                </h1>
 
-                <p className="mt-4 text-base text-white">
-                    Comienza a utilizar SIGNA-TECH-APP en simples pasos.
+                <p
+                    className="
+                        mt-4
+                        text-base
+                        text-white
+                    "
+                >
+                    Tres simples pasos para comenzar
+                    a comunicarte sin barreras.
                 </p>
 
-            </header>
+            </article>
 
-            <section className="mx-auto flex max-w-[1000px] flex-col justify-center gap-6 md:flex-row">
 
-                <article className="flex-1 rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-xl">
+            {/* PASOS */}
+            <section
+                className="
+                    grid
+                    grid-cols-1
+                    justify-items-center
+                    gap-6
+                    md:grid-cols-3
+                "
+            >
 
-                    <h3 className="mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full bg-gradient-to-br from-[#00CCFF] to-[#099DCB] text-xl text-white">
-                        1
-                    </h3>
+                {steps.map((step) => (
+                    <article
+                        key={step.number}
+                        className="
+                            w-full
+                            max-w-[320px]
+                            rounded-[24px]
+                            border
+                            border-white/[.08]
+                            bg-white/[.04]
+                            p-8
+                            text-center
+                            backdrop-blur-xl
+                        "
+                    >
 
-                    <h2 className="mt-4 text-xl font-semibold text-white">
-                        Regístrate
-                    </h2>
+                        <h2
+                            className="
+                                mx-auto
+                                flex
+                                h-[60px]
+                                w-[60px]
+                                items-center
+                                justify-center
+                                rounded-full
+                                bg-gradient-to-br
+                                from-[#00CCFF]
+                                to-[#099DCB]
+                                text-lg
+                                font-bold
+                                text-white
+                            "
+                        >
+                            {step.number}
+                        </h2>
 
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Crea tu cuenta para comenzar a utilizar la plataforma.
-                    </p>
+                        <h2
+                            className="
+                                mt-5
+                                text-xl
+                                font-bold
+                                text-white
+                            "
+                        >
+                            {step.title}
+                        </h2>
 
-                </article>
+                        <p
+                            className="
+                                mt-3
+                                text-sm
+                                leading-[1.7]
+                                text-[#c7d0d9]
+                            "
+                        >
+                            {step.description}
+                        </p>
 
-                <article className="flex-1 rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-xl">
-
-                    <h3 className="mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full bg-gradient-to-br from-[#00CCFF] to-[#099DCB] text-xl text-white">
-                        2
-                    </h3>
-
-                    <h2 className="mt-4 text-xl font-semibold text-white">
-                        Configura
-                    </h2>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Configura las opciones necesarias para tu comunicación.
-                    </p>
-
-                </article>
-
-                <article className="flex-1 rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-xl">
-
-                    <h3 className="mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full bg-gradient-to-br from-[#00CCFF] to-[#099DCB] text-xl text-white">
-                        3
-                    </h3>
-
-                    <h2 className="mt-4 text-xl font-semibold text-white">
-                        Comunícate
-                    </h2>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Utiliza voz, texto y lenguaje de señas para comunicarte.
-                    </p>
-
-                </article>
+                    </article>
+                ))}
 
             </section>
 
         </section>
     );
 }
-
-export default HowItWorks;

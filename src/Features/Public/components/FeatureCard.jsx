@@ -1,97 +1,114 @@
-function FeatureCard() {
+const features = [
+    {
+        image: "/images/feactures/img1.png",
+        title: "Reconocimiento IA",
+        description:
+            "Sistema de IA que reconoce lengua de señas en tiempo real con 98% de precisión.",
+    },
+    {
+        image: "/images/feactures/image2.png",
+        title: "Tiempo real",
+        description:
+            "Traducción instantánea sin retrasos, permitiendo conversaciones naturales.",
+    },
+    {
+        image: "/images/feactures/image3.png",
+        title: "Privacidad garantizada",
+        description:
+            "Encriptación de extremo a extremo para proteger todas tus conversaciones.",
+    },
+    {
+        image: "/images/feactures/image3.png",
+        title: "100% Accesible",
+        description:
+            "Diseñado desde cero siguiendo estándares WCAG para máxima accesibilidad.",
+    },
+    {
+        image: "/images/feactures/image5.png",
+        title: "Lengua de señas colombiana",
+        description:
+            "Compatible con saludos básicos y expresiones comunes.",
+    },
+    {
+        image: "/images/feactures/image6.png",
+        title: "Soporte experto",
+        description:
+            "Atención especializada por intérprete disponible para asistencia.",
+    },
+];
+
+export default function FeatureCard() {
     return (
-        <section className="px-6 py-8 lg:px-12">
+        <section
+            className="
+                grid
+                grid-cols-1
+                gap-6
+                px-6
+                py-8
+                md:grid-cols-2
+                lg:grid-cols-3
+                lg:px-12
+            "
+        >
 
-            <header className="mb-8 text-center">
+            {features.map((feature) => (
+                <article
+                    key={feature.title}
+                    className="
+                        rounded-[24px]
+                        border
+                        border-white/[.08]
+                        bg-white/[.03]
+                        p-8
+                        text-left
+                        backdrop-blur-xl
+                        transition
+                        duration-300
+                        hover:-translate-y-2
+                        hover:border-[#00CCFF]/30
+                        hover:bg-white/[.05]
+                    "
+                >
 
-                <p className="text-sm font-medium tracking-wide text-[#00CCFF]">
-                    Características
-                </p>
+                    <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="
+                            h-[70px]
+                            w-[70px]
+                            rounded-[18px]
+                            bg-[rgba(0,204,255,.08)]
+                            object-contain
+                            p-3
+                        "
+                    />
 
-                <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-                    Una solución pensada para la inclusión
-                </h2>
+                    <h1
+                        className="
+                            mt-6
+                            text-xl
+                            font-bold
+                            text-white
+                        "
+                    >
+                        {feature.title}
+                    </h1>
 
-            </header>
-
-            <section className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        Reconocimiento IA
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Tecnología orientada al reconocimiento básico de señas.
+                    <p
+                        className="
+                            mt-3
+                            text-sm
+                            leading-[1.7]
+                            text-[#c7d0d9]
+                        "
+                    >
+                        {feature.description}
                     </p>
 
                 </article>
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        Tiempo real
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Facilita la comunicación de manera rápida y bidireccional.
-                    </p>
-
-                </article>
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        Privacidad garantizada
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        La solución considera la protección de la información de los usuarios.
-                    </p>
-
-                </article>
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        100% Accesible
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Diseñada pensando en diferentes necesidades de comunicación.
-                    </p>
-
-                </article>
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        Lengua de señas colombiana
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Incluye un vocabulario básico de Lengua de Señas Colombiana.
-                    </p>
-
-                </article>
-
-                <article className="min-h-[320px] rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-left text-white backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#00CCFF]/40 hover:shadow-[0_15px_35px_rgba(0,0,0,.2)]">
-
-                    <h3 className="text-xl font-semibold">
-                        Soporte experto
-                    </h3>
-
-                    <p className="mt-3 leading-7 text-[#c7d0d9]">
-                        Cuenta con acompañamiento para facilitar el uso de la solución.
-                    </p>
-
-                </article>
-
-            </section>
+            ))}
 
         </section>
     );
 }
-
-export default FeatureCard;
