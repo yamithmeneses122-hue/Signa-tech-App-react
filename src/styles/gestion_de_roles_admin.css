@@ -1,5 +1,3 @@
-@import "tailwindcss";
-/*1. PALETA DE COLORES*/
 :root {
     --fondo-negro: #000000;
     --fondo-card: #010409;
@@ -10,7 +8,7 @@
     --borde: #1d212a;
 }
 
-/* 2. REINICIO TÉCNICO (RESET)*/
+/* REINICIO TÉCNICO (RESET) */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -31,7 +29,7 @@ body {
     width: 100%;
 }
 
-/*BLOQUE 3: ESTILOS DE LA BARRA LATERAL CON SCROLLBAR NEÓN OPERATIVA */
+/* ESTILOS DE LA BARRA LATERAL CON SCROLLBAR NEÓN OPERATIVA */
 .menu-lado {
     width: 300px;
     background-color: #050811;
@@ -133,15 +131,6 @@ body {
     padding-left: 25px;
 }
 
-.caja-logout-fija {
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px solid var(--borde);
-    background-color: #050811;
-    display: flex;
-    justify-content: center;
-}
-
 .caja-logout-fija a#btn-logout {
     color: #3cd3e7d7;
     background-color: rgba(60, 225, 231, 0.03);
@@ -168,7 +157,7 @@ body {
     transform: translateY(-2px);
 }
 
-/*4. LAYOUT PANEL CENTRAL DINÁMICO*/
+/* LAYOUT PANEL CENTRAL */
 .contenido-centro {
     margin-left: 300px; 
     width: calc(100% - 300px);
@@ -180,8 +169,9 @@ body {
 }
 
 .bloque-encabezado {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     width: 100%;
+    text-align: center;
 }
 
 .titulo-pagina {
@@ -197,71 +187,38 @@ body {
     color: #8b949e;
 }
 
-/*ESTILOS COMPONENTES INTERNOS PROPIOS: FILA DE MÉTRICAS DE CABECERA*/
-.fila-metricas-admin {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1100px;
-    margin-bottom: 35px;
-}
-
-.tarjeta-metrica {
-    background-color: #070a13;
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    padding: 20px;
+/* FLUJO EN COLUMNA INTEGRAL EN LÍNEA RECTA CENTRADA (680PX) */
+.flujo-vertical-config {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-}
-
-.tarjeta-metrica h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #8b949e;
-    letter-spacing: 0.5px;
-}
-
-.numero-metrica {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--blanco-puro);
-}
-
-.tendencia-metrica {
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.tendencia-metrica.positivo { color: #10b981; }
-.tendencia-metrica.alerta { color: #f59e0b; }
-
-/*5. DISEÑO DE LA CUADRÍCULA DE TARJETAS (HUB INTERACTIVO MAESTRO)*/
-.dashboard-grid-operador {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
+    gap: 25px; 
     width: 100%;
-    max-width: 1100px;
+    max-width: 680px; 
+    margin: 0 auto;  
+    padding-bottom: 50px;
 }
 
 .tarjeta-modulo {
     background-color: var(--fondo-card);
     border: 1px solid var(--borde);
     border-radius: 12px;
-    padding: 25px;
+    padding: 30px;
     display: flex;
-    align-items: center;
+    flex-direction: column; 
+    align-items: flex-start;
     gap: 20px;
-    cursor: pointer;
+    width: 100%; 
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.cabecera-tarjeta-interna {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 
 .icono-modulo-wrapper {
@@ -291,31 +248,6 @@ body {
     line-height: 1.4;
 }
 
-.flecha-ir {
-    margin-left: auto;
-    font-size: 1.2rem;
-    color: #8b949e;
-    transition: all 0.3s ease;
-    opacity: 0.4;
-    flex-shrink: 0;
-}
-
-/* EFECTOS HOVER COMPATIBLES */
-.tarjeta-modulo:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.01);
-}
-
-.tarjeta-modulo:hover .icono-modulo-wrapper {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.tarjeta-modulo:hover .flecha-ir {
-    color: var(--blanco-puro);
-    opacity: 1;
-    transform: translateX(5px);
-}
-
 .bordo-azul { border-top: 4px solid var(--azul-neon); }
 .bordo-verde { border-top: 4px solid var(--verde-esmeralda); }
 
@@ -328,14 +260,152 @@ body {
     border-color: var(--verde-esmeralda);
     box-shadow: 0 0 20px rgba(0, 247, 255, 0.25);
 }
-.tarjeta-modulo,
-.tarjeta-modulo:visited,
-.tarjeta-modulo:active,
-.tarjeta-modulo:hover {
-    color: inherit;
-    text-decoration: none;
+
+/*ESTILOS COMPONENTES INTERNOS S*/
+.formulario-interno-config {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
-/* 6. INTERFAZ EN MODO CLARO (SOPORTE TRANSICIÓN VARIABLE)*/
+
+.grupo-fieldset-permisos {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 15px 20px;
+    background-color: #0d1117;
+    width: 100%;
+}
+
+.grupo-fieldset-permisos legend {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--azul-neon);
+    padding: 0 10px;
+    letter-spacing: 0.5px;
+}
+
+.lista-permisos-toggles {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 5px;
+}
+
+.item-permiso-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.texto-permiso-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.texto-permiso-info strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--blanco-puro);
+}
+
+.texto-permiso-info p {
+    font-size: 0.85rem;
+    color: #8b949e;
+    line-height: 1.3;
+}
+
+/* 🔌 CONTROL PREMIUM: INTERRUPTOR CONMUTADOR (SWITCH NEÓN) */
+.switch-interruptor-neon {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch-interruptor-neon input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-visual-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #21262d;
+    border-radius: 24px;
+    border: 1px solid var(--borde);
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-visual-switch:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background-color: #8b949e;
+    border-radius: 50%;
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estados Dinámicos en Chequeo */
+.switch-interruptor-neon input:checked + .slider-visual-switch {
+    background-color: rgba(0, 247, 255, 0.04);
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.2);
+}
+
+.switch-interruptor-neon input:checked + .slider-visual-switch:before {
+    transform: translateX(22px);
+    background-color: var(--verde-esmeralda);
+    box-shadow: 0 0 8px var(--verde-esmeralda);
+}
+
+/* Estado Deshabilitado Bloqueado  */
+.slider-visual-switch.bloqueado {
+    cursor: not-allowed;
+    opacity: 0.5;
+    border-color: var(--azul-neon);
+}
+.slider-visual-switch.bloqueado:before {
+    background-color: var(--azul-neon);
+}
+
+/* Botón Guardar */
+.btn-operativo-modulo {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-confirmar {
+    background: rgba(0, 204, 255, 0.05);
+    border: 1px solid var(--azul-neon);
+    color: var(--azul-neon);
+}
+
+.btn-confirmar:hover {
+    background: var(--azul-neon);
+    color: #000000;
+    box-shadow: 0 4px 15px rgba(0, 204, 255, 0.3);
+}
+
+/* INTERFAZ EN MODO CLARO ) */
 body.tema-claro {
     background-color: #D9E2EC;
     color: #102A43;
@@ -358,7 +428,6 @@ body.tema-claro .menu-lado nav ul li a.active {
     border-color: rgba(0, 86, 179, 0.2);
 }
 
-body.tema-claro .tarjeta-metrica { background-color: #E2E8f0; border-color: #BCCCDC; }
 body.tema-claro .tarjeta-modulo {
     background-color: #F0F4F8;
     border-color: #BCCCDC;
@@ -366,15 +435,27 @@ body.tema-claro .tarjeta-modulo {
 }
 
 body.tema-claro .info-modulo h3,
-body.tema-claro .numero-metrica { color: #102A43; }
+body.tema-claro .texto-permiso-info strong { color: #102A43; }
 body.tema-claro .titulo-pagina { color: #102A43; }
 body.tema-claro .info-modulo p, 
-body.tema-claro .subtitulo-pagina { color: #486581; }
+body.tema-claro .subtitulo-pagina,
+body.tema-claro .texto-permiso-info p { color: #486581; }
+
+body.tema-claro .grupo-fieldset-permisos { background-color: #ffffff; border-color: #BCCCDC; }
+body.tema-claro .grupo-fieldset-permisos legend { color: #0056b3; }
+body.tema-claro .slider-visual-switch { background-color: #E2E8F0; border-color: #BCCCDC; }
+body.tema-claro .slider-visual-switch:before { background-color: #9FB3C8; }
+
+body.tema-claro .switch-interruptor-neon input:checked + .slider-visual-switch { background-color: rgba(0, 86, 179, 0.05); border-color: #0056b3; }
+body.tema-claro .switch-interruptor-neon input:checked + .slider-visual-switch:before { background-color: #0056b3; }
+
+body.tema-claro .btn-confirmar { border-color: #0056b3; color: #0056b3; }
+body.tema-claro .btn-confirmar:hover { background: #0056b3; color: #ffffff; }
 
 body.tema-claro .bordo-azul:hover { border-color: #0056b3; box-shadow: 0 0 15px rgba(0, 86, 179, 0.2); }
 body.tema-claro .bordo-verde:hover { border-color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
 
-/*7. SOPORTE RESPONSIVE COMPLETO (CELULARES / HAMBURGUESA OPACO)*/
+/*  SOPORTE RESPONSIVE*/
 @media (max-width: 900px) {
     .menu-lado {
         width: 260px;
@@ -426,6 +507,8 @@ body.tema-claro .bordo-verde:hover { border-color: #10b981; box-shadow: 0 0 15px
     .btn-hamburguesa.X-activa span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .btn-hamburguesa.X-activa span:nth-child(2) { opacity: 0; }
     .btn-hamburguesa.X-activa span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    
+    .item-permiso-fila { flex-direction: row; justify-content: space-between; width: 100%; }
 }
 
 @media (min-width: 901px) {
@@ -433,11 +516,9 @@ body.tema-claro .bordo-verde:hover { border-color: #10b981; box-shadow: 0 0 15px
 }
 
 @media (max-width: 600px) {
-    .tarjeta-modulo {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-    .flecha-ir { display: none; }
+    .tarjeta-modulo { padding: 20px; }
+    .cabecera-tarjeta-interna { flex-direction: column; text-align: center; }
     .titulo-pagina { font-size: 2rem; }
+    .item-permiso-fila { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .switch-interruptor-neon { align-self: flex-end; }
 }

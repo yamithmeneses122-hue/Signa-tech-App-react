@@ -1,12 +1,11 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './styles/index.css'
 
-import "./styles/index.css";
-
-import App from "./App.jsx";
-
-createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <App />
-    </StrictMode>
-);
+// Aquí le avisamos que inyecte todo adentro de nuestro hermoso <main id="root-app">
+createRoot(document.getElementById('root-app')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
