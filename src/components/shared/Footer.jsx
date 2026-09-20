@@ -2,41 +2,16 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <footer
-            className="
-                border-t
-                border-white/[.05]
-                bg-black/[.25]
-                px-6
-                py-16
-                text-white
-                backdrop-blur-xl
-                lg:px-12
-            "
-        >
+        <footer className=" border-t border-white/[.05] bg-black/[.25] px-6 py-16 text-white backdrop-blur-xl lg:px-12" >
 
-            <section
-                className="
-                    mx-auto
-                    grid
-                    max-w-[1600px]
-                    gap-10
-                    md:grid-cols-3
-                "
-            >
+            <section className="mx-auto grid max-w-[1600px]  gap-10 md:grid-cols-3">
 
-                {/* INFORMACIÓN */}
                 <article>
 
                     <img
                         src="/images/logo/logo.jpeg"
                         alt="Logo de SIGNA-TECH-APP"
-                        className="
-                            h-[60px]
-                            w-[60px]
-                            rounded-full
-                            object-cover
-                        "
+                        className="h-[60px] w-[60px] rounded-full object-cover "
                     />
 
                     <h1
@@ -50,7 +25,7 @@ function Footer() {
                         SIGNA-TECH-APP
                     </h1>
 
-                    <p
+                    <p 
                         className="
                             mt-4
                             max-w-sm
@@ -66,7 +41,6 @@ function Footer() {
                 </article>
 
 
-                {/* PRODUCTO */}
                 <article>
 
                     <span
@@ -117,7 +91,6 @@ function Footer() {
                 </article>
 
 
-                {/* CONTACTO */}
                 <article>
 
                     <span
