@@ -1,7 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import PublicLayout from "./Routes/PublicLayout";
+import HeaderHomeLayout from "./Routes/HeaderHome";
+import HeaderProductoLayout from "./Routes/HeaderProducto";
+
 import HomeView from "./Features/Public/view/Homeview";
+import ProductView from "./Features/Public/view/Productview";
+import SupportView from "./Features/Public/view/SupportView";
 
 function App() {
     return (
@@ -9,7 +13,7 @@ function App() {
 
             <Routes>
 
-                <Route element={<PublicLayout />}>
+                <Route element={<HeaderHomeLayout />}>
 
                     <Route
                         path="/"
@@ -23,7 +27,20 @@ function App() {
 
                 </Route>
 
-                {/* Si entran a una ruta inexistente */}
+                <Route element={<HeaderProductoLayout />}>
+
+                    <Route
+                        path="/product"
+                        element={<ProductView />}
+                    />
+
+                    <Route
+                        path="/support"
+                        element={<SupportView />}
+                    />
+
+                </Route>
+
                 <Route
                     path="*"
                     element={<Navigate to="/" replace />}
