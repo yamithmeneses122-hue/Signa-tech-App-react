@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import DashboardAdmin from './components/shared/DashboardAdmin';
-import GestionUsuarios from './components/shared/GestionUsuarios';
-import GestionRoles from './components/shared/GestionRoles';
-import DiccionarioAdmin from './components/shared/DiccionarioAdmin';
-import AprobacionSenas from './components/shared/AprobacionSenas';
-import Configuracion from './components/shared/Configuracion';
+import DashboardAdmin from './features/administrador/views/DashboardAdmin';
+import GestionUsuarios from './features/administrador/views/GestionUsuarios';
+import GestionRoles from './features/administrador/views/GestionRoles';
+import DiccionarioAdmin from './features/administrador/views/DiccionarioAdmin';
+import AprobacionSenas from './features/administrador/views/AprobacionSenas';
+import Configuracion from './features/administrador/views/Configuracion';
 
 function App() {
   return (
