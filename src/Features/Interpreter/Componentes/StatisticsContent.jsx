@@ -71,14 +71,14 @@ export default function StatisticsContent() {
           </section>
         </header>
 
-        <dl className="summary-grid">
+        <ul className="summary-grid">
           {statisticsSummary.map(([label, value]) => (
-            <section className="summary-item" key={label}>
-              <dt>{label}</dt>
-              <dd>{value}</dd>
-            </section>
+            <li className="summary-item" key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </li>
           ))}
-        </dl>
+        </ul>
       </article>
     </>
   );
