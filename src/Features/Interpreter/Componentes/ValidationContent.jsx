@@ -46,7 +46,7 @@ export default function ValidationContent() {
         description="Revisa las nuevas señas y decide si deben formar parte del diccionario."
       />
 
-      <section className="toolbar panel" aria-label="Filtros de validación">
+      <search className="toolbar panel" aria-label="Filtros de validación">
         <SearchBar
           value={query}
           onChange={setQuery}
@@ -71,7 +71,7 @@ export default function ValidationContent() {
             { value: "Rechazada", label: "Rechazada" }
           ]}
         />
-      </section>
+      </search>
 
       <section className="validation-layout" aria-label="Validación de señas">
         <article className="panel sign-list-panel">
