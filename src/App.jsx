@@ -6,6 +6,7 @@ import HeaderProductoLayout from "./Routes/HeaderProducto";
 import HomeView from "./Features/Public/view/Homeview";
 import ProductView from "./Features/Public/view/Productview";
 import SupportView from "./Features/Public/view/SupportView";
+import { InterpreterRoutes } from "./Features/Interpreter/InterpreterRoutes";
 
 function App() {
     return (
@@ -40,6 +41,8 @@ function App() {
                     />
 
                 </Route>
+
+                {InterpreterRoutes()}
 
                 <Route
                     path="*"
