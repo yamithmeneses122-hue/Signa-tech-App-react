@@ -6,5 +6,9 @@ const statusClass = {
 };
 
 export default function StatusBadge({ status }) {
-  return <span className={`status-badge ${statusClass[status] || ""}`}>{status}</span>;
+  return (
+    <span className={`status-badge ${statusClass[status] || ""}`}>
+      {status}
+    </span>
+  );
 }

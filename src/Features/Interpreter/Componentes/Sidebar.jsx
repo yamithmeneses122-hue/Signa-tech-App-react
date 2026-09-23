@@ -15,30 +15,50 @@ export default function Sidebar({ open, onClose }) {
     <aside className={`interpreter-sidebar ${open ? "is-open" : ""}`}>
       <header className="sidebar-brand">
         <span className="brand-mark" aria-hidden="true">ST</span>
-        <span>
+
+        <section>
           <strong>SIGNA-TECH</strong>
           <small>Panel intérprete</small>
-        </span>
-        <button className="sidebar-close" type="button" onClick={onClose} aria-label="Cerrar menú">×</button>
+        </section>
+
+        <button
+          className="sidebar-close"
+          type="button"
+          onClick={onClose}
+          aria-label="Cerrar menú"
+        >
+          ×
+        </button>
       </header>
 
       <nav className="sidebar-nav" aria-label="Navegación del intérprete">
-        {items.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.end}
-            onClick={onClose}
-            className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}
-          >
-            <span className="sidebar-icon" aria-hidden="true">{item.icon}</span>
-            <span>{item.label}</span>
-          </NavLink>
-        ))}
+        <ul>
+          {items.map((item) => (
+            <li key={item.to}>
+              <NavLink
+                to={item.to}
+                end={item.end}
+                onClick={onClose}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <span className="sidebar-icon" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       <footer className="sidebar-footer">
-        <button className="logout-link" type="button" onClick={() => window.location.assign("/")}>
+        <button
+          className="logout-link"
+          type="button"
+          onClick={() => window.location.assign("/")}
+        >
           <span aria-hidden="true">↪</span>
           Cerrar sesión
         </button>

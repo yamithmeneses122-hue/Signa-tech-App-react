@@ -7,15 +7,28 @@ export default function InterpreterLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section className="interpreter-shell">
-      <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
-      {menuOpen && <button className="sidebar-overlay" type="button" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú" />}
-      <section className="interpreter-main">
+    <>
+      <Sidebar
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+
+      {menuOpen && (
+        <button
+          className="sidebar-overlay"
+          type="button"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Cerrar menú"
+        />
+      )}
+
+      <section className="interpreter-main" aria-label="Panel del intérprete">
         <Header onMenu={() => setMenuOpen(true)} />
+
         <main className="interpreter-content">
           <Outlet />
         </main>
       </section>
-    </section>
+    </>
   );
 }
