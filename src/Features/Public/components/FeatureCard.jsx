@@ -1,114 +1,23 @@
 const features = [
-    {
-        image: "/images/feactures/img1.png",
-        title: "Reconocimiento IA",
-        description:
-            "Sistema de IA que reconoce lengua de señas en tiempo real con 98% de precisión.",
-    },
-    {
-        image: "/images/feactures/image2.png",
-        title: "Tiempo real",
-        description:
-            "Traducción instantánea sin retrasos, permitiendo conversaciones naturales.",
-    },
-    {
-        image: "/images/feactures/image3.png",
-        title: "Privacidad garantizada",
-        description:
-            "Encriptación de extremo a extremo para proteger todas tus conversaciones.",
-    },
-    {
-        image: "/images/feactures/image3.png",
-        title: "100% Accesible",
-        description:
-            "Diseñado desde cero siguiendo estándares WCAG para máxima accesibilidad.",
-    },
-    {
-        image: "/images/feactures/image5.png",
-        title: "Lengua de señas colombiana",
-        description:
-            "Compatible con saludos básicos y expresiones comunes.",
-    },
-    {
-        image: "/images/feactures/image6.png",
-        title: "Soporte experto",
-        description:
-            "Atención especializada por intérprete disponible para asistencia.",
-    },
+    ["Reconocimiento asistido", "IA dentro del flujo de interpretación, con alcance centrado en señas básicas."],
+    ["Comunicación en tiempo real", "Entradas y resultados organizados para que la conversación se entienda de un vistazo."],
+    ["Captura visual", "Cámara como entrada para el flujo de interpretación de señas."],
+    ["Diccionario LSC", "Espacio pensado para consultar vocabulario y apoyar la validación."],
+    ["Panel de intérprete", "Consulta y revisión de información relacionada con el diccionario."],
+    ["Accesibilidad", "Contraste, jerarquía, foco visible y adaptación a distintas pantallas."],
 ];
 
 export default function FeatureCard() {
     return (
-        <section
-            className="
-                grid
-                grid-cols-1
-                gap-6
-                px-6
-                py-8
-                md:grid-cols-2
-                lg:grid-cols-3
-                lg:px-12
-            "
-        >
-
-            {features.map((feature) => (
-                <article
-                    key={feature.title}
-                    className="
-                        rounded-[24px]
-                        border
-                        border-white/[.08]
-                        bg-white/[.03]
-                        p-8
-                        text-left
-                        backdrop-blur-xl
-                        transition
-                        duration-300
-                        hover:-translate-y-2
-                        hover:border-[#00CCFF]/30
-                        hover:bg-white/[.05]
-                    "
-                >
-
-                    <img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="
-                            h-[70px]
-                            w-[70px]
-                            rounded-[18px]
-                            bg-[rgba(0,204,255,.08)]
-                            object-contain
-                            p-3
-                        "
-                    />
-
-                    <h1
-                        className="
-                            mt-6
-                            text-xl
-                            font-bold
-                            text-white
-                        "
-                    >
-                        {feature.title}
-                    </h1>
-
-                    <p
-                        className="
-                            mt-3
-                            text-sm
-                            leading-[1.7]
-                            text-[#c7d0d9]
-                        "
-                    >
-                        {feature.description}
-                    </p>
-
-                </article>
-            ))}
-
+        <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
+            <header className="max-w-3xl"><span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Capacidades</span><h2 className="mt-4 text-4xl font-black sm:text-5xl">Todo empieza por una experiencia fácil de entender.</h2></header>
+            <section className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {features.map(([title, text], index) => (
+                    <article key={title} className={`rounded-[2rem] border border-white/8 bg-white/[.025] p-7 transition hover:-translate-y-1 hover:border-cyan-300/25 ${index === 0 || index === 5 ? "lg:col-span-2" : ""}`}>
+                        <span className="text-2xl text-cyan-300">✦</span><h3 className="mt-6 text-xl font-bold">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-400">{text}</p>
+                    </article>
+                ))}
+            </section>
         </section>
     );
 }
