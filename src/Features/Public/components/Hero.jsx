@@ -2,146 +2,54 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
     return (
-        <section
-            className="
-                flex
-                flex-col
-                gap-12
-                px-6
-                pb-16
-                pt-32
-                lg:flex-row
-                lg:items-center
-                lg:justify-between
-                lg:px-12
-                lg:pb-20
-                lg:pt-40
-            "
-        >
-
-            {/* TEXTO */}
-            <article
-                className="
-                    flex
-                    w-full
-                    flex-col
-                    items-center
-                    text-center
-                    lg:w-1/2
-                    lg:items-start
-                    lg:text-left
-                "
-            >
-
-                <h1
-                    className="
-                        text-4xl
-                        font-extrabold
-                        leading-[1.2]
-                        text-white
-                        sm:text-5xl
-                        lg:text-[3.5rem]
-                    "
-                >
-                    Conectando personas
-                    <br />
-                    más allá del lenguaje
+        <section className="mx-auto grid max-w-[1400px] items-center gap-14 px-5 py-20 lg:grid-cols-[.9fr_1.1fr] lg:px-10 lg:py-28">
+            <article>
+                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[.06] px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-cyan-200">
+                    <span className="h-2 w-2 rounded-full bg-cyan-300" /> Tecnología que conecta
+                </span>
+                <h1 className="mt-7 text-5xl font-black leading-[.98] tracking-[-.04em] sm:text-6xl lg:text-[5.4rem]">
+                    Conecta.<span className="block text-cyan-300">Comprende.</span><span className="block">Comunica.</span>
                 </h1>
-
-                <p
-                    className="
-                        mt-6
-                        max-w-xl
-                        text-base
-                        leading-[1.9]
-                        text-[#c7d0d9]
-                        lg:text-[1.05rem]
-                    "
-                >
-                    SIGNA-TECH facilita la comunicación en tiempo real
-                    entre usuarios sordos que usan lengua de señas y
-                    usuarios oyentes que usan voz, creando un puente
-                    de inclusión real.
+                <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                    SIGNA-TECH propone un puente digital entre voz, texto y Lengua de Señas Colombiana para facilitar conversaciones básicas en contextos cotidianos y educativos.
                 </p>
-
-
-                {/* BOTONES */}
-                <article
-                    className="
-                        mt-8
-                        flex
-                        flex-col
-                        items-center
-                        gap-4
-                        sm:flex-row
-                    "
-                >
-
-                    <Link to="/register">
-                        <button
-                            className="
-                                h-[52px]
-                                rounded-[16px]
-                                bg-gradient-to-br
-                                from-[#00CCFF]
-                                to-[#099DCB]
-                                px-8
-                                font-semibold
-                                text-white
-                                shadow-[0_15px_35px_rgba(0,204,255,.25)]
-                                transition
-                                duration-300
-                                hover:-translate-y-1
-                                hover:shadow-[0_20px_40px_rgba(0,204,255,.35)]
-                            "
-                        >
-                            Empezar ahora →
-                        </button>
+                <section className="mt-9 flex flex-col gap-3 sm:flex-row">
+                    <Link to="/login" className="inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-7 font-bold text-white shadow-[0_18px_45px_rgba(0,204,255,.2)] transition hover:-translate-y-1">
+                        Explorar SIGNA <span aria-hidden="true">→</span>
                     </Link>
-
-                    <Link
-                        to="/product"
-                        className="
-                            text-sm
-                            font-medium
-                            text-[#c7d0d9]
-                            transition
-                            duration-300
-                            hover:text-[#00CCFF]
-                        "
-                    >
-                        Conocer el producto
-                    </Link>
-
-                </article>
-
+                    <a href="#comofunciona" className="inline-flex min-h-13 items-center justify-center rounded-2xl border border-white/12 bg-white/[.035] px-7 font-semibold text-slate-200 transition hover:border-cyan-300/40">Ver cómo funciona</a>
+                </section>
+                <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs text-slate-500">
+                    <li>✓ Enfoque educativo</li><li>✓ Voz y texto</li><li>✓ Señas básicas</li>
+                </ul>
             </article>
 
-
-            {/* IMAGEN */}
-            <figure
-                className="
-                    flex
-                    w-full
-                    justify-center
-                    lg:w-1/2
-                "
-            >
-                <img
-                    src="/images/others/img7.jpeg"
-                    alt="Imagen principal de SIGNA-TECH-APP"
-                    className="
-                        w-full
-                        max-w-[750px]
-                        rounded-[28px]
-                        border
-                        border-white/10
-                        object-cover
-                        shadow-[0_25px_60px_rgba(0,0,0,.45)]
-                    "
-                />
+            <figure className="relative mx-auto w-full max-w-[620px]">
+                <span className="absolute -inset-8 rounded-[3rem] bg-cyan-400/10 blur-3xl" />
+                <section className="relative rounded-[2rem] border border-white/12 bg-[#111a20]/95 p-3 shadow-[0_35px_100px_rgba(0,0,0,.55)]">
+                    <section className="rounded-[1.5rem] border border-white/10 bg-[#0b1115] p-5">
+                        <header className="flex items-center justify-between border-b border-white/8 pb-4">
+                            <section><p className="text-sm font-bold">Comunicación</p><p className="text-xs text-slate-500">Sesión preparada</p></section>
+                            <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-300">En línea</span>
+                        </header>
+                        <section className="grid gap-4 py-5 sm:grid-cols-2">
+                            <article className="rounded-2xl border border-cyan-300/15 bg-cyan-300/[.06] p-5">
+                                <p className="text-xs font-bold text-cyan-200">Entrada</p>
+                                <section className="mt-4 grid h-40 place-items-center rounded-xl border border-dashed border-white/10 bg-black/20">
+                                    <span className="grid h-20 w-20 place-items-center rounded-full bg-cyan-300/10 text-3xl text-cyan-300">◉</span>
+                                </section>
+                                <p className="mt-3 text-xs text-slate-400">Cámara / micrófono preparado</p>
+                            </article>
+                            <article className="rounded-2xl border border-white/8 bg-white/[.025] p-5">
+                                <p className="text-xs font-bold text-slate-400">Interpretación</p>
+                                <p className="mt-5 rounded-xl bg-white/[.04] p-3 text-sm text-slate-300">Hola, ¿cómo estás?</p>
+                                <p className="mt-3 rounded-xl bg-cyan-300/10 p-3 text-sm text-cyan-100">Mensaje listo para comunicar</p>
+                                <p className="mt-5 text-xs text-slate-500">Voz ↔ texto ↔ señas básicas</p>
+                            </article>
+                        </section>
+                    </section>
+                </section>
             </figure>
-
         </section>
     );
 }
