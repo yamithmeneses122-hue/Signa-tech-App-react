@@ -11,46 +11,21 @@ import { InterpreterRoutes } from "./Features/Interpreter/InterpreterRoutes";
 function App() {
     return (
         <BrowserRouter>
-
             <Routes>
-
                 <Route element={<HeaderHomeLayout />}>
-
-                    <Route
-                        path="/"
-                        element={<HomeView />}
-                    />
-
-                    <Route
-                        path="/home"
-                        element={<HomeView />}
-                    />
-
+                    <Route path="/" element={<HomeView />} />
+                    <Route path="/home" element={<HomeView />} />
                 </Route>
 
                 <Route element={<HeaderProductoLayout />}>
-
-                    <Route
-                        path="/product"
-                        element={<ProductView />}
-                    />
-
-                    <Route
-                        path="/support"
-                        element={<SupportView />}
-                    />
-
+                    <Route path="/product" element={<ProductView />} />
+                    <Route path="/support" element={<SupportView />} />
                 </Route>
 
                 {InterpreterRoutes()}
 
-                <Route
-                    path="*"
-                    element={<Navigate to="/" replace />}
-                />
-
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-
         </BrowserRouter>
     );
 }

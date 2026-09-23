@@ -1,91 +1,28 @@
-import { useMemo, useState } from "react";
-import PageHeader from "../Componentes/PageHeader";
+import { useMemo,useState } from "react";
+import { Filter,PageHeader,SearchBar,StatusBadge } from "../Componentes/component";
 
-const senas = [
-    ["SEN-001", "Educación", "Educativa"],
-    ["SEN-002", "Biblioteca", "Cotidiana"],
-    ["SEN-003", "Laboratorio", "Educativa"],
-    ["SEN-004", "Descanso", "Cotidiana"],
-    ["SEN-005", "Matemáticas", "Educativa"],
-    ["SEN-006", "Álgebra", "Educativa"],
-    ["SEN-007", "Ciencia", "Educativa"],
-    ["SEN-008", "Computadora", "Técnica"],
+const initialSigns=[
+  {id:1,word:"Aprender",category:"Educación",meaning:"Adquirir conocimientos.",status:"Corregida"},
+  {id:2,word:"Comunicar",category:"Acciones",meaning:"Transmitir información.",status:"Validada"},
+  {id:3,word:"Familia",category:"Personas",meaning:"Grupo unido por parentesco.",status:"Validada"},
+  {id:4,word:"Hospital",category:"Lugares",meaning:"Centro de atención médica.",status:"Corregida"}
 ];
 
-export default function Corregir() {
-    const [busqueda, setBusqueda] = useState("");
-    const [categoria, setCategoria] = useState("Todas las categorías");
-    const [estado, setEstado] = useState("Todos los estados");
-
-    const filtradas = useMemo(
-        () => senas.filter(([codigo, nombre, tipo]) => {
-            const texto = `${codigo} ${nombre} ${tipo}`.toLocaleLowerCase("es");
-            const coincideTexto = texto.includes(busqueda.toLocaleLowerCase("es"));
-            const coincideCategoria = categoria === "Todas las categorías" || tipo === categoria;
-            return coincideTexto && coincideCategoria;
-        }),
-        [busqueda, categoria, estado]
-    );
-
-    return (
-        <>
-            <PageHeader title="Corregir Señas" subtitle="Modifica o actualiza señas existentes." />
-
-            <section className="contenedor">
-                <section className="filtros">
-                    <input
-                        type="text"
-                        placeholder="Buscar por palabra..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                    />
-                    <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                        <option>Todas las categorías</option>
-                        <option>Educativa</option>
-                        <option>Cotidiana</option>
-                        <option>Técnica</option>
-                    </select>
-                    <select value={estado} onChange={(e) => setEstado(e.target.value)}>
-                        <option>Todos los estados</option>
-                        <option>Activa</option>
-                        <option>inactiva</option>
-                    </select>
-                </section>
-
-                <section className="tabla-señas">
-                    <h2>Lista de señas</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre de la seña</th>
-                                <th>Categoría</th>
-                                <th>Estado</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filtradas.map(([codigo, nombre, tipo]) => (
-                                <tr key={codigo}>
-                                    <td>{codigo}</td>
-                                    <td>{nombre}</td>
-                                    <td>{tipo}</td>
-                                    <td className="activo">Activa</td>
-                                    <td>
-                                        <button type="button" onClick={() => alert("La edición de la seña se conectará al servicio del diccionario.")}>
-                                            Editar
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </section>
-
-                <nav className="paginacion" aria-label="Paginación">
-                    <button className="pagina-activa" type="button">1</button>
-                </nav>
-            </section>
-        </>
-    );
+export default function Corregir(){
+  const [signs,setSigns]=useState(initialSigns),[query,setQuery]=useState(""),[category,setCategory]=useState("Todas"),[editing,setEditing]=useState(null);
+  const filtered=useMemo(()=>signs.filter(sign=>sign.word.toLowerCase().includes(query.toLowerCase())&&(category==="Todas"||sign.category===category)),[signs,query,category]);
+  function saveEdit(event){event.preventDefault();setSigns(current=>current.map(sign=>sign.id===editing.id?editing:sign));setEditing(null);}
+  return <>
+    <PageHeader title="Corregir señas" description="Actualiza la información de las señas que necesitan ajustes."/>
+    <section className="toolbar panel"><SearchBar value={query} onChange={setQuery} placeholder="Buscar seña..."/><Filter label="Categoría" value={category} onChange={setCategory} options={[{value:"Todas",label:"Todas"},{value:"Personas",label:"Personas"},{value:"Acciones",label:"Acciones"},{value:"Educación",label:"Educación"},{value:"Lugares",label:"Lugares"}]}/></section>
+    <section className="panel table-panel"><table><caption>Señas disponibles para corrección</caption><thead><tr><th>Palabra</th><th>Categoría</th><th>Significado</th><th>Estado</th><th>Acción</th></tr></thead><tbody>
+      {filtered.map(sign=><tr key={sign.id}><th scope="row">{sign.word}</th><td>{sign.category}</td><td>{sign.meaning}</td><td><StatusBadge status={sign.status}/></td><td><button className="table-action" type="button" onClick={()=>setEditing({...sign})}>Editar</button></td></tr>)}
+    </tbody></table>{!filtered.length&&<p className="empty-state">No se encontraron señas.</p>}</section>
+    {editing&&<dialog className="edit-dialog" open><form onSubmit={saveEdit}><header><h2>Corregir "{editing.word}"</h2><button type="button" onClick={()=>setEditing(null)} aria-label="Cerrar">×</button></header>
+      <label><span>Palabra</span><input value={editing.word} onChange={e=>setEditing({...editing,word:e.target.value})} required/></label>
+      <label><span>Categoría</span><select value={editing.category} onChange={e=>setEditing({...editing,category:e.target.value})}><option>Personas</option><option>Acciones</option><option>Educación</option><option>Lugares</option></select></label>
+      <label><span>Significado</span><textarea value={editing.meaning} onChange={e=>setEditing({...editing,meaning:e.target.value})} required/></label>
+      <footer className="form-actions"><button className="button button-secondary" type="button" onClick={()=>setEditing(null)}>Cancelar</button><button className="button button-primary" type="submit">Guardar cambios</button></footer>
+    </form></dialog>}
+  </>;
 }

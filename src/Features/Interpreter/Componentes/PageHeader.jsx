@@ -1,8 +1,12 @@
-export default function PageHeader({ title, subtitle }) {
-    return (
-        <header className="cabecera-contenido">
-            <h1 className="titulo-pagina">{title}</h1>
-            <p className="subtitulo-pagina">{subtitle}</p>
-        </header>
-    );
+export default function PageHeader({ title, description, action }) {
+  return (
+    <header className="page-heading">
+      <section>
+        <p className="eyebrow">MÓDULO INTÉRPRETE</p>
+        <h1>{title}</h1>
+        {description && <p>{description}</p>}
+      </section>
+      {action && <section className="page-heading-action">{action}</section>}
+    </header>
+  );
 }

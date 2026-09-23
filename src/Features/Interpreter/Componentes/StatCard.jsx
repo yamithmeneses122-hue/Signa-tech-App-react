@@ -1,9 +1,12 @@
-export default function StatCard({ className = "cajita-numero", title, value, description }) {
-    return (
-        <article className={className}>
-            <h3>{title}</h3>
-            <span>{value}</span>
-            <h6>{description}</h6>
-        </article>
-    );
+export default function StatCard({ label, value, detail, icon, tone = "cyan" }) {
+  return (
+    <article className={`stat-card stat-card-${tone}`}>
+      <header>
+        <span className="stat-icon" aria-hidden="true">{icon}</span>
+        <span>{label}</span>
+      </header>
+      <strong>{value}</strong>
+      {detail && <p>{detail}</p>}
+    </article>
+  );
 }

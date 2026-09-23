@@ -1,113 +1,60 @@
 import { useMemo, useState } from "react";
-import PageHeader from "../Componentes/PageHeader";
+import { Link } from "react-router-dom";
+import { Filter, PageHeader, SearchBar, SignCard, StatusBadge } from "../Componentes/component";
 
-const senas = [
-    { imagen: "https://picsum.photos/400/400?random=1", nombre: "Educación", categoria: "Educativa", estado: "Pendiente", significado: "Acción y efecto de educar o instruir.", descripcion: "Se utiliza en contextos formales de aprendizaje y enseñanza." },
-    { imagen: "https://picsum.photos/400/400?random=2", nombre: "Biblioteca", categoria: "Educativa", estado: "Pendiente", significado: "Lugar donde se conservan y consultan libros.", descripcion: "Se utiliza para identificar espacios de estudio y consulta." },
-    { imagen: "https://picsum.photos/400/400?random=3", nombre: "Laboratorio", categoria: "Tecnología", estado: "Pendiente", significado: "Lugar destinado a la investigación.", descripcion: "Se utiliza en contextos de experimentación y aprendizaje." },
-    { imagen: "https://picsum.photos/400/400", nombre: "Educación", categoria: "Educativa", estado: "Pendiente", significado: "Acción y efecto de educar o instruir.", descripcion: "Se utiliza en contextos formales de aprendizaje y enseñanza." },
-    { imagen: "https://picsum.photos/400/400?random=4", nombre: "Biblioteca", categoria: "Comunicación", estado: "Pendiente", significado: "Lugar donde se conservan y consultan libros.", descripcion: "Se utiliza para identificar espacios de estudio y consulta." },
-    { imagen: "https://picsum.photos/400/400?random=5", nombre: "Laboratorio", categoria: "Salud", estado: "Pendiente", significado: "Lugar destinado a la investigación.", descripcion: "Se utiliza en contextos de experimentación y aprendizaje." },
-    { imagen: "https://i.pravatar.cc/40", nombre: "Laboratorio", categoria: "Tecnología", estado: "Pendiente", significado: "Lugar destinado a la investigación.", descripcion: "Se utiliza en contextos de experimentación y aprendizaje." },
+const initialSigns = [
+  {id:1,word:"Familia",category:"Personas",meaning:"Grupo de personas unidas por parentesco.",description:"Seña usada para representar a la familia.",status:"Pendiente",date:"23/09/2026"},
+  {id:2,word:"Escuela",category:"Educación",meaning:"Lugar destinado a la enseñanza.",description:"Seña relacionada con el espacio educativo.",status:"Pendiente",date:"22/09/2026"},
+  {id:3,word:"Trabajar",category:"Acciones",meaning:"Realizar una actividad laboral.",description:"Representa una acción de trabajo.",status:"Pendiente",date:"21/09/2026"},
+  {id:4,word:"Hospital",category:"Lugares",meaning:"Centro para atención de salud.",description:"Seña usada para identificar un hospital.",status:"Pendiente",date:"20/09/2026"}
 ];
 
 export default function Validar() {
-    const [busqueda, setBusqueda] = useState("");
-    const [categoria, setCategoria] = useState("todas");
-    const [estado, setEstado] = useState("todos");
-    const [seleccionada, setSeleccionada] = useState(senas[0]);
+  const [signs,setSigns] = useState(initialSigns);
+  const [query,setQuery] = useState("");
+  const [category,setCategory] = useState("Todas");
+  const [status,setStatus] = useState("Pendiente");
+  const [selected,setSelected] = useState(initialSigns[0]);
 
-    const filtradas = useMemo(
-        () => senas.filter((sena) => {
-            const coincideTexto = sena.nombre.toLocaleLowerCase("es").includes(busqueda.toLocaleLowerCase("es"));
-            const coincideCategoria = categoria === "todas" || sena.categoria.toLocaleLowerCase("es") === categoria;
-            const coincideEstado = estado === "todos" || sena.estado.toLocaleLowerCase("es") === estado;
-            return coincideTexto && coincideCategoria && coincideEstado;
-        }),
-        [busqueda, categoria, estado]
-    );
+  const filtered = useMemo(() => signs.filter((sign) =>
+    sign.word.toLowerCase().includes(query.toLowerCase()) &&
+    (category === "Todas" || sign.category === category) &&
+    (status === "Todos" || sign.status === status)
+  ), [signs,query,category,status]);
 
-    const cambiarEstado = (nuevoEstado) => {
-        setSeleccionada((actual) => actual ? { ...actual, estado: nuevoEstado } : actual);
-    };
+  function updateStatus(newStatus) {
+    if (!selected) return;
+    setSigns(current => current.map(sign => sign.id === selected.id ? {...sign,status:newStatus} : sign));
+    setSelected(current => current ? {...current,status:newStatus} : current);
+  }
 
-    return (
-        <>
-            <PageHeader
-                title="Validar diccionario"
-                subtitle="Confirma que la seña y su significado sean correctos"
-            />
-
-            <nav className="filtros">
-                <select id="filtroCategoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                    <option value="todas">Todas las categorías</option>
-                    <option value="educativa">Educativa</option>
-                    <option value="tecnologia">Tecnología</option>
-                    <option value="comunicacion">Comunicación</option>
-                    <option value="salud">Salud</option>
-                </select>
-
-                <select id="filtroEstado" value={estado} onChange={(e) => setEstado(e.target.value)}>
-                    <option value="todos">Todos los estados</option>
-                    <option value="pendiente">Pendiente</option>
-                    <option value="validada">Validada</option>
-                    <option value="rechazada">Rechazada</option>
-                </select>
-            </nav>
-
-            <section className="contenido">
-                <aside className="panel">
-                    <form className="buscador" onSubmit={(e) => e.preventDefault()}>
-                        <i className="fa-solid fa-magnifying-glass" />
-                        <input
-                            type="text"
-                            placeholder="Buscar por palabra..."
-                            value={busqueda}
-                            onChange={(e) => setBusqueda(e.target.value)}
-                        />
-                    </form>
-
-                    <h3>Señas pendientes ({filtradas.length})</h3>
-
-                    {filtradas.map((sena, indice) => (
-                        <article
-                            className={seleccionada?.nombre === sena.nombre && indice === 0 ? "item activo" : "item"}
-                            key={`${sena.nombre}-${indice}`}
-                            onClick={() => setSeleccionada(sena)}
-                        >
-                            <img src={sena.imagen} alt={sena.nombre} />
-                            <section>
-                                <h4>{sena.nombre}</h4>
-                                <p>{sena.estado}</p>
-                            </section>
-                            <small>{sena.estado}</small>
-                        </article>
-                    ))}
-                </aside>
-
-                <article className="tarjeta">
-                    <h2>Vista previa de la seña</h2>
-
-                    <figure className="video">
-                        <img
-                            src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000&auto=format&fit=crop"
-                            alt="Vista previa de la seña"
-                        />
-                    </figure>
-
-                    <section className="informacion">
-                        <p><strong>Palabra:</strong> {seleccionada.nombre}</p>
-                        <p><strong>Categoría:</strong> {seleccionada.categoria}</p>
-                        <p><strong>Significado:</strong> {seleccionada.significado}</p>
-                        <p><strong>Descripción:</strong> {seleccionada.descripcion}</p>
-                    </section>
-
-                    <footer className="botones">
-                        <button className="rechazar active" type="button" onClick={() => cambiarEstado("Rechazada")}>Rechazar</button>
-                        <button className="validar active" type="button" onClick={() => cambiarEstado("Validada")}>Validar</button>
-                    </footer>
-                </article>
-            </section>
-        </>
-    );
+  return (
+    <>
+      <PageHeader title="Validar señas" description="Revisa las nuevas señas y decide si deben formar parte del diccionario." />
+      <section className="toolbar panel">
+        <SearchBar value={query} onChange={setQuery} placeholder="Buscar por palabra..." />
+        <Filter label="Categoría" value={category} onChange={setCategory} options={[
+          {value:"Todas",label:"Todas"},{value:"Personas",label:"Personas"},{value:"Educación",label:"Educación"},{value:"Acciones",label:"Acciones"},{value:"Lugares",label:"Lugares"}
+        ]}/>
+        <Filter label="Estado" value={status} onChange={setStatus} options={[
+          {value:"Pendiente",label:"Pendiente"},{value:"Todos",label:"Todos"},{value:"Validada",label:"Validada"},{value:"Rechazada",label:"Rechazada"}
+        ]}/>
+      </section>
+      <section className="validation-layout">
+        <article className="panel sign-list-panel">
+          <header className="panel-header"><section><h2>Señas pendientes</h2><p>{filtered.length} resultado(s) encontrado(s).</p></section><strong className="counter">{signs.filter(sign => sign.status === "Pendiente").length}</strong></header>
+          <section className="sign-list">{filtered.length ? filtered.map(sign => <SignCard key={sign.id} sign={sign} selected={selected?.id === sign.id} onSelect={setSelected}/>) : <p className="empty-state">No hay señas que coincidan con los filtros.</p>}</section>
+        </article>
+        <article className="panel preview-panel">
+          <header className="panel-header"><section><h2>Vista previa</h2><p>Información de la seña seleccionada.</p></section></header>
+          {selected ? <>
+            <figure className="preview-image"><span aria-hidden="true">✋</span><figcaption>Vista de la seña</figcaption></figure>
+            <section className="sign-details"><header><h2>{selected.word}</h2><StatusBadge status={selected.status}/></header><dl><div><dt>Categoría</dt><dd>{selected.category}</dd></div><div><dt>Significado</dt><dd>{selected.meaning}</dd></div><div><dt>Descripción</dt><dd>{selected.description}</dd></div></dl></section>
+            <footer className="form-actions"><button className="button button-danger" type="button" onClick={() => updateStatus("Rechazada")}>Rechazar</button><button className="button button-success" type="button" onClick={() => updateStatus("Validada")}>Validar seña</button></footer>
+          </> : <p className="empty-state">Selecciona una seña para ver sus detalles.</p>}
+          <Link className="back-link" to="/interprete">← Volver al inicio</Link>
+        </article>
+      </section>
+    </>
+  );
 }

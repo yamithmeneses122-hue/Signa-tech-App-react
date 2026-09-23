@@ -1,19 +1,21 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 export default function InterpreterLayout() {
-    return (
-        <section className="interpreter-module">
-            <input type="checkbox" id="menu" />
-            <label htmlFor="menu" className="boton-menu">&#9776;</label>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-            <section className="pagina-completa">
-                <Sidebar />
-
-                <main className="contenido-centro">
-                    <Outlet />
-                </main>
-            </section>
-        </section>
-    );
+  return (
+    <section className="interpreter-shell">
+      <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+      {menuOpen && <button className="sidebar-overlay" type="button" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú" />}
+      <section className="interpreter-main">
+        <Header onMenu={() => setMenuOpen(true)} />
+        <main className="interpreter-content">
+          <Outlet />
+        </main>
+      </section>
+    </section>
+  );
 }
