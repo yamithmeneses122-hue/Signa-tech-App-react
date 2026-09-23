@@ -6,7 +6,12 @@ export default function PageHeader({ title, description, action }) {
         <h1>{title}</h1>
         {description && <p>{description}</p>}
       </section>
-      {action && <section className="page-heading-action">{action}</section>}
+
+      {action && (
+        <section className="page-heading-action">
+          {action}
+        </section>
+      )}
     </header>
   );
 }
