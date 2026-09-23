@@ -693,28 +693,17 @@ textarea:focus {
   background: rgba(0, 204, 255, 0.04);
 }
 
-.sign-card-button {
-  width: 100%;
-  display: flex;
+.sign-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: 13px;
   padding: 12px;
-  color: var(--interpreter-text);
-  text-align: left;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
-.sign-card-button:focus-visible {
-  outline: 2px solid var(--interpreter-cyan);
-  outline-offset: 3px;
 }
 
 .sign-image-placeholder {
   display: grid;
   width: 58px;
   height: 58px;
-  flex: 0 0 58px;
   place-items: center;
   margin: 0;
   background: #0c1923;
@@ -723,9 +712,8 @@ textarea:focus {
   font-size: 25px;
 }
 
-.sign-card-button > section {
+.sign-card-content {
   min-width: 0;
-  flex: 1;
 }
 
 .sign-card h3 {
@@ -739,6 +727,27 @@ textarea:focus {
   margin: 6px 0 0;
   color: var(--interpreter-muted);
   font-size: 11px;
+}
+
+.sign-card-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-select-button {
+  padding: 7px 11px;
+  color: var(--interpreter-cyan);
+  background: rgba(0, 204, 255, 0.07);
+  border: 1px solid rgba(0, 204, 255, 0.2);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sign-select-button:hover {
+  background: rgba(0, 204, 255, 0.13);
 }
 
 .status-badge {
