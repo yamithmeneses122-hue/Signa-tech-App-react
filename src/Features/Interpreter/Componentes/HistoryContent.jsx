@@ -37,7 +37,7 @@ export default function HistoryContent() {
         description="Consulta las acciones realizadas sobre las señas del sistema."
       />
 
-      <section className="toolbar panel" aria-label="Filtros del historial">
+      <search className="toolbar panel" aria-label="Filtros del historial">
         <SearchBar
           value={query}
           onChange={(value) => {
@@ -58,7 +58,7 @@ export default function HistoryContent() {
             { value: "Revisión", label: "Revisión" }
           ]}
         />
-      </section>
+      </search>
 
       <section className="panel table-panel">
         <table>
