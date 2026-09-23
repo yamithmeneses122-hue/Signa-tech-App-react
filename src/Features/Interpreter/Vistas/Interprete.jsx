@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PageHeader from "../Componentes/PageHeader";
 import StatCard from "../Componentes/StatCard";
 
@@ -134,7 +133,6 @@ export default function Interprete() {
                 </section>
             </section>
 
-            <Link className="sr-only-link" to="/interprete/historial" aria-label="Ir al historial" />
         </>
     );
 }
