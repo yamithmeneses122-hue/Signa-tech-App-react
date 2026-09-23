@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const items = [
   { to: "/interprete", label: "Inicio", icon: "⌂", end: true },
@@ -11,11 +11,17 @@ const items = [
 ];
 
 export default function Sidebar({ open, onClose }) {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    navigate("/");
+  }
+
   return (
-    <aside className={`interpreter-sidebar ${open ? "is-open" : ""}`}>
+    <aside className={`interpreter-sidebar ${open ? "is-open" : ""}`} aria-label="Panel de navegación del intérprete">
       <header className="sidebar-brand">
         <span className="brand-mark" aria-hidden="true">ST</span>
-        <span>
+        <span className="sidebar-brand-text">
           <strong>SIGNA-TECH</strong>
           <small>Panel intérprete</small>
         </span>
@@ -23,22 +29,25 @@ export default function Sidebar({ open, onClose }) {
       </header>
 
       <nav className="sidebar-nav" aria-label="Navegación del intérprete">
-        {items.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.end}
-            onClick={onClose}
-            className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}
-          >
-            <span className="sidebar-icon" aria-hidden="true">{item.icon}</span>
-            <span>{item.label}</span>
-          </NavLink>
-        ))}
+        <ul>
+          {items.map((item) => (
+            <li key={item.to}>
+              <NavLink
+                to={item.to}
+                end={item.end}
+                onClick={onClose}
+                className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}
+              >
+                <span className="sidebar-icon" aria-hidden="true">{item.icon}</span>
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       <footer className="sidebar-footer">
-        <button className="logout-link" type="button" onClick={() => window.location.assign("/")}>
+        <button className="logout-link" type="button" onClick={handleLogout}>
           <span aria-hidden="true">↪</span>
           Cerrar sesión
         </button>
