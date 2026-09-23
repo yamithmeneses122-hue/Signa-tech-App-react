@@ -1,4 +1,10 @@
-export default function StatCard({ label, value, detail, icon, tone = "cyan" }) {
+export default function StatCard({
+  label,
+  value,
+  detail,
+  icon,
+  tone = "cyan"
+}) {
   return (
     <article className={`stat-card stat-card-${tone}`}>
       <header>
