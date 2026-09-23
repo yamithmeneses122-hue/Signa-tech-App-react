@@ -1,36 +1,50 @@
 import { NavLink } from "react-router-dom";
 
-const items = [
-  { to: "/interprete", label: "Inicio", icon: "⌂", end: true },
-  { to: "/interprete/validar", label: "Validar señas", icon: "✓" },
-  { to: "/interprete/registrar", label: "Registrar", icon: "+" },
-  { to: "/interprete/corregir", label: "Corregir", icon: "✎" },
-  { to: "/interprete/historial", label: "Historial", icon: "▤" },
-  { to: "/interprete/estadisticas", label: "Estadísticas", icon: "▥" },
-  { to: "/interprete/perfil", label: "Perfil", icon: "♙" }
+const enlaces = [
+    ["/interprete", "Inicio"],
+    ["/interprete/validar", "Validar diccionario"],
+    ["/interprete/registrar", "Registrar nuevas señas"],
+    ["/interprete/corregir", "Corregir señas"],
+    ["/interprete/historial", "Historial de cambios"],
+    ["/interprete/estadisticas", "Estadisticas"],
+    ["/interprete/perfil", "Perfil"],
 ];
 
-export default function Sidebar({ open, onClose }) {
-  return (
-    <aside className={`interpreter-sidebar ${open ? "is-open" : ""}`}>
-      <header className="sidebar-brand">
-        <span className="brand-mark" aria-hidden="true">ST</span>
-        <span><strong>SIGNA-TECH</strong><small>Panel intérprete</small></span>
-        <button className="sidebar-close" type="button" onClick={onClose} aria-label="Cerrar menú">×</button>
-      </header>
-      <nav className="sidebar-nav" aria-label="Navegación del intérprete">
-        {items.map((item) => (
-          <NavLink key={item.to} to={item.to} end={item.end} onClick={onClose}
-            className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
-            <span className="sidebar-icon" aria-hidden="true">{item.icon}</span><span>{item.label}</span>
-          </NavLink>
-        ))}
-      </nav>
-      <footer className="sidebar-footer">
-        <button className="logout-link" type="button" onClick={() => window.location.assign("/")}>
-          <span aria-hidden="true">↪</span>Cerrar sesión
-        </button>
-      </footer>
-    </aside>
-  );
+export default function Sidebar() {
+    return (
+        <aside className="menu-lado">
+            <header className="encabezado-menu">
+                <h2>Signa Tech</h2>
+                <p>Panel Interprete</p>
+            </header>
+
+            <nav>
+                <ul>
+                    {enlaces.map(([to, texto]) => (
+                        <li key={to}>
+                            <NavLink
+                                to={to}
+                                end={to === "/interprete"}
+                                className={({ isActive }) => isActive ? "link-activo" : ""}
+                            >
+                                {texto}
+                            </NavLink>
+                        </li>
+                    ))}
+                    <li>
+                        <NavLink to="/">Cerrar sesion</NavLink>
+                    </li>
+                </ul>
+            </nav>
+
+            <footer className="pie-menu">
+                <img src="https://i.pravatar.cc/100" alt="Carlos Cortez" />
+                <article>
+                    <p className="nombre-admin">Carlos Cortez</p>
+                    <p className="cargo-admin">Interprete</p>
+                    <span>En Linea</span>
+                </article>
+            </footer>
+        </aside>
+    );
 }
