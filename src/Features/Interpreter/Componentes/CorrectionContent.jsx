@@ -36,7 +36,7 @@ export default function CorrectionContent() {
         description="Actualiza la información de las señas que necesitan ajustes."
       />
 
-      <section className="toolbar panel" aria-label="Filtros de corrección">
+      <search className="toolbar panel" aria-label="Filtros de corrección">
         <SearchBar
           value={query}
           onChange={setQuery}
@@ -48,7 +48,7 @@ export default function CorrectionContent() {
           onChange={setCategory}
           options={categoryOptions}
         />
-      </section>
+      </search>
 
       <section className="panel table-panel">
         <table>
