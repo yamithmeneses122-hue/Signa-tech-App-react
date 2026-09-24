@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Sidebar from '../Components/Sidebar';
 import OutputModeSelector from '../Components/OutputModeSelector';
 
@@ -20,7 +20,7 @@ export default function CameraDetectionView() {
       }
       setConectado(true);
       setTextoConversion('Interpretando gestos en tiempo real desde el sensor OV5640...');
-    } catch (error) {
+    } catch {
       alert('No se pudo acceder a la cámara o sensor inteligente.');
     }
   };

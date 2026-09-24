@@ -1,7 +1,29 @@
 import { useState } from 'react';
 import '../../../styles/index.css';
-import Sidebar, { useSidebar } from '../components/Sidebar';
-import { useToast, ToastRegion } from '../../../Hooks/useToast';
+import Sidebar from '../components/Sidebar';
+import { useSidebar } from '../components/useSidebar';
+import { useToast } from '../../../Hooks/useToastHook';
+import { ToastRegion } from '../../../Hooks/useToast';
+
+const Permiso = ({ id, label, descripcion, bloqueado = false, checked, onChange }) => (
+    <li className="item-permiso-fila">
+        <section className="texto-permiso-info">
+            <strong>{label}</strong>
+            <p>{descripcion}</p>
+        </section>
+        <label className="switch-interruptor-neon" htmlFor={`toggle-${id}`}>
+            <input
+                id={`toggle-${id}`}
+                type="checkbox"
+                checked={checked}
+                onChange={onChange}
+                disabled={bloqueado}
+                aria-label={label}
+            />
+            <span className={`slider-visual-switch${bloqueado ? ' bloqueado' : ''}`} />
+        </label>
+    </li>
+);
 
 const GestionRoles = () => {
     const { menuAbierto, toggleMenu, cerrar } = useSidebar();
@@ -27,26 +49,6 @@ const GestionRoles = () => {
         e.preventDefault();
         toast(`Privilegios de ${rol} actualizados exitosamente.`, 'exito');
     };
-
-    const Permiso = ({ id, label, descripcion, bloqueado = false }) => (
-        <li className="item-permiso-fila">
-            <section className="texto-permiso-info">
-                <strong>{label}</strong>
-                <p>{descripcion}</p>
-            </section>
-            <label className="switch-interruptor-neon" htmlFor={`toggle-${id}`}>
-                <input
-                    id={`toggle-${id}`}
-                    type="checkbox"
-                    checked={permisos[id]}
-                    onChange={() => !bloqueado && handleToggle(id)}
-                    disabled={bloqueado}
-                    aria-label={label}
-                />
-                <span className={`slider-visual-switch${bloqueado ? ' bloqueado' : ''}`} />
-            </label>
-        </li>
-    );
 
     return (
         <section className="pagina-completa">
@@ -91,9 +93,9 @@ const GestionRoles = () => {
                             <fieldset className="grupo-fieldset-permisos">
                                 <legend>Acciones y Privilegios Core</legend>
                                 <ul className="lista-permisos-toggles" role="list">
-                                    <Permiso id="adminGobernanza" label="Gobernanza de Cuentas" descripcion="Crear, editar, auditar y desactivar credenciales de cualquier usuario." bloqueado />
-                                    <Permiso id="adminAprobacion" label="Aprobación Léxica LSC"  descripcion="Aprobar nuevas señas o validar correcciones enviadas por el intérprete." />
-                                    <Permiso id="adminLogs"       label="Acceso a Logs de Auditoría" descripcion="Visualizar el registro en bruto de operaciones de la base de datos y sistema." />
+                                    <Permiso id="adminGobernanza" label="Gobernanza de Cuentas" descripcion="Crear, editar, auditar y desactivar credenciales de cualquier usuario." checked={permisos.adminGobernanza} onChange={() => handleToggle('adminGobernanza')} bloqueado />
+                                    <Permiso id="adminAprobacion" label="Aprobación Léxica LSC"  descripcion="Aprobar nuevas señas o validar correcciones enviadas por el intérprete." checked={permisos.adminAprobacion} onChange={() => handleToggle('adminAprobacion')} />
+                                    <Permiso id="adminLogs"       label="Acceso a Logs de Auditoría" descripcion="Visualizar el registro en bruto de operaciones de la base de datos y sistema." checked={permisos.adminLogs} onChange={() => handleToggle('adminLogs')} />
                                 </ul>
                             </fieldset>
                             <button type="submit" className="btn-operativo-modulo btn-confirmar">
@@ -118,9 +120,9 @@ const GestionRoles = () => {
                             <fieldset className="grupo-fieldset-permisos">
                                 <legend>Acciones y Privilegios Core</legend>
                                 <ul className="lista-permisos-toggles" role="list">
-                                    <Permiso id="intRegistro"        label="Registro y Carga Multimedia"   descripcion="Subir nuevos videos, imágenes o descripciones cinemáticas al catálogo." />
-                                    <Permiso id="intCorrecciones"    label="Proponer Correcciones de Señas" descripcion="Modificar y sugerir actualizaciones a señas que ya estén públicas." />
-                                    <Permiso id="intAutoAprobacion"  label="Auto-Aprobación Directa"       descripcion="Publicar contenido en el diccionario sin pasar por la auditoría del administrador." />
+                                    <Permiso id="intRegistro"        label="Registro y Carga Multimedia"   descripcion="Subir nuevos videos, imágenes o descripciones cinemáticas al catálogo." checked={permisos.intRegistro} onChange={() => handleToggle('intRegistro')} />
+                                    <Permiso id="intCorrecciones"    label="Proponer Correcciones de Señas" descripcion="Modificar y sugerir actualizaciones a señas que ya estén públicas." checked={permisos.intCorrecciones} onChange={() => handleToggle('intCorrecciones')} />
+                                    <Permiso id="intAutoAprobacion"  label="Auto-Aprobación Directa"       descripcion="Publicar contenido en el diccionario sin pasar por la auditoría del administrador." checked={permisos.intAutoAprobacion} onChange={() => handleToggle('intAutoAprobacion')} />
                                 </ul>
                             </fieldset>
                             <button type="submit" className="btn-operativo-modulo btn-confirmar">
@@ -145,9 +147,9 @@ const GestionRoles = () => {
                             <fieldset className="grupo-fieldset-permisos">
                                 <legend>Acciones y Privilegios Core</legend>
                                 <ul className="lista-permisos-toggles" role="list">
-                                    <Permiso id="opModulos"     label="Uso de Módulos de Conversión"    descripcion="Acceso completo a las vistas de Texto a Voz, Voz a Texto y Detección de Cámara." />
-                                    <Permiso id="opDiccionario" label="Consulta de Diccionario Nativo"  descripcion="Visualizar el glosario de términos LSC de manera interna para soporte." />
-                                    <Permiso id="opBypass"      label="Bypass de Configuración Avanzada" descripcion="Alterar los periféricos de entrada/salida USB o los niveles de optimización de la IA." />
+                                    <Permiso id="opModulos"     label="Uso de Módulos de Conversión"    descripcion="Acceso completo a las vistas de Texto a Voz, Voz a Texto y Detección de Cámara." checked={permisos.opModulos} onChange={() => handleToggle('opModulos')} />
+                                    <Permiso id="opDiccionario" label="Consulta de Diccionario Nativo"  descripcion="Visualizar el glosario de términos LSC de manera interna para soporte." checked={permisos.opDiccionario} onChange={() => handleToggle('opDiccionario')} />
+                                    <Permiso id="opBypass"      label="Bypass de Configuración Avanzada" descripcion="Alterar los periféricos de entrada/salida USB o los niveles de optimización de la IA." checked={permisos.opBypass} onChange={() => handleToggle('opBypass')} />
                                 </ul>
                             </fieldset>
                             <button type="submit" className="btn-operativo-modulo btn-confirmar">

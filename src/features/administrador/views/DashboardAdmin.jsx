@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import '../../../styles/index.css';
-import Sidebar, { useSidebar } from '../components/Sidebar';
-import { useToast, ToastRegion } from '../../../Hooks/useToast';
+import Sidebar from '../components/Sidebar';
+import { useSidebar } from '../components/useSidebar';
+import { useToast } from '../../../Hooks/useToastHook';
+import { ToastRegion } from '../../../Hooks/useToast';
 
 const DashboardAdmin = () => {
     const { menuAbierto, toggleMenu, cerrar } = useSidebar();
-    const { toasts, toast } = useToast();
+    const { toasts } = useToast();
 
     return (
         <section className="pagina-completa">

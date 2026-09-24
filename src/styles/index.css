@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
 @import "tailwindcss";
 @import "./interpreter.css";
 
@@ -28,8 +29,6 @@ a {
     scroll-behavior: auto;
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
-
 :root {
     --bg-base: #03050d;
     --bg-sidebar: #050811;
