@@ -86,7 +86,7 @@ const DashboardAdmin = () => {
                         </span>
                     </a>
 
-                    <a href="/diccionario" className="tarjeta-modulo bordo-azul">
+                    <a href="/diccionario_admin" className="tarjeta-modulo bordo-azul">
                         <figure className="icono-modulo-wrapper" aria-hidden="true">
                             <i className="fa-solid fa-book-bookmark" />
                         </figure>
@@ -112,7 +112,7 @@ const DashboardAdmin = () => {
                         </span>
                     </a>
 
-                    <a href="/configuracion" className="tarjeta-modulo bordo-azul">
+                    <a href="/configuracion_admin" className="tarjeta-modulo bordo-azul">
                         <figure className="icono-modulo-wrapper" aria-hidden="true">
                             <i className="fa-solid fa-sliders" />
                         </figure>

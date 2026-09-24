@@ -5,9 +5,9 @@ const NAV_LINKS = [
     { href: '/inicio_admin', icon: 'fa-solid fa-chart-pie', label: 'Panel Global' },
     { href: '/gestion_usuarios', icon: 'fa-solid fa-users-gear', label: 'Gestión Usuarios' },
     { href: '/gestion_roles', icon: 'fa-solid fa-shield-halved', label: 'Roles y Permisos' },
-    { href: '/diccionario', icon: 'fa-solid fa-book-bookmark', label: 'Diccionario LSC' },
+    { href: '/diccionario_admin', icon: 'fa-solid fa-book-bookmark', label: 'Diccionario LSC' },
     { href: '/aprobacion_senas', icon: 'fa-solid fa-circle-check', label: 'Aprobación Señas' },
-    { href: '/configuracion', icon: 'fa-solid fa-sliders', label: 'Configuración' },
+    { href: '/configuracion_admin', icon: 'fa-solid fa-sliders', label: 'Configuración' },
 ];
 
 function Sidebar({ menuAbierto, onClose }) {
