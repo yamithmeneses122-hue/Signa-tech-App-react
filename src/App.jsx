@@ -19,6 +19,9 @@ import GestionRoles from "./features/administrador/views/GestionRoles";
 import DiccionarioAdmin from "./features/administrador/views/DiccionarioAdmin";
 import AprobacionSenas from "./features/administrador/views/AprobacionSenas";
 import ConfiguracionAdmin from "./features/administrador/views/Configuracion";
+import LoginView from "./Features/Authentication/Vistas/LoginView";
+import ContraseñaView from "./Features/Authentication/Vistas/ContraseñaView";
+import Nv_Cuenta_View from "./Features/Authentication/Vistas/Nv_Cuenta_View";
 
 function App() {
   return (
@@ -50,6 +53,10 @@ function App() {
         <Route path="/diccionario_admin" element={<DiccionarioAdmin />} />
         <Route path="/aprobacion_senas" element={<AprobacionSenas />} />
         <Route path="/configuracion_admin" element={<ConfiguracionAdmin />} />
+
+        <Route path="/login" element={<LoginView />} />
+        <Route path="/recuperar-contrasena" element={<ContraseñaView />} />
+        <Route path="/crear-cuenta" element={<Nv_Cuenta_View />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
