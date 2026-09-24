@@ -40,7 +40,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </Link>
             </li>
             <li>
-              <Link to="/diccionario" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+              <Link to="/diccionario-operador" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
                 <i className="fa-solid fa-book w-5 text-center"></i>
                 <span>Diccionario LSC</span>
               </Link>
@@ -52,7 +52,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </Link>
             </li>
             <li>
-              <Link to="/configuracion" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+              <Link to="/configuracion-operador" className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
                 <i className="fa-solid fa-gear w-5 text-center"></i>
                 <span>Configuración</span>
               </Link>
