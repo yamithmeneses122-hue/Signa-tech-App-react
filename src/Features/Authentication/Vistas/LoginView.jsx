@@ -1,8 +1,5 @@
 import LoginComponent from "../Componentes/LoginComponent";
 import { Link } from "react-router-dom";
-import fondo from "./img/fondo.png";
-import regresar from "./img/regresar.png";
-import logo from "./img/logo.jpg"
 
 export default function LoginView() {
     return (
@@ -13,27 +10,18 @@ export default function LoginView() {
                     to="/"
                     aria-label="Regresar"
                 >
-                    <img className="h-full w-full" src={regresar} alt="" />
+                    <span aria-hidden="true" className="text-2xl text-cyan-300">←</span>
                 </Link>
 
                 <main className="flex min-h-screen">
                     <section className="hidden w-1/2 lg:block" aria-label="Imagen de comunicación inclusiva">
-                        <img
-                            className="h-screen w-full object-cover object-center"
-                            src={fondo}
-                            alt="Personas comunicándose con lengua de señas"
-                        />
+                        <div className="h-screen w-full bg-[radial-gradient(circle_at_center,rgba(0,204,255,0.3),transparent_55%),linear-gradient(135deg,#07151d,#03050d)]" aria-label="Imagen de comunicación inclusiva" />
                     </section>
 
                     <section className="flex min-h-screen w-full items-center justify-center px-5 py-6 lg:w-1/2 lg:px-8 lg:py-[4vh]">
                         <article className="flex w-full max-w-[530px] flex-col items-center">
                             <header className="mb-2 flex flex-col items-center gap-1 text-center sm:mb-3 sm:gap-2">
-                                <img
-                                    className="h-12 w-auto object-contain shadow-lg shadow-cyan-500/20 sm:h-16"
-                                    src={logo}
-                                    alt="Logo de SIGNA-TECH"
-                                />
-                                <p className="text-xl font-bold text-cyan-400 sm:text-2xl">SIGNA-TECH-APP</p>
+                                <p className="text-2xl font-bold text-cyan-400 sm:text-3xl">SIGNA-TECH-APP</p>
                             </header>
                             <LoginComponent/>
                         </article>
