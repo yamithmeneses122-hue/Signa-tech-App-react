@@ -1,34 +1,46 @@
+import {
+  Bars3BottomLeftIcon,
+  LanguageIcon,
+  SpeakerWaveIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
 
 export default function OutputModeSelector({ modoActual, onSelectModo }) {
   const modos = [
-    { id: 'texto', label: 'Texto', icon: 'fa-solid fa-align-left' },
-    { id: 'escuchar', label: 'Escuchar', icon: 'fa-solid fa-volume-high' },
-    { id: 'avatar', label: 'Avatar', icon: 'fa-solid fa-user-astronaut' },
+    { id: 'texto', label: 'Texto', icon: Bars3BottomLeftIcon },
+    { id: 'escuchar', label: 'Escuchar', icon: SpeakerWaveIcon },
+    { id: 'avatar', label: 'Avatar', icon: UserCircleIcon },
   ];
 
   return (
-    <>
-      <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-        <h4 className="flex items-center gap-2 text-sm font-bold text-slate-200">
-          <i className="fa-solid fa-language text-teal-400"></i> Modos de Salida:
-        </h4>
-        <nav className="flex items-center gap-2" aria-label="Modos de salida">
-          {modos.map((m) => (
+    <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <h4 className="flex items-center gap-2 text-sm font-bold text-slate-200">
+        <LanguageIcon className="h-5 w-5 text-cyan-300" />
+        Modos de salida
+      </h4>
+      <nav className="flex flex-wrap items-center gap-2" aria-label="Modos de salida">
+        {modos.map((modo) => {
+          const Icon = modo.icon;
+          const active = modoActual === modo.id;
+
+          return (
             <button
-              key={m.id}
+              key={modo.id}
               type="button"
-              className={`py-2 px-4 rounded-xl text-xs font-bold transition-all shadow-md flex items-center gap-2 cursor-pointer border ${
-                modoActual === m.id
-                  ? 'bg-teal-600 text-white border-teal-500 shadow-teal-500/20'
-                  : 'bg-slate-950 text-slate-400 border-slate-800 hover:bg-slate-800 hover:text-white'
+              className={`flex items-center gap-2 rounded-xl border px-4 py-2 text-xs font-bold transition-all ${
+                active
+                  ? 'border-cyan-400 bg-cyan-500 text-slate-950 shadow-[0_0_18px_rgba(34,211,238,0.25)]'
+                  : 'border-slate-700 bg-slate-950 text-slate-400 hover:border-cyan-500/50 hover:text-cyan-200'
               }`}
-              onClick={() => onSelectModo(m.id)}
+              onClick={() => onSelectModo(modo.id)}
+              aria-pressed={active}
             >
-              <i className={m.icon}></i> {m.label}
+              <Icon className="h-4 w-4" />
+              {modo.label}
             </button>
-          ))}
-        </nav>
-      </header>
-    </>
+          );
+        })}
+      </nav>
+    </header>
   );
 }
