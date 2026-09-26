@@ -1,56 +1,36 @@
+import Icon from "../../../components/shared/Icon.jsx";
+
 const features = [
-  [
-    "Reconocimiento asistido",
-    "IA dentro del flujo de interpretación, con alcance centrado en señas básicas.",
-  ],
-  [
-    "Comunicación en tiempo real",
-    "Entradas y resultados organizados para que la conversación se entienda de un vistazo.",
-  ],
-  [
-    "Captura visual",
-    "Cámara como entrada para el flujo de interpretación de señas.",
-  ],
-  [
-    "Diccionario LSC",
-    "Espacio pensado para consultar vocabulario y apoyar la validación.",
-  ],
-  [
-    "Panel de intérprete",
-    "Consulta y revisión de información relacionada con el diccionario.",
-  ],
-  [
-    "Accesibilidad",
-    "Contraste, jerarquía, foco visible y adaptación a distintas pantallas.",
-  ],
+    ["brain", "Reconocimiento asistido", "La propuesta incorpora IA dentro del flujo de interpretación, con un alcance centrado en señas básicas."],
+    ["message", "Comunicación en tiempo real", "La interfaz organiza entradas y resultados para que la conversación se entienda de un vistazo."],
+    ["camera", "Captura visual", "El producto contempla cámara como entrada para el flujo de señas."],
+    ["book", "Diccionario LSC", "El ecosistema incluye un espacio para consultar vocabulario y apoyar la validación."],
+    ["users", "Panel de intérprete", "La documentación contempla revisión, corrección y consulta de información del diccionario."],
+    ["shield", "Accesibilidad", "La experiencia visual prioriza contraste, jerarquía, foco visible y adaptación a distintas pantallas."],
 ];
 
 export default function FeatureCard() {
-  return (
-    <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
-      <header className="max-w-3xl">
-        <span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">
-          Capacidades
-        </span>
-        <h2 className="mt-4 text-4xl font-black sm:text-5xl">
-          Todo empieza por una experiencia fácil de entender.
-        </h2>
-      </header>
-      
-      <section className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {features.map(([title, text], index) => (
-          <article
-            key={title}
-            className={`rounded-[2rem] border border-white/8 bg-white/[.025] p-7 transition hover:-translate-y-1 hover:border-cyan-300/25 ${
-              index === 0 || index === 5 ? "lg:col-span-2" : ""
-            }`}
-          >
-            <span className="text-2xl text-cyan-300">✦</span>
-            <h3 className="mt-6 text-xl font-bold">{title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-400">{text}</p>
-          </article>
-        ))}
-      </section>
-    </section>
-  );
+    return (
+        <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
+            <div className="max-w-3xl">
+                <span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Capacidades</span>
+                <h2 className="mt-4 text-4xl font-black tracking-[-.03em] sm:text-5xl">Todo empieza por una experiencia fácil de entender.</h2>
+            </div>
+
+            <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {features.map(([icon, title, description], index) => (
+                    <article
+                        key={title}
+                        className={`${index === 0 ? "lg:col-span-2" : ""} ${index === 5 ? "lg:col-span-2" : ""} rounded-[2rem] border border-white/8 bg-white/[.025] p-7 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25`}
+                    >
+                        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-300">
+                            <Icon name={icon} className="h-6 w-6" />
+                        </span>
+                        <h3 className="mt-6 text-xl font-bold">{title}</h3>
+                        <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">{description}</p>
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
 }

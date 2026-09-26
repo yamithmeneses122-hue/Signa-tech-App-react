@@ -1,28 +1,21 @@
+import { Link } from "react-router-dom";
+import Icon from "../../../components/shared/Icon.jsx";
+
 export default function DownloadPanel() {
-  return (
-    <section className="mx-auto max-w-[1400px] px-5 py-10 lg:px-10">
-      <article className="rounded-[2rem] border border-white/10 bg-[#10191f] p-8 lg:flex lg:items-center lg:justify-between lg:p-10">
-        <section>
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">
-            Información del proyecto
-          </p>
-          <h2 className="mt-3 text-3xl font-black">
-            Conoce la documentación de SIGNA-TECH.
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-400">
-            Consulta los materiales disponibles desde el repositorio y conoce el
-            alcance del proyecto.
-          </p>
+    return (
+        <section className="mx-auto max-w-[1200px] px-5 py-10 lg:px-10">
+            <div className="flex flex-col gap-6 rounded-[2rem] border border-cyan-300/15 bg-cyan-300/[.045] p-7 sm:p-9 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                    <span className="text-xs font-bold uppercase tracking-[.18em] text-cyan-300">Profundiza</span>
+                    <h2 className="mt-3 text-2xl font-black">¿Quieres conocer el alcance real del proyecto?</h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-400">
+                        Visita la ficha de producto para revisar funciones, alcance y componentes contemplados por la propuesta.
+                    </p>
+                </div>
+                <Link to="/product#descarga" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold text-white transition hover:-translate-y-1">
+                    Ver ficha del producto <Icon name="arrow" className="h-5 w-5" />
+                </Link>
+            </div>
         </section>
-        
-        <a
-          href="/documentos/ficha-producto-signa-tech.pdf"
-          download
-          className="mt-7 inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/10 px-6 text-sm font-bold text-white transition hover:border-cyan-300/40 hover:text-cyan-300 lg:mt-0"
-        >
-          Descargar ficha
-        </a>
-      </article>
-    </section>
-  );
+    );
 }

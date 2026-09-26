@@ -1,42 +1,24 @@
 import { Link } from "react-router-dom";
+import Icon from "../../../components/shared/Icon.jsx";
 
 export default function ProductHeader() {
     return (
-        <section className="px-6 pt-32 pb-16 text-center text-white lg:px-20 lg:pt-36">
-            <article className="mx-auto max-w-[950px]">
-
-                <h1 className="mx-auto mb-4 max-w-[950px] text-[clamp(2.2rem,6vw,4.6rem)] font-extrabold leading-tight">
-                    Comunicación accesible, diseñada para la vida real.
-                </h1>
-
-                <p className="mx-auto max-w-[760px] text-[clamp(1rem,2.2vw,1.2rem)] leading-7 text-[#c7d0d9]">
-                    SIGNA-TECH conecta voz, texto y Lengua de Señas Colombiana
-                    (LSC) mediante herramientas pensadas para usuarios,
-                    intérpretes y organizaciones.
-                </p>
-
-                <section className="mt-8 flex flex-wrap justify-center gap-4">
-
-                    <a
-                        className="inline-flex min-h-12 items-center justify-center rounded-[14px] bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-5 font-semibold text-white transition duration-300 hover:-translate-y-0.5"
-                        href="/documents/ficha-producto-signa-tech.pdf"
-                        download
-                    >
-                        Descargar ficha del producto (PDF)
-                    </a>
-
-                    <Link
-                        className="inline-flex min-h-12 items-center justify-center rounded-[14px] border border-white/20 bg-white/[0.06] px-5 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-[#00CCFF]"
-                        to="/support"
-                    >
-                        Hablar con soporte
-                    </Link>
-
-                </section>
-
-            </article>
+        <section className="mx-auto max-w-[1400px] px-5 py-20 text-center lg:px-10 lg:py-28">
+            <span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Producto</span>
+            <h1 className="mx-auto mt-4 max-w-5xl text-5xl font-black tracking-[-.04em] sm:text-6xl lg:text-7xl">
+                Comunicación accesible, diseñada para la vida real.
+            </h1>
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-400 sm:text-lg">
+                SIGNA-TECH-APP conecta voz, texto y Lengua de Señas Colombiana dentro de un prototipo pensado para usuarios, intérpretes y escenarios educativos o cotidianos.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <Link to="/#demo" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold">
+                    Ver el flujo <Icon name="arrow" className="h-5 w-5" />
+                </Link>
+                <Link to="/support" className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/12 bg-white/[.04] px-6 font-semibold hover:border-cyan-300/40">
+                    Hablar con soporte
+                </Link>
+            </div>
         </section>
     );
 }
-
- 

@@ -1,33 +1,13 @@
 export default function DownloadPanelProduct() {
     return (
-        <section
-            id="descarga"
-            className="mx-6 mb-16 mt-12 flex max-w-[1000px] flex-col gap-6 rounded-3xl border border-[#00CCFF]/40 bg-[#00CCFF]/10 p-8 text-white backdrop-blur-xl lg:mx-auto lg:flex-row lg:items-center lg:justify-between"
-        >
-
-            <article>
-
-                <h2 className="text-2xl font-bold">
-                    Conoce más sobre SIGNA-TECH-APP
-                </h2>
-
-                <p className="mt-3 leading-7 text-[#c7d0d9]">
-                    Consulta nuestra documentación para conocer
-                    más detalles sobre la propuesta tecnológica.
+        <section id="descarga" className="mx-auto mb-20 max-w-[1000px] px-5">
+            <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/[.05] p-8 text-center">
+                <p className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Documentación</p>
+                <h2 className="mt-3 text-3xl font-black">Conoce más sobre SIGNA-TECH-APP</h2>
+                <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+                    El proyecto puede complementar esta experiencia con su ficha técnica y documentación académica.
                 </p>
-
-            </article>
-
-            <a
-                href="/documents/signa-tech-app.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center rounded-[14px] bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-semibold text-white transition duration-300 hover:-translate-y-1"
-            >
-                Descargar PDF
-            </a>
-
+            </div>
         </section>
     );
 }
-

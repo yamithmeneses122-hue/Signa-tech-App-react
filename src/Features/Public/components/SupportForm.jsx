@@ -1,49 +1,34 @@
-function SupportForm() {
+import { useState } from "react";
+
+export default function SupportForm() {
+    const [sent, setSent] = useState(false);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        setSent(true);
+    }
+
     return (
-        <section className="px-6 pb-20 text-white lg:px-20">
+        <section className="mx-auto max-w-[720px] px-5 pb-24 lg:px-10">
+            <div className="rounded-[2rem] border border-white/8 bg-white/[.025] p-7 sm:p-9">
+                <h2 className="text-3xl font-black">Enviar una solicitud</h2>
+                <p className="mt-3 text-sm leading-7 text-slate-400">Este formulario es una demostración de interfaz y no envía datos a un servidor todavía.</p>
 
-            <h2 className="mb-8 text-center text-[clamp(1.7rem,4vw,2.5rem)] font-bold">
-                Enviar una solicitud
-            </h2>
+                <form onSubmit={handleSubmit} className="mt-7 grid gap-4">
+                    <input required type="text" name="name" placeholder="Nombre completo" className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white outline-none placeholder:text-slate-600 focus:border-cyan-300" />
+                    <input required type="email" name="email" placeholder="Correo electrónico" className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white outline-none placeholder:text-slate-600 focus:border-cyan-300" />
+                    <textarea required name="message" placeholder="Cuéntanos cómo podemos ayudarte" className="min-h-40 resize-y rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white outline-none placeholder:text-slate-600 focus:border-cyan-300" />
+                    <button type="submit" className="min-h-12 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] font-bold transition hover:-translate-y-0.5">
+                        Enviar solicitud
+                    </button>
+                </form>
 
-            <form
-                className="mx-auto grid max-w-[680px] gap-4"
-            >
-
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Nombre completo"
-                    required
-                    className="w-full rounded-[10px] border border-white/20 bg-black/20 p-3.5 text-white outline-none transition placeholder:text-white/55 focus:border-[#00CCFF] focus:ring-4 focus:ring-[#00CCFF]/10"
-                />
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Correo electrónico"
-                    required
-                    className="w-full rounded-[10px] border border-white/20 bg-black/20 p-3.5 text-white outline-none transition placeholder:text-white/55 focus:border-[#00CCFF] focus:ring-4 focus:ring-[#00CCFF]/10"
-                />
-
-                <textarea
-                    name="message"
-                    placeholder="Cuéntanos cómo podemos ayudarte"
-                    required
-                    className="min-h-[150px] w-full resize-y rounded-[10px] border border-white/20 bg-black/20 p-3.5 text-white outline-none transition placeholder:text-white/55 focus:border-[#00CCFF] focus:ring-4 focus:ring-[#00CCFF]/10"
-                />
-
-                <button
-                    className="inline-flex min-h-12 items-center justify-center rounded-[14px] bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-5 font-semibold text-white transition duration-300 hover:-translate-y-0.5"
-                    type="submit"
-                >
-                    Enviar solicitud
-                </button>
-
-            </form>
-
+                {sent && (
+                    <p className="mt-4 rounded-2xl border border-emerald-300/20 bg-emerald-300/[.06] px-4 py-3 text-sm text-emerald-200">
+                        Solicitud preparada. En una integración futura, aquí se conectará el envío real.
+                    </p>
+                )}
+            </div>
         </section>
     );
 }
-
-export default SupportForm;

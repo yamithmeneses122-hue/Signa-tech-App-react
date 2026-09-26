@@ -1,8 +1,8 @@
-import SupportHero from "../components/SupportHero";
-import SupportOptions from "../components/SupportOptions";
-import SupportForm from "../components/SupportForm";
+import SupportHero from "../components/SupportHero.jsx";
+import SupportOptions from "../components/SupportOptions.jsx";
+import SupportForm from "../components/SupportForm.jsx";
 
-function SupportView() {
+export default function SupportView() {
     return (
         <>
             <SupportHero />
@@ -11,5 +11,3 @@ function SupportView() {
         </>
     );
 }
-
-export default SupportView;

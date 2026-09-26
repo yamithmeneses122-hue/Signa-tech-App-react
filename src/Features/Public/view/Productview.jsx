@@ -2,7 +2,7 @@ import ProductHeader from "../components/ProductHeader.jsx";
 import ProductFeatures from "../components/ProductFeatures.jsx";
 import DownloadPanelProduct from "../components/DownloadPanelProduct.jsx";
 
-function ProductView() {
+export default function ProductView() {
     return (
         <>
             <ProductHeader />
@@ -11,5 +11,3 @@ function ProductView() {
         </>
     );
 }
-
-export default ProductView;
