@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "./interpreter.css";
 
 html {
   scroll-behavior: smooth;
