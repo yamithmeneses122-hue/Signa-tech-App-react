@@ -20,8 +20,15 @@ function write(key, value) {
   return value;
 }
 
+function seedSigns() {
+  return [
+    ...pendingSigns.map((sign) => ({ ...sign, id: `pending-${sign.id}` })),
+    ...correctionSigns.map((sign) => ({ ...sign, id: `correction-${sign.id}` }))
+  ];
+}
+
 export function getSigns() {
-  return read(KEYS.signs, [...pendingSigns, ...correctionSigns]);
+  return read(KEYS.signs, seedSigns());
 }
 
 export function saveSigns(signs) {
