@@ -1,136 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageHeader from "./PageHeader";
+import { getProfile, saveProfile } from "../funcionalidades/interpreterStorage";
+import { getInitials } from "../funcionalidades/interpreterUtils";
 
 export default function ProfileContent() {
+  const [form, setForm] = useState(getProfile);
   const [saved, setSaved] = useState(false);
-  const [form, setForm] = useState({
-    name: "Intérprete",
-    email: "interprete@signatech.com",
-    phone: "300 000 0000",
-    notifications: true
-  });
 
-  function update(name, value) {
-    setForm((current) => ({ ...current, [name]: value }));
-    setSaved(false);
-  }
+  useEffect(() => { setForm(getProfile()); }, []);
 
-  function submit(event) {
-    event.preventDefault();
-    setSaved(true);
-  }
+  function update(name, value) { setForm((current)=>({...current,[name]:value})); setSaved(false); }
+  function submit(event) { event.preventDefault(); saveProfile(form); setSaved(true); }
 
   return (
     <>
-      <PageHeader
-        title="Mi perfil"
-        description="Administra tu información personal, preferencias y seguridad."
-      />
-
-      <form className="profile-layout" onSubmit={submit}>
-        <article className="panel profile-card">
-          <header className="profile-avatar" aria-label="Iniciales del usuario">IM</header>
-          <h2>{form.name}</h2>
-          <p>Intérprete</p>
-
-          <label className="upload-avatar">
-            <span>Cambiar foto</span>
-            <input type="file" accept="image/*" />
-          </label>
-        </article>
-
-        <section className="profile-form">
-          <article className="panel">
-            <header className="panel-header">
-              <section>
-                <h2>Información personal</h2>
-                <p>Datos básicos de tu cuenta.</p>
-              </section>
-            </header>
-
-            <fieldset className="form-grid">
-              <legend>Datos personales</legend>
-
-              <label>
-                <span>Nombre</span>
-                <input
-                  value={form.name}
-                  onChange={(event) => update("name", event.target.value)}
-                  autoComplete="name"
-                  required
-                />
-              </label>
-
-              <label>
-                <span>Correo electrónico</span>
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={(event) => update("email", event.target.value)}
-                  autoComplete="email"
-                  required
-                />
-              </label>
-
-              <label>
-                <span>Teléfono</span>
-                <input
-                  value={form.phone}
-                  onChange={(event) => update("phone", event.target.value)}
-                  autoComplete="tel"
-                />
-              </label>
-            </fieldset>
-          </article>
-
-          <article className="panel">
-            <header className="panel-header">
-              <section>
-                <h2>Preferencias</h2>
-                <p>Configura cómo recibir información.</p>
-              </section>
-            </header>
-
-            <label className="toggle-row">
-              <span>
-                <strong>Notificaciones</strong>
-                <small>Recibir avisos sobre nuevas señas.</small>
-              </span>
-              <input
-                type="checkbox"
-                checked={form.notifications}
-                onChange={(event) => update("notifications", event.target.checked)}
-              />
-            </label>
-          </article>
-
-          <article className="panel security-card">
-            <header className="panel-header">
-              <section>
-                <h2>Seguridad</h2>
-                <p>Protege el acceso a tu cuenta.</p>
-              </section>
-            </header>
-
-            <button
-              className="button button-secondary"
-              type="button"
-              onClick={() => window.alert("La función de cambio de contraseña queda disponible para conectar con el backend.")}
-            >
-              Cambiar contraseña
-            </button>
-          </article>
-
-          <footer className="form-actions">
-            <button className="button button-primary" type="submit">
-              Guardar cambios
-            </button>
-            {saved && (
-              <span className="form-message" role="status">
-                Cambios guardados correctamente.
-              </span>
-            )}
-          </footer>
+      <PageHeader title="Mi perfil" description="Administra tu información personal, preferencias y seguridad." />
+      <form className="grid grid-cols-1 gap-5 lg:grid-cols-[270px_1fr]" onSubmit={submit}>
+        <article className="h-fit rounded-2xl border border-white/10 bg-white/[0.035] p-5 text-center shadow-xl"><header className="mx-auto grid h-24 w-24 place-items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-2xl font-black text-cyan-300">{getInitials(form.name)}</header><h2 className="mt-4 text-lg font-bold">{form.name}</h2><p className="mt-1 text-sm text-slate-400">Intérprete</p></article>
+        <section className="grid gap-5">
+          <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-xl"><header className="mb-5"><h2 className="text-lg font-bold">Información personal</h2><p className="mt-1 text-xs text-slate-400">Datos básicos de tu cuenta.</p></header><fieldset className="grid grid-cols-1 gap-5 md:grid-cols-2"><legend className="sr-only">Datos personales</legend><label className="grid gap-2 text-xs text-slate-400">Nombre<input className="rounded-xl border border-white/10 bg-[#0b141b] p-3 text-sm text-white outline-none focus:border-cyan-400" value={form.name} onChange={(e)=>update("name",e.target.value)} required/></label><label className="grid gap-2 text-xs text-slate-400">Correo<input className="rounded-xl border border-white/10 bg-[#0b141b] p-3 text-sm text-white outline-none focus:border-cyan-400" type="email" value={form.email} onChange={(e)=>update("email",e.target.value)} required/></label><label className="grid gap-2 text-xs text-slate-400">Teléfono<input className="rounded-xl border border-white/10 bg-[#0b141b] p-3 text-sm text-white outline-none focus:border-cyan-400" value={form.phone} onChange={(e)=>update("phone",e.target.value)}/></label></fieldset></article>
+          <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-xl"><header className="mb-5"><h2 className="text-lg font-bold">Preferencias</h2></header><label className="flex items-center justify-between gap-4"><span><strong className="block text-sm">Notificaciones</strong><small className="text-xs text-slate-500">Recibir avisos sobre nuevas señas.</small></span><input className="h-5 w-5 accent-cyan-400" type="checkbox" checked={form.notifications} onChange={(e)=>update("notifications",e.target.checked)}/></label></article>
+          <footer className="flex flex-wrap items-center justify-end gap-3"><button className="rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-cyan-400 px-5 py-2.5 text-sm font-bold" type="submit">Guardar cambios</button>{saved&&<span className="text-sm text-emerald-300" role="status">Cambios guardados correctamente.</span>}</footer>
         </section>
       </form>
     </>
