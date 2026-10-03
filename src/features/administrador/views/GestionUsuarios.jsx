@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import '../../../styles/index.css';
-import Sidebar from '../components/Sidebar';
-import { useSidebar } from '../components/useSidebar';
+import AdminCardHeader from '../../../Features/administrador/components/AdminCardHeader';
+import AdminLayout from '../../../Features/administrador/components/AdminLayout';
+import { adminStyles } from '../../../Features/administrador/components/adminStyles';
+import SearchBar from '../../../Features/Interpreter/Componentes/SearchBar';
 import { useToast } from '../../../Hooks/useToastHook';
-import { ToastRegion } from '../../../Hooks/useToast';
 
 const GestionUsuarios = () => {
-    const { menuAbierto, toggleMenu, cerrar } = useSidebar();
     const { toasts, toast } = useToast();
     const [busqueda, setBusqueda] = useState('');
+    const [usuarioEditando, setUsuarioEditando] = useState(null);
+    const [formulario, setFormulario] = useState({
+        nombre: '',
+        correo: '',
+        rol: '',
+        telefono: '',
+        contrasena: '',
+    });
 
     const [usuarios, setUsuarios] = useState([
         { id: 'u1', nombre: 'Charlie Satizabal', correo: 'c.satizabal@signatech.com', rol: 'Intérprete LSC', claseRol: 'interprete', activo: true },
@@ -16,10 +23,85 @@ const GestionUsuarios = () => {
         { id: 'u3', nombre: 'Andrea Silva',       correo: 'a.silva@signatech.com',     rol: 'Operador',       claseRol: 'operador',   activo: false },
     ]);
 
-    const simularRegistro = (e) => {
+    const limpiarFormulario = () => {
+        setUsuarioEditando(null);
+        setFormulario({ nombre: '', correo: '', rol: '', telefono: '', contrasena: '' });
+    };
+
+    const guardarUsuario = (e) => {
         e.preventDefault();
-        toast('Usuario registrado con éxito en SIGNA-TECH.', 'exito');
-        e.target.reset();
+        const nombre = formulario.nombre.trim();
+        const correo = formulario.correo.trim().toLowerCase();
+        const correoDuplicado = usuarios.some(
+            (usuario) => usuario.id !== usuarioEditando && usuario.correo.toLowerCase() === correo,
+        );
+
+        if (!nombre || !correo || !formulario.rol || !formulario.telefono.trim() || (!usuarioEditando && !formulario.contrasena)) {
+            toast('Completa nombre, correo, rol y celular antes de guardar.', 'alerta');
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+            toast('Ingresa un correo electrónico válido.', 'alerta');
+            return;
+        }
+
+        if (correoDuplicado) {
+            toast('Ya existe una cuenta registrada con ese correo.', 'alerta');
+            return;
+        }
+
+        if (!usuarioEditando && formulario.contrasena.length < 8) {
+            toast('La contraseña temporal debe tener al menos 8 caracteres.', 'alerta');
+            return;
+        }
+
+        const rolSeleccionado = {
+            administrador: 'Administrador',
+            interprete: 'Intérprete LSC',
+            operador: 'Operador',
+        }[formulario.rol];
+
+        if (usuarioEditando) {
+            setUsuarios((prev) => prev.map((usuario) => (
+                usuario.id === usuarioEditando
+                    ? { ...usuario, nombre, correo, rol: rolSeleccionado, claseRol: formulario.rol, telefono: formulario.telefono.trim() }
+                    : usuario
+            )));
+            toast('Los datos de la cuenta se actualizaron en esta sesión.', 'exito');
+        } else {
+            setUsuarios((prev) => [...prev, {
+                id: `u-${Date.now()}`,
+                nombre,
+                correo,
+                rol: rolSeleccionado,
+                claseRol: formulario.rol,
+                telefono: formulario.telefono.trim(),
+                activo: true,
+            }]);
+            toast('Cuenta agregada a la lista de esta sesión.', 'exito');
+        }
+
+        limpiarFormulario();
+    };
+
+    const editarUsuario = (usuario) => {
+        setUsuarioEditando(usuario.id);
+        setFormulario({
+            nombre: usuario.nombre,
+            correo: usuario.correo,
+            rol: usuario.claseRol,
+            telefono: usuario.telefono || '',
+            contrasena: '',
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const eliminarUsuario = (usuario) => {
+        if (!window.confirm(`¿Eliminar la cuenta de ${usuario.nombre} de esta sesión?`)) return;
+        setUsuarios((prev) => prev.filter((item) => item.id !== usuario.id));
+        if (usuarioEditando === usuario.id) limpiarFormulario();
+        toast(`Cuenta de ${usuario.nombre} eliminada de esta sesión.`, 'info');
     };
 
     const toggleEstadoUsuario = (id) => {
@@ -42,132 +124,151 @@ const GestionUsuarios = () => {
     );
 
     return (
-        <section className="pagina-completa">
-            <button
-                className={`btn-hamburguesa${menuAbierto ? ' X-activa' : ''}`}
-                aria-label="Abrir menú"
-                aria-expanded={menuAbierto}
-                aria-controls="menu-lateral"
-                onClick={toggleMenu}
-            >
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-            </button>
+        <AdminLayout
+            title="Gestión de Usuarios"
+            description="Controla el ciclo de vida de las cuentas de operadores e intérpretes. Registra, modifica privilegios o suspende accesos."
+            icon="fa-solid fa-users-gear"
+            toasts={toasts}
+        >
+                <section className="mx-auto flex w-full max-w-3xl flex-col gap-6 pb-8">
+                    <article className={`${adminStyles.card} ${adminStyles.cardBlue}`}>
+                        <AdminCardHeader
+                            icon="fa-solid fa-user-plus"
+                            title={usuarioEditando ? 'Editar Usuario' : 'Registrar Nuevo Usuario'}
+                            description="Asigna credenciales iniciales de autenticación y vincula el rol operativo correspondiente."
+                        />
 
-            <Sidebar menuAbierto={menuAbierto} onClose={cerrar} />
-
-            <main className="contenido-centro">
-                <header className="bloque-encabezado">
-                    <h1 className="titulo-pagina">
-                        <i className="fa-solid fa-users-gear" aria-hidden="true" />
-                        Gestión de Usuarios
-                    </h1>
-                    <p className="subtitulo-pagina">
-                        Controla el ciclo de vida de las cuentas de operadores e intérpretes. Registra, modifica privilegios o suspende accesos.
-                    </p>
-                </header>
-
-                <section className="flujo-vertical-config">
-                    <article className="tarjeta-modulo bordo-azul">
-                        <header className="cabecera-tarjeta-interna">
-                            <figure className="icono-modulo-wrapper" aria-hidden="true">
-                                <i className="fa-solid fa-user-plus" />
-                            </figure>
-                            <section className="info-modulo">
-                                <h3>Registrar Nuevo Usuario</h3>
-                                <p>Asigna credenciales iniciales de autenticación y vincula el rol operativo correspondiente.</p>
-                            </section>
-                        </header>
-
-                        <form className="formulario-interno-config" onSubmit={simularRegistro} noValidate>
-                            <fieldset className="grupo-formulario-interno">
-                                <legend>Nombre Completo</legend>
-                                <input type="text" placeholder="Ej: Juan Carlos Pérez Popayán" required />
+                        <form className={adminStyles.form} onSubmit={guardarUsuario} noValidate>
+                            <fieldset className={adminStyles.fieldset}>
+                                <legend className={adminStyles.legend}>Nombre Completo</legend>
+                                <input
+                                    className={adminStyles.input}
+                                    type="text"
+                                    autoComplete="name"
+                                    placeholder="Ej: Juan Carlos Pérez Popayán"
+                                    value={formulario.nombre}
+                                    onChange={(e) => setFormulario((prev) => ({ ...prev, nombre: e.target.value }))}
+                                    required
+                                />
                             </fieldset>
 
-                            <fieldset className="grupo-formulario-interno">
-                                <legend>Correo Electrónico Corporativo</legend>
-                                <input type="email" placeholder="usuario@signatech.com" required />
+                            <fieldset className={adminStyles.fieldset}>
+                                <legend className={adminStyles.legend}>Correo Electrónico Corporativo</legend>
+                                <input
+                                    className={adminStyles.input}
+                                    type="email"
+                                    autoComplete="email"
+                                    placeholder="usuario@signatech.com"
+                                    value={formulario.correo}
+                                    onChange={(e) => setFormulario((prev) => ({ ...prev, correo: e.target.value }))}
+                                    required
+                                />
                             </fieldset>
 
-                            <section className="subgrupo-formulario-fila">
-                                <fieldset className="grupo-formulario-interno">
-                                    <legend>Asignación de Rol</legend>
-                                    <select required defaultValue="">
+                            <section className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                                <fieldset className={adminStyles.fieldset}>
+                                    <legend className={adminStyles.legend}>Asignación de Rol</legend>
+                                    <select
+                                        className={adminStyles.input}
+                                        required
+                                        value={formulario.rol}
+                                        onChange={(e) => setFormulario((prev) => ({ ...prev, rol: e.target.value }))}
+                                    >
                                         <option value="" disabled>Seleccione un rol...</option>
                                         <option value="operador">Operador de Sistema</option>
                                         <option value="interprete">Intérprete LSC</option>
                                         <option value="administrador">Administrador Global</option>
                                     </select>
                                 </fieldset>
-                                <fieldset className="grupo-formulario-interno">
-                                    <legend>Número Celular</legend>
-                                    <input type="tel" placeholder="3XXXXXXXXX" required />
+                                <fieldset className={adminStyles.fieldset}>
+                                    <legend className={adminStyles.legend}>Número Celular</legend>
+                                    <input
+                                        className={adminStyles.input}
+                                        type="tel"
+                                        autoComplete="tel"
+                                        placeholder="3XXXXXXXXX"
+                                        value={formulario.telefono}
+                                        onChange={(e) => setFormulario((prev) => ({ ...prev, telefono: e.target.value }))}
+                                        required
+                                    />
                                 </fieldset>
                             </section>
 
-                            <fieldset className="grupo-formulario-interno">
-                                <legend>Contraseña Temporal de Acceso</legend>
-                                <input type="password" placeholder="Asigne una clave provisional segura" required />
+                            <fieldset className={adminStyles.fieldset}>
+                                <legend className={adminStyles.legend}>Contraseña Temporal de Acceso</legend>
+                                <input
+                                    className={adminStyles.input}
+                                    type="password"
+                                    autoComplete="new-password"
+                                    placeholder={usuarioEditando ? 'Dejar vacío para conservar la contraseña' : 'Asigne una clave provisional segura'}
+                                    value={formulario.contrasena}
+                                    onChange={(e) => setFormulario((prev) => ({ ...prev, contrasena: e.target.value }))}
+                                    required={!usuarioEditando}
+                                />
                             </fieldset>
 
-                            <button type="submit" className="btn-operativo-modulo btn-confirmar">
-                                <i className="fa-solid fa-user-plus" aria-hidden="true" />
-                                Crear Cuenta de Usuario
-                            </button>
+                            <footer className="flex flex-wrap gap-3">
+                                <button type="submit" className={`${adminStyles.button} ${adminStyles.primaryButton}`}>
+                                    <i className={`fa-solid ${usuarioEditando ? 'fa-floppy-disk' : 'fa-user-plus'}`} aria-hidden="true" />
+                                    {usuarioEditando ? 'Guardar Cambios' : 'Crear Cuenta de Usuario'}
+                                </button>
+                                {usuarioEditando && (
+                                    <button type="button" className={`${adminStyles.button} ${adminStyles.secondaryButton}`} onClick={limpiarFormulario}>
+                                        Cancelar Edición
+                                    </button>
+                                )}
+                            </footer>
                         </form>
                     </article>
 
-                    <article className="tarjeta-modulo bordo-verde">
-                        <header className="cabecera-tarjeta-interna">
-                            <figure className="icono-modulo-wrapper" aria-hidden="true">
-                                <i className="fa-solid fa-users-gear" />
-                            </figure>
-                            <section className="info-modulo">
-                                <h3>Cuentas y Estados del Sistema</h3>
-                                <p>Modifica la información de perfiles guardados o altera su estado lógico de acceso.</p>
-                            </section>
-                        </header>
+                    <article className={`${adminStyles.card} ${adminStyles.cardTeal}`}>
+                        <AdminCardHeader
+                            icon="fa-solid fa-users-gear"
+                            title="Cuentas y Estados del Sistema"
+                            description="Modifica la información de perfiles guardados o altera su estado lógico de acceso."
+                            teal
+                        />
 
-                        <fieldset className="grupo-formulario-interno">
-                            <legend>Filtrar por Nombre o Correo</legend>
-                            <input
-                                type="text"
-                                placeholder="Buscar cuenta..."
-                                value={busqueda}
-                                onChange={(e) => setBusqueda(e.target.value)}
-                            />
-                        </fieldset>
+                        <SearchBar value={busqueda} onChange={setBusqueda} placeholder="Filtrar por nombre o correo..." appearance="tailwind" />
 
-                        <ul className="lista-gestion-cuentas" role="list" aria-label="Lista de usuarios">
+                        <ul className={adminStyles.list} role="list" aria-label="Lista de usuarios">
                             {usuariosFiltrados.map((user) => (
                                 <li
                                     key={user.id}
-                                    className={`item-usuario-registro${!user.activo ? ' cuenta-desactivada' : ''}`}
+                                    className={`${adminStyles.listItem} ${!user.activo ? 'opacity-50' : ''}`}
                                 >
-                                    <section className="meta-datos-usuario">
-                                        <strong className="nombre-usuario-tabla">{user.nombre}</strong>
-                                        <span className="correo-usuario-tabla">{user.correo}</span>
-                                        <p className="badges-usuario-fila">
-                                            <span className={`badge-rol-usuario ${user.claseRol}`}>{user.rol}</span>
-                                            <span className={`badge-estado-usuario ${user.activo ? 'activo' : 'inactivo'}`}>
+                                    <section className="flex min-w-0 flex-1 flex-col gap-1">
+                                        <strong className="truncate text-sm font-semibold text-white theme-light:text-slate-900">{user.nombre}</strong>
+                                        <span className={adminStyles.muted}>{user.correo}</span>
+                                        <p className="mt-1 flex flex-wrap gap-1.5">
+                                            <span className={`rounded border px-2 py-0.5 text-[0.68rem] font-bold uppercase ${user.claseRol === 'interprete' ? 'border-teal-300/20 bg-teal-300/10 text-teal-300' : 'border-cyan-300/20 bg-cyan-300/10 text-cyan-300'}`}>{user.rol}</span>
+                                            <span className={`rounded px-2 py-0.5 text-[0.68rem] font-bold uppercase ${user.activo ? 'bg-emerald-400/10 text-emerald-400' : 'bg-red-400/10 text-red-400'}`}>
                                                 {user.activo ? 'Activo' : 'Inactivo'}
                                             </span>
                                         </p>
                                     </section>
-                                    <footer className="acciones-usuario-bloque">
+                                    <footer className="flex shrink-0 gap-2">
                                         <button
                                             type="button"
-                                            className="btn-accion-cuenta editar"
+                                            className="flex size-9 items-center justify-center rounded-lg border border-[#2a3550] text-slate-400 transition hover:border-cyan-400 hover:text-cyan-300"
                                             title={`Editar a ${user.nombre}`}
-                                            onClick={() => toast(`Abriendo editor para ${user.nombre}...`, 'info')}
+                                            aria-label={`Editar a ${user.nombre}`}
+                                            onClick={() => editarUsuario(user)}
                                         >
                                             <i className="fa-solid fa-pen-to-square" aria-hidden="true" />
                                         </button>
                                         <button
                                             type="button"
-                                            className={`btn-accion-cuenta ${user.activo ? 'desactivar' : 'activar'}`}
+                                            className={`${adminStyles.button} size-9 min-h-9 px-0 ${adminStyles.dangerButton}`}
+                                            title={`Eliminar a ${user.nombre}`}
+                                            aria-label={`Eliminar a ${user.nombre}`}
+                                            onClick={() => eliminarUsuario(user)}
+                                        >
+                                            <i className="fa-solid fa-trash-can" aria-hidden="true" />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className={`flex size-9 items-center justify-center rounded-lg border transition ${user.activo ? 'border-red-400/30 text-red-300 hover:border-red-400 hover:bg-red-500/10' : 'border-emerald-400/30 text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/10'}`}
                                             title={user.activo ? 'Desactivar cuenta' : 'Reactivar cuenta'}
                                             onClick={() => toggleEstadoUsuario(user.id)}
                                         >
@@ -179,7 +280,7 @@ const GestionUsuarios = () => {
 
                             {usuariosFiltrados.length === 0 && (
                                 <li>
-                                    <p className="empty-state">
+                                    <p className={adminStyles.empty}>
                                         <i className="fa-solid fa-magnifying-glass" aria-hidden="true" />
                                         No se encontraron usuarios.
                                     </p>
@@ -188,10 +289,7 @@ const GestionUsuarios = () => {
                         </ul>
                     </article>
                 </section>
-            </main>
-
-            <ToastRegion toasts={toasts} />
-        </section>
+        </AdminLayout>
     );
 };
 

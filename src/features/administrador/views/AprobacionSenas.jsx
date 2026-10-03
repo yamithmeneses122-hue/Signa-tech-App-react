@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import '../../../styles/index.css';
-import Sidebar from '../components/Sidebar';
-import { useSidebar } from '../components/useSidebar';
 import { useToast } from '../../../Hooks/useToastHook';
-import { ToastRegion } from '../../../Hooks/useToast';
+import AdminCardHeader from '../../../Features/administrador/components/AdminCardHeader';
+import AdminLayout from '../../../Features/administrador/components/AdminLayout';
+import { adminStyles } from '../../../Features/administrador/components/adminStyles';
 
 const AprobacionSenas = () => {
-    const { menuAbierto, toggleMenu, cerrar } = useSidebar();
     const { toasts, toast } = useToast();
 
     const [nuevasSenas, setNuevasSenas] = useState([
@@ -30,140 +28,109 @@ const AprobacionSenas = () => {
     };
 
     return (
-        <section className="pagina-completa">
-            <button
-                className={`btn-hamburguesa${menuAbierto ? ' X-activa' : ''}`}
-                aria-label="Abrir menú"
-                aria-expanded={menuAbierto}
-                aria-controls="menu-lateral"
-                onClick={toggleMenu}
-            >
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-            </button>
+        <AdminLayout
+            title="Módulo de Auditoría Léxica"
+            description="Cola de moderación en tiempo real. Examina y valida las nuevas incorporaciones o correcciones propuestas por los intérpretes."
+            icon="fa-solid fa-circle-check"
+            toasts={toasts}
+        >
+            <section className="flex flex-col gap-6">
+                <article className={`${adminStyles.card} ${adminStyles.cardBlue}`}>
+                    <AdminCardHeader
+                        icon="fa-solid fa-hands-asl-interpreting"
+                        title="Nuevas Señas Solicitadas"
+                        description="Términos inéditos cargados que requieren autorización para ingresar al diccionario oficial de la IA."
+                    />
 
-            <Sidebar menuAbierto={menuAbierto} onClose={cerrar} />
-
-            <main className="contenido-centro">
-                <header className="bloque-encabezado">
-                    <h1 className="titulo-pagina">
-                        <i className="fa-solid fa-circle-check" aria-hidden="true" />
-                        Módulo de Auditoría Léxica
-                    </h1>
-                    <p className="subtitulo-pagina">
-                        Cola de moderación en tiempo real. Examina y valida las nuevas incorporaciones o correcciones propuestas por los intérpretes.
-                    </p>
-                </header>
-
-                <section className="flujo-vertical-config">
-                    <article className="tarjeta-modulo bordo-azul">
-                        <header className="cabecera-tarjeta-interna">
-                            <figure className="icono-modulo-wrapper" aria-hidden="true">
-                                <i className="fa-solid fa-hands-asl-interpreting" />
-                            </figure>
-                            <section className="info-modulo">
-                                <h3>Nuevas Señas Solicitadas</h3>
-                                <p>Términos inéditos cargados que requieren autorización para ingresar al diccionario oficial de la IA.</p>
-                            </section>
-                        </header>
-
-                        <ul className="lista-gestion-cuentas" role="list" aria-label="Solicitudes de nuevas señas">
-                            {nuevasSenas.map((sena) => (
-                                <li key={sena.id} className="item-solicitud-aprobacion">
-                                    <section className="meta-datos-usuario">
-                                        <strong className="nombre-usuario-tabla">
-                                            Concepto: {sena.concepto} <span className="badge-estado-usuario activo">Nuevo</span>
-                                        </strong>
-                                        <span className="correo-usuario-tabla">
-                                            <strong>Gesticulación:</strong> {sena.gesticulacion}
+                    <ul className={adminStyles.list} role="list" aria-label="Solicitudes de nuevas señas">
+                        {nuevasSenas.map((sena) => (
+                            <li key={sena.id} className={adminStyles.listItem}>
+                                <section className="min-w-0 flex-1">
+                                    <strong className="flex flex-wrap items-center gap-2 text-sm font-semibold text-white theme-light:text-slate-900">
+                                        Concepto: {sena.concepto}
+                                        <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-2.5 py-1 text-xs font-semibold text-cyan-200 theme-light:border-blue-700/20 theme-light:bg-blue-700/10 theme-light:text-blue-800">Nuevo</span>
+                                    </strong>
+                                    <span className={`mt-2 block ${adminStyles.muted}`}>
+                                        <strong className="font-semibold text-slate-300 theme-light:text-slate-700">Gesticulación:</strong> {sena.gesticulacion}
+                                    </span>
+                                    <p className="mt-3 flex flex-wrap items-center gap-2">
+                                        <span className="inline-flex rounded-full border border-teal-300/20 bg-teal-300/10 px-2.5 py-1 text-xs font-semibold text-teal-200 theme-light:border-teal-700/20 theme-light:bg-teal-700/10 theme-light:text-teal-800">
+                                            {sena.categoria}
                                         </span>
-                                        <p className="badges-usuario-fila">
-                                            <span className={`badge-rol-usuario ${sena.claseCategoria}`}>{sena.categoria}</span>
-                                            <span className="badge-autor-interprete">Enviado por: {sena.autor}</span>
-                                        </p>
-                                    </section>
-                                    <footer className="acciones-aprobacion-bloque">
-                                        <button type="button" className="btn-operativo-modulo btn-confirmar" onClick={() => gestionarNuevaSena(sena.id, 'Aprobado')}>
-                                            <i className="fa-solid fa-check" aria-hidden="true" /> Aprobar
-                                        </button>
-                                        <button type="button" className="btn-operativo-modulo btn-rechazar" onClick={() => gestionarNuevaSena(sena.id, 'Rechazado')}>
-                                            <i className="fa-solid fa-xmark" aria-hidden="true" /> Rechazar
-                                        </button>
-                                    </footer>
-                                </li>
-                            ))}
-
-                            {nuevasSenas.length === 0 && (
-                                <li>
-                                    <p className="empty-state">
-                                        <i className="fa-solid fa-inbox" aria-hidden="true" />
-                                        No hay solicitudes pendientes.
+                                        <span className="text-xs text-slate-400 theme-light:text-slate-600">Enviado por: {sena.autor}</span>
                                     </p>
-                                </li>
-                            )}
-                        </ul>
-                    </article>
+                                </section>
+                                <footer className="flex shrink-0 flex-wrap gap-2">
+                                    <button type="button" className={`${adminStyles.button} ${adminStyles.primaryButton}`} onClick={() => gestionarNuevaSena(sena.id, 'Aprobado')}>
+                                        <i className="fa-solid fa-check" aria-hidden="true" /> Aprobar
+                                    </button>
+                                    <button type="button" className={`${adminStyles.button} ${adminStyles.dangerButton}`} onClick={() => gestionarNuevaSena(sena.id, 'Rechazado')}>
+                                        <i className="fa-solid fa-xmark" aria-hidden="true" /> Rechazar
+                                    </button>
+                                </footer>
+                            </li>
+                        ))}
 
-                    <article className="tarjeta-modulo bordo-verde">
-                        <header className="cabecera-tarjeta-interna">
-                            <figure className="icono-modulo-wrapper" aria-hidden="true">
-                                <i className="fa-solid fa-scale-balanced" />
-                            </figure>
-                            <section className="info-modulo">
-                                <h3>Correcciones y Mutaciones Léxicas</h3>
-                                <p>Modificaciones sugeridas a conceptos ya públicos para optimizar la precisión lingüística de la comunidad sorda.</p>
-                            </section>
-                        </header>
+                        {nuevasSenas.length === 0 && (
+                            <li className={adminStyles.empty}>
+                                <i className="fa-solid fa-inbox text-2xl text-cyan-300" aria-hidden="true" />
+                                <span>No hay solicitudes pendientes.</span>
+                            </li>
+                        )}
+                    </ul>
+                </article>
 
-                        <ul className="lista-gestion-cuentas" role="list" aria-label="Correcciones propuestas">
-                            {correcciones.map((corr) => (
-                                <li key={corr.id} className="item-solicitud-aprobacion c-columna">
-                                    <header className="encabezado-fila-interna">
-                                        <strong className="nombre-usuario-tabla">
-                                            Concepto en Mutación: {corr.concepto}
-                                            <i className={`${corr.icono} ms-2`} aria-hidden="true" />
-                                        </strong>
-                                        <span className="badge-autor-interprete">Propuesto por: {corr.autor}</span>
-                                    </header>
+                <article className={`${adminStyles.card} ${adminStyles.cardTeal}`}>
+                    <AdminCardHeader
+                        icon="fa-solid fa-scale-balanced"
+                        title="Correcciones y Mutaciones Léxicas"
+                        description="Modificaciones sugeridas a conceptos ya públicos para optimizar la precisión lingüística de la comunidad sorda."
+                        teal
+                    />
 
-                                    <section className="contenedor-comparador-lexico" aria-label="Comparación de versiones">
-                                        <article className="caja-estado-lexico anterior">
-                                            <strong className="titulo-estado-caja">Definición Actual Activa</strong>
-                                            <p>{corr.actual}</p>
-                                        </article>
-                                        <article className="caja-estado-lexico propuesta">
-                                            <strong className="titulo-estado-caja">Modificación Propuesta</strong>
-                                            <p>{corr.propuesta}</p>
-                                        </article>
-                                    </section>
+                    <ul className={adminStyles.list} role="list" aria-label="Correcciones propuestas">
+                        {correcciones.map((corr) => (
+                            <li key={corr.id} className={`${adminStyles.listItem} flex-col items-stretch sm:flex-col sm:items-stretch`}>
+                                <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                    <strong className="flex flex-wrap items-center gap-2 text-sm font-semibold text-white theme-light:text-slate-900">
+                                        Concepto en Mutación: {corr.concepto}
+                                        <i className={`${corr.icono} text-cyan-300`} aria-hidden="true" />
+                                    </strong>
+                                    <span className="text-xs text-slate-400 theme-light:text-slate-600">Propuesto por: {corr.autor}</span>
+                                </header>
 
-                                    <footer className="acciones-aprobacion-bloque">
-                                        <button type="button" className="btn-operativo-modulo btn-confirmar" onClick={() => gestionarCorreccion(corr.id, 'Mutación Aplicada')}>
-                                            <i className="fa-solid fa-code-merge" aria-hidden="true" /> Validar e Intercambiar
-                                        </button>
-                                        <button type="button" className="btn-operativo-modulo btn-rechazar" onClick={() => gestionarCorreccion(corr.id, 'Mutación Rechazada')}>
-                                            <i className="fa-solid fa-trash-arrow-up" aria-hidden="true" /> Descartar Sugerencia
-                                        </button>
-                                    </footer>
-                                </li>
-                            ))}
+                                <section className="grid grid-cols-1 gap-3 md:grid-cols-2" aria-label="Comparación de versiones">
+                                    <article className="rounded-lg border border-slate-700 bg-slate-900/70 p-4 theme-light:border-slate-300 theme-light:bg-slate-100">
+                                        <strong className="text-xs font-bold uppercase tracking-wider text-slate-400 theme-light:text-slate-600">Definición Actual Activa</strong>
+                                        <p className="mt-2 text-sm leading-relaxed text-slate-300 theme-light:text-slate-700">{corr.actual}</p>
+                                    </article>
+                                    <article className="rounded-lg border border-teal-400/30 bg-teal-400/5 p-4 theme-light:border-teal-700/30 theme-light:bg-teal-50">
+                                        <strong className="text-xs font-bold uppercase tracking-wider text-teal-300 theme-light:text-teal-800">Modificación Propuesta</strong>
+                                        <p className="mt-2 text-sm leading-relaxed text-slate-300 theme-light:text-slate-700">{corr.propuesta}</p>
+                                    </article>
+                                </section>
 
-                            {correcciones.length === 0 && (
-                                <li>
-                                    <p className="empty-state">
-                                        <i className="fa-solid fa-inbox" aria-hidden="true" />
-                                        No hay correcciones pendientes.
-                                    </p>
-                                </li>
-                            )}
-                        </ul>
-                    </article>
-                </section>
-            </main>
+                                <footer className="flex flex-wrap gap-2">
+                                    <button type="button" className={`${adminStyles.button} ${adminStyles.primaryButton}`} onClick={() => gestionarCorreccion(corr.id, 'Mutación Aplicada')}>
+                                        <i className="fa-solid fa-code-merge" aria-hidden="true" /> Validar e Intercambiar
+                                    </button>
+                                    <button type="button" className={`${adminStyles.button} ${adminStyles.dangerButton}`} onClick={() => gestionarCorreccion(corr.id, 'Mutación Rechazada')}>
+                                        <i className="fa-solid fa-trash-arrow-up" aria-hidden="true" /> Descartar Sugerencia
+                                    </button>
+                                </footer>
+                            </li>
+                        ))}
 
-            <ToastRegion toasts={toasts} />
-        </section>
+                        {correcciones.length === 0 && (
+                            <li className={adminStyles.empty}>
+                                <i className="fa-solid fa-inbox text-2xl text-teal-300" aria-hidden="true" />
+                                <span>No hay correcciones pendientes.</span>
+                            </li>
+                        )}
+                    </ul>
+                </article>
+            </section>
+        </AdminLayout>
     );
 };
 

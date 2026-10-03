@@ -1,134 +1,84 @@
-import '../../../styles/index.css';
-import Sidebar from '../components/Sidebar';
-import { useSidebar } from '../components/useSidebar';
+import { Link } from 'react-router-dom';
+import AdminLayout from '../../../Features/administrador/components/AdminLayout';
+import { adminStyles } from '../../../Features/administrador/components/adminStyles';
+import StatCard from '../../../Features/Interpreter/Componentes/StatCard';
 import { useToast } from '../../../Hooks/useToastHook';
-import { ToastRegion } from '../../../Hooks/useToast';
 
 const DashboardAdmin = () => {
-    const { menuAbierto, toggleMenu, cerrar } = useSidebar();
     const { toasts } = useToast();
 
     return (
-        <section className="pagina-completa">
-            <button
-                className={`btn-hamburguesa${menuAbierto ? ' X-activa' : ''}`}
-                aria-label="Abrir menú"
-                aria-expanded={menuAbierto}
-                aria-controls="menu-lateral"
-                onClick={toggleMenu}
-            >
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-                <span aria-hidden="true" />
-            </button>
+        <AdminLayout
+            title="Panel de Control Global"
+            description="Bienvenido al núcleo de administración de SIGNA-TECH. Audita el rendimiento del sistema y gestiona las historias operativas."
+            icon="fa-solid fa-hand-peace"
+            toasts={toasts}
+        >
+            <section className="mb-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Métricas del sistema">
+                {[
+                    { title: 'Usuarios Activos', value: '42', note: '4 nuevos esta semana', icon: 'fa-arrow-trend-up', tone: 'text-emerald-400' },
+                    { title: 'Señas por Aprobar', value: '18', note: 'Requiere revisión del intérprete', icon: 'fa-circle-exclamation', tone: 'text-amber-400' },
+                    { title: 'Eficacia del Modelo IA', value: '98.4%', note: 'Tasa de precisión estable', icon: 'fa-arrow-trend-up', tone: 'text-emerald-400' },
+                ].map((metric) => (
+                    <StatCard
+                        key={metric.title}
+                        label={metric.title}
+                        value={metric.value}
+                        detail={metric.note}
+                        icon={<i className={`fa-solid ${metric.icon}`} />}
+                        tone={metric.tone.includes('amber') ? 'amber' : 'green'}
+                        appearance="tailwind"
+                    />
+                ))}
+            </section>
 
-            <Sidebar menuAbierto={menuAbierto} onClose={cerrar} />
-
-            <main className="contenido-centro">
-                <header className="bloque-encabezado">
-                    <h1 className="titulo-pagina">
-                        Panel de Control Global
-                        <i className="fa-solid fa-hand-peace" aria-hidden="true" />
-                    </h1>
-                    <p className="subtitulo-pagina">
-                        Bienvenido al núcleo de administración de SIGNA-TECH. Audita el rendimiento del sistema y gestiona las historias operativas.
-                    </p>
-                </header>
-
-                <section className="fila-metricas-admin" aria-label="Métricas del sistema">
-                    <article className="tarjeta-metrica">
-                        <h4>Usuarios Activos</h4>
-                        <p className="numero-metrica">42</p>
-                        <p className="tendencia-metrica positivo">
-                            <i className="fa-solid fa-arrow-trend-up" aria-hidden="true" /> 4 nuevos esta semana
-                        </p>
-                    </article>
-                    <article className="tarjeta-metrica">
-                        <h4>Señas por Aprobar</h4>
-                        <p className="numero-metrica">18</p>
-                        <p className="tendencia-metrica alerta">
-                            <i className="fa-solid fa-circle-exclamation" aria-hidden="true" /> Requiere revisión del intérprete
-                        </p>
-                    </article>
-                    <article className="tarjeta-metrica">
-                        <h4>Eficacia del Modelo IA</h4>
-                        <p className="numero-metrica">98.4%</p>
-                        <p className="tendencia-metrica positivo">
-                            <i className="fa-solid fa-arrow-trend-up" aria-hidden="true" /> Tasa de precisión estable
-                        </p>
-                    </article>
-                </section>
-
-                <section className="dashboard-grid-operador" aria-label="Módulos del panel">
-                    <a href="/gestion_usuarios" className="tarjeta-modulo bordo-azul">
-                        <figure className="icono-modulo-wrapper" aria-hidden="true">
-                            <i className="fa-solid fa-users-gear" />
-                        </figure>
-                        <section className="info-modulo">
-                            <h3>Gestión de Usuarios</h3>
-                            <p>Registrar nuevos perfiles, editar credenciales operativas y desactivar cuentas del sistema de forma segura.</p>
-                        </section>
-                        <span className="flecha-ir" aria-hidden="true">
-                            <i className="fa-solid fa-arrow-right" />
+            <section className="grid w-full grid-cols-1 gap-4 md:grid-cols-2" aria-label="Módulos del panel">
+                    <Link to="/gestion_usuarios" className={`${adminStyles.card} ${adminStyles.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                        <span className={adminStyles.icon} aria-hidden="true"><i className="fa-solid fa-users-gear" /></span>
+                        <span className="min-w-0 flex-1">
+                            <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Gestión de Usuarios</span>
+                            <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Registrar nuevos perfiles, editar credenciales operativas y desactivar cuentas del sistema de forma segura.</span>
                         </span>
-                    </a>
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
+                    </Link>
 
-                    <a href="/gestion_roles" className="tarjeta-modulo bordo-verde">
-                        <figure className="icono-modulo-wrapper" aria-hidden="true">
-                            <i className="fa-solid fa-shield-halved" />
-                        </figure>
-                        <section className="info-modulo">
-                            <h3>Roles y Permisos</h3>
-                            <p>Auditar la matriz de privilegios y configurar los alcances de acceso para Administradores, Intérpretes y Operadores.</p>
-                        </section>
-                        <span className="flecha-ir" aria-hidden="true">
-                            <i className="fa-solid fa-arrow-right" />
+                    <Link to="/gestion_roles" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                        <span className={`${adminStyles.icon} ${adminStyles.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-shield-halved" /></span>
+                        <span className="min-w-0 flex-1">
+                            <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Roles y Permisos</span>
+                            <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Auditar la matriz de privilegios y configurar los alcances de acceso para Administradores, Intérpretes y Operadores.</span>
                         </span>
-                    </a>
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
+                    </Link>
 
-                    <a href="/diccionario_admin" className="tarjeta-modulo bordo-azul">
-                        <figure className="icono-modulo-wrapper" aria-hidden="true">
-                            <i className="fa-solid fa-book-bookmark" />
-                        </figure>
-                        <section className="info-modulo">
-                            <h3>Diccionario LSC</h3>
-                            <p>Administración completa del glosario multimedia: crear, consultar, visualizar, modificar y eliminar señas oficiales.</p>
-                        </section>
-                        <span className="flecha-ir" aria-hidden="true">
-                            <i className="fa-solid fa-arrow-right" />
+                    <Link to="/diccionario_admin" className={`${adminStyles.card} ${adminStyles.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                        <span className={adminStyles.icon} aria-hidden="true"><i className="fa-solid fa-book-bookmark" /></span>
+                        <span className="min-w-0 flex-1">
+                            <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Diccionario LSC</span>
+                            <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Administración completa del glosario multimedia: crear, consultar, visualizar, modificar y eliminar señas oficiales.</span>
                         </span>
-                    </a>
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
+                    </Link>
 
-                    <a href="/aprobacion_senas" className="tarjeta-modulo bordo-verde">
-                        <figure className="icono-modulo-wrapper" aria-hidden="true">
-                            <i className="fa-solid fa-circle-check" />
-                        </figure>
-                        <section className="info-modulo">
-                            <h3>Aprobación de Señas</h3>
-                            <p>Validar las nuevas señas cargadas por el intérprete y auditar las correcciones léxicas propuestas en tiempo real.</p>
-                        </section>
-                        <span className="flecha-ir" aria-hidden="true">
-                            <i className="fa-solid fa-arrow-right" />
+                    <Link to="/aprobacion_senas" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                        <span className={`${adminStyles.icon} ${adminStyles.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-circle-check" /></span>
+                        <span className="min-w-0 flex-1">
+                            <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Aprobación de Señas</span>
+                            <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Validar las nuevas señas cargadas por el intérprete y auditar las correcciones léxicas propuestas en tiempo real.</span>
                         </span>
-                    </a>
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
+                    </Link>
 
-                    <a href="/configuracion_admin" className="tarjeta-modulo bordo-azul">
-                        <figure className="icono-modulo-wrapper" aria-hidden="true">
-                            <i className="fa-solid fa-sliders" />
-                        </figure>
-                        <section className="info-modulo">
-                            <h3>Configuración General</h3>
-                            <p>Ajustar parámetros core del traductor, gestionar temas visuales e inspeccionar los logs de auditoría técnica.</p>
-                        </section>
-                        <span className="flecha-ir" aria-hidden="true">
-                            <i className="fa-solid fa-arrow-right" />
+                    <Link to="/configuracion_admin" className={`${adminStyles.card} ${adminStyles.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                        <span className={adminStyles.icon} aria-hidden="true"><i className="fa-solid fa-sliders" /></span>
+                        <span className="min-w-0 flex-1">
+                            <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Configuración General</span>
+                            <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Ajustar parámetros core del traductor, gestionar temas visuales e inspeccionar los logs de auditoría técnica.</span>
                         </span>
-                    </a>
-                </section>
-            </main>
-
-            <ToastRegion toasts={toasts} />
-        </section>
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
+                    </Link>
+            </section>
+        </AdminLayout>
     );
 };
 

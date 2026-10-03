@@ -4,9 +4,8 @@ export function useSidebar() {
     const [menuAbierto, setMenuAbierto] = useState(false);
 
     useEffect(() => {
-        const temaGuardado = localStorage.getItem('tema-sinatex-glasses') || 'oscuro';
-        if (temaGuardado === 'claro') document.body.classList.add('tema-claro');
-        else document.body.classList.remove('tema-claro');
+        document.documentElement.dataset.theme =
+            localStorage.getItem('tema-sinatex-glasses') === 'claro' ? 'light' : 'dark';
     }, []);
 
     const toggleMenu = useCallback((e) => {
