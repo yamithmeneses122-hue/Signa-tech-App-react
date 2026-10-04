@@ -1,0 +1,8 @@
+export default function SearchBar({ value, onChange, placeholder = "Buscar..." }) {
+  return (
+    <label className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-xl border border-white/10 bg-[#0b141b] px-3 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/10">
+      <span className="text-lg text-slate-500" aria-hidden="true">⌕</span>
+      <input className="w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-500" type="search" value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} aria-label={placeholder} />
+    </label>
+  );
+}
