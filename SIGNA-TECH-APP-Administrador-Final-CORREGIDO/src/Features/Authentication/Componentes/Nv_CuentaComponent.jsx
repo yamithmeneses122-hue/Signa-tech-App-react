@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Nv_CuentaComponent() {
     return (
         <>
-           <article className="w-full max-w-[600px] rounded-[50px] border border-cyan-300/80 bg-slate-800/90 p-7 shadow-[0_0_30px_rgba(34,211,238,0.25)] backdrop-blur-sm sm:p-8">
+           <article className="relative z-10 w-full max-w-[600px] rounded-[50px] border border-cyan-300/80 bg-slate-800/90 p-7 shadow-[0_0_30px_rgba(34,211,238,0.25)] backdrop-blur-sm sm:p-8">
       <header className="text-center">
         <h1 className="text-3xl font-bold tracking-wide text-sky-300 sm:text-4xl">SIGNA-TECH-APP</h1>
         <p className="mt-4 text-lg text-slate-200">Crear nueva cuenta</p>

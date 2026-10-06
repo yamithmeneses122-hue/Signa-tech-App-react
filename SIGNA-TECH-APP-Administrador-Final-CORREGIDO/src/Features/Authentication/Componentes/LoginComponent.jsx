@@ -22,21 +22,18 @@ export default function LoginComponent() {
 
     if (!usuario) {
       setInicioExitoso(false);
-      setMensaje("Correo o contraseña incorrectos, o cuenta inactiva.");
+      setMensaje("");
+      window.alert("Correo o contraseña incorrectos, o cuenta inactiva.");
       return;
     }
 
-    const almacenamiento =
-      formulario.get("remember") === "on"
-        ? localStorage
-        : sessionStorage;
+    const recordarSesion = formulario.get("remember") === "on";
+    const almacenamiento = recordarSesion ? localStorage : sessionStorage;
 
+    (recordarSesion ? sessionStorage : localStorage).removeItem("usuario");
     almacenamiento.setItem("usuario", JSON.stringify(usuario));
-
     setInicioExitoso(true);
-    setMensaje(
-      `Inicio de sesión correcto. Bienvenido, ${usuario.nombre}.`
-    );
+    setMensaje("");
 
     // Redireccionar según el rol del usuario
     switch (usuario.rol) {

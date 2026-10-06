@@ -41,7 +41,6 @@ import {
     Registrar,
     Corregir,
     Historial,
-    Estadisticas,
     Perfil,
 } from "../Features/Interprete/Vistas/vista";
 
@@ -106,7 +105,6 @@ export default function Rutas() {
                     <Route path="registrar" element={<Registrar />} />
                     <Route path="corregir" element={<Corregir />} />
                     <Route path="historial" element={<Historial />} />
-                    <Route path="estadisticas" element={<Estadisticas />} />
                     <Route path="perfil" element={<Perfil />} />
                 </Route>
 

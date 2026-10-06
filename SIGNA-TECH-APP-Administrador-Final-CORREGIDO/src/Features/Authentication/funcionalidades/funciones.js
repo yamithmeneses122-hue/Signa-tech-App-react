@@ -4,7 +4,7 @@ const roles = [
     id: "administrador",
     nombre: "Administrador",
     correo: "administrador@gmail.com",
-    contraseña: "Administrador2026#",
+    contraseña: "administrador2026#",
     rol: "administrador",
     activo: true,
   },
@@ -12,7 +12,7 @@ const roles = [
     id: "interprete",
     nombre: "Interprete",
     correo: "interprete@gmail.com",
-    contraseña: "Interprete2026#",
+    contraseña: "interprete2026#",
     rol: "interprete",
     activo: true,
   },
@@ -20,7 +20,7 @@ const roles = [
     id: "operador",
     nombre: "Operador",
     correo: "operador@gmail.com",
-    contraseña: "Operador2026#",
+    contraseña: "operador2026#",
     rol: "operador",
     activo: true,
   },
@@ -43,4 +43,6 @@ export function autenticarUsuario(correo, contraseña) {
   };
 }
 
+
 export default roles;
+

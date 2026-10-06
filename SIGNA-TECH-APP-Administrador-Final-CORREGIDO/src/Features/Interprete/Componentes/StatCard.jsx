@@ -7,7 +7,7 @@ const tones = {
 
 export default function StatCard({ label, value, detail, icon, tone = "cyan" }) {
   return (
-    <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-xl">
+    <article className="rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-6 shadow-[0_0_30px_rgba(34,211,238,0.12)]">
       <header className="flex items-center gap-3 text-sm text-slate-400">
         <span className={`grid h-9 w-9 place-items-center rounded-xl border ${tones[tone] || tones.cyan}`} aria-hidden="true">{icon}</span>
         <span>{label}</span>
