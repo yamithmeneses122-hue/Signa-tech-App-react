@@ -9,7 +9,7 @@ const features = [
     ["shield", "Accesibilidad", "La experiencia visual prioriza contraste, jerarquía, foco visible y adaptación a distintas pantallas."],
 ];
 
-export default function FeatureCard() {
+export default function TarjetaCaracteristica() {
     return (
         <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <header className="max-w-3xl">

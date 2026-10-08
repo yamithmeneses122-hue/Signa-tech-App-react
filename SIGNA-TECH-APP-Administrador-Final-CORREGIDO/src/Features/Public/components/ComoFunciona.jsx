@@ -6,7 +6,7 @@ const steps = [
     ["03", "Comunica", "Usa el flujo de voz, texto o captura visual según el caso."],
 ];
 
-export default function HowItWorks() {
+export default function ComoFunciona() {
     return (
         <section id="comofunciona" className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <section className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">

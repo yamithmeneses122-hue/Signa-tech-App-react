@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../../../components/shared/Icon.jsx";
 
-export default function FinalCTA() {
+export default function AccionFinal() {
     return (
         <section className="px-5 pb-24 lg:px-10 lg:pb-32">
             <article className="mx-auto max-w-[1200px] overflow-hidden rounded-[2.5rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[.12] via-white/[.03] to-transparent p-8 text-center shadow-[0_30px_100px_rgba(0,204,255,.08)] sm:p-12 lg:p-16">

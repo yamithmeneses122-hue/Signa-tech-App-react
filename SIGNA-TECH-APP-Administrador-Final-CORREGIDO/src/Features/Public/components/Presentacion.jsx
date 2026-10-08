@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../../../components/shared/Icon.jsx";
 
-function ProductMockup() {
+function VistaProductoDemo() {
     return (
         <figure className="relative mx-auto w-full max-w-[620px]">
             <span className="absolute -inset-8 rounded-[3rem] bg-cyan-400/10 blur-3xl" aria-hidden="true" />
@@ -73,7 +73,7 @@ function ProductMockup() {
     );
 }
 
-export default function Hero() {
+export default function Presentacion() {
     return (
         <section className="mx-auto grid max-w-[1400px] items-center gap-14 px-5 py-20 lg:grid-cols-[.9fr_1.1fr] lg:px-10 lg:py-28">
             <article>
@@ -118,7 +118,7 @@ export default function Hero() {
                 </ul>
             </article>
 
-            <ProductMockup />
+            <VistaProductoDemo />
         </section>
     );
 }
