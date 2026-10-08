@@ -1,4 +1,4 @@
-import { pendingSigns, correctionSigns, historyRecords } from "../data/interpreterData";
+import { senasPendientes, senasCorregidas, registrosHistorial } from "../data/datos";
 
 const KEYS = {
   signs: "signa_interpreter_signs",
@@ -23,29 +23,29 @@ function write(key, value) {
 
 function seedSigns() {
   return [
-    ...pendingSigns.map((sign) => ({ ...sign, id: `pending-${sign.id}` })),
-    ...correctionSigns.map((sign) => ({ ...sign, id: `correction-${sign.id}` }))
+    ...senasPendientes.map((sign) => ({ ...sign, id: `pending-${sign.id}` })),
+    ...senasCorregidas.map((sign) => ({ ...sign, id: `correction-${sign.id}` }))
   ];
 }
 
-export function getSigns() {
+export function obtenerSenas() {
   return read(KEYS.signs, seedSigns());
 }
 
-export function saveSigns(signs) {
+export function guardarSenas(signs) {
   return write(KEYS.signs, signs);
 }
 
-export function getHistory() {
-  return read(KEYS.history, historyRecords);
+export function obtenerHistorial() {
+  return read(KEYS.history, registrosHistorial);
 }
 
-export function addHistory(record) {
-  const history = getHistory();
+export function agregarHistorial(record) {
+  const history = obtenerHistorial();
   return write(KEYS.history, [{ ...record, id: Date.now() }, ...history]);
 }
 
-export function getProfile() {
+export function obtenerPerfil() {
   return read(KEYS.profile, {
     name: "Intérprete",
     email: "interprete@signatech.com",
@@ -54,15 +54,15 @@ export function getProfile() {
   });
 }
 
-export function saveProfile(profile) {
+export function guardarPerfil(profile) {
   return write(KEYS.profile, profile);
 }
 
-export function getRegistrationDraft() {
+export function obtenerBorrador() {
   return read(KEYS.registrationDraft, null);
 }
 
-export function saveRegistrationDraft(draft) {
+export function guardarBorrador(draft) {
   if (!draft.word && !draft.meaning && !draft.description && !draft.attachment) {
     localStorage.removeItem(KEYS.registrationDraft);
     return null;
@@ -70,6 +70,6 @@ export function saveRegistrationDraft(draft) {
   return write(KEYS.registrationDraft, draft);
 }
 
-export function clearRegistrationDraft() {
+export function limpiarBorrador() {
   localStorage.removeItem(KEYS.registrationDraft);
 }

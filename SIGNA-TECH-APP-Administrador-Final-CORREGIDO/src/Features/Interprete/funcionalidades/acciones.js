@@ -1,7 +1,7 @@
-import { addHistory, getSigns, saveSigns } from "./interpreterStorage";
+import { agregarHistorial, obtenerSenas, guardarSenas } from "./almacenamiento";
 
-export function changeSignStatus(signId, status, user = "Intérprete", reason = "") {
-  const signs = getSigns();
+export function cambiarEstadoSena(signId, status, user = "Intérprete", reason = "") {
+  const signs = obtenerSenas();
   const sign = signs.find((item) => item.id === signId);
   if (!sign) return null;
 
@@ -9,8 +9,8 @@ export function changeSignStatus(signId, status, user = "Intérprete", reason = 
     item.id === signId ? { ...item, status } : item
   );
 
-  saveSigns(updated);
-  addHistory({
+  guardarSenas(updated);
+  agregarHistorial({
     word: sign.word,
     action: status === "Validada" ? "Validación" : "Revisión",
     user,
@@ -22,8 +22,8 @@ export function changeSignStatus(signId, status, user = "Intérprete", reason = 
   return updated;
 }
 
-export function updateSign(sign, user = "Intérprete") {
-  const signs = getSigns();
+export function actualizarSena(sign, user = "Intérprete") {
+  const signs = obtenerSenas();
   const previousSign = signs.find((item) => item.id === sign.id);
   if (!previousSign) return null;
 
@@ -37,8 +37,8 @@ export function updateSign(sign, user = "Intérprete") {
       description: "descripción"
     })[field]);
   const updated = signs.map((item) => (item.id === sign.id ? correctedSign : item));
-  saveSigns(updated);
-  addHistory({
+  guardarSenas(updated);
+  agregarHistorial({
     word: correctedSign.word,
     action: "Corrección",
     user,
@@ -49,16 +49,16 @@ export function updateSign(sign, user = "Intérprete") {
   return updated;
 }
 
-export function registerSign(form, user = "Intérprete") {
-  const signs = getSigns();
+export function registrarSena(form, user = "Intérprete") {
+  const signs = obtenerSenas();
   const newSign = {
     ...form,
     id: Date.now(),
     status: "Pendiente",
     date: new Date().toLocaleDateString("es-CO")
   };
-  saveSigns([...signs, newSign]);
-  addHistory({
+  guardarSenas([...signs, newSign]);
+  agregarHistorial({
     word: newSign.word,
     action: "Revisión",
     user,
