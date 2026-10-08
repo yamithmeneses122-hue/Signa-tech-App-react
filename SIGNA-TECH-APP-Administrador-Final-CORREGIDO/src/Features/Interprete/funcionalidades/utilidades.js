@@ -1,4 +1,4 @@
-export function normalizeText(value = "") {
+export function normalizarTexto(value = "") {
   return String(value)
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -6,20 +6,20 @@ export function normalizeText(value = "") {
     .trim();
 }
 
-export function filterSigns(signs, query, category = "Todas", status = "Todos") {
-  const text = normalizeText(query);
+export function filtrarSenas(signs, query, category = "Todas", status = "Todos") {
+  const text = normalizarTexto(query);
   return signs.filter((sign) => {
     const matchesText =
       !text ||
-      normalizeText(sign.word).includes(text) ||
-      normalizeText(sign.meaning).includes(text);
+      normalizarTexto(sign.word).includes(text) ||
+      normalizarTexto(sign.meaning).includes(text);
     const matchesCategory = category === "Todas" || sign.category === category;
     const matchesStatus = status === "Todos" || sign.status === status;
     return matchesText && matchesCategory && matchesStatus;
   });
 }
 
-export function getInitials(name = "Intérprete") {
+export function obtenerIniciales(name = "Intérprete") {
   return name
     .split(" ")
     .filter(Boolean)
@@ -28,7 +28,7 @@ export function getInitials(name = "Intérprete") {
     .join("") || "IM";
 }
 
-export function validateSignForm(form) {
+export function validarFormularioSena(form) {
   const errors = {};
   if (!form.word.trim()) errors.word = "La palabra es obligatoria.";
   if (!form.meaning.trim()) errors.meaning = "El significado es obligatorio.";

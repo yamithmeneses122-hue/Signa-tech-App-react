@@ -1,5 +1,5 @@
-import CorrectionContent from "../Componentes/CorrectionContent";
+import ContenidoCorreccion from "../Componentes/ContenidoCorreccion";
 
 export default function Corregir() {
-  return <CorrectionContent />;
+  return <ContenidoCorreccion />;
 }
