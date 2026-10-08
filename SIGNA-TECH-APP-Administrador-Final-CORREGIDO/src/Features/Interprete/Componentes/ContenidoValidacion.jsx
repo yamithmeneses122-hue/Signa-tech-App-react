@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import PageHeader from "./PageHeader";
-import SearchBar from "./SearchBar";
-import Filter from "./Filter";
-import SignCard from "./SignCard";
-import StatusBadge from "./StatusBadge";
-import { categoryOptions } from "../data/interpreterData";
-import { getSigns } from "../funcionalidades/interpreterStorage";
-import { changeSignStatus } from "../funcionalidades/interpreterActions";
-import { filterSigns } from "../funcionalidades/interpreterUtils";
+import EncabezadoPagina from "./EncabezadoPagina";
+import BarraBusqueda from "./BarraBusqueda";
+import Filtro from "./Filtro";
+import TarjetaSena from "./TarjetaSena";
+import EtiquetaEstado from "./EtiquetaEstado";
+import { opcionesCategoria } from "../data/datos";
+import { obtenerSenas } from "../funcionalidades/almacenamiento";
+import { cambiarEstadoSena } from "../funcionalidades/acciones";
+import { filtrarSenas } from "../funcionalidades/utilidades";
 
 const panelClass = "rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-6 shadow-[0_0_30px_rgba(34,211,238,0.12)]";
 
-function SignResource({ sign }) {
+function RecursoSena({ sign }) {
   if (sign.attachment?.type === "video/mp4") {
     return <video className="max-h-72 w-full rounded-xl object-contain" controls src={sign.attachment.data}>{sign.attachment.name}</video>;
   }
@@ -22,7 +22,7 @@ function SignResource({ sign }) {
   return <span className="text-7xl" aria-hidden="true">✋</span>;
 }
 
-export default function ValidationContent() {
+export default function ContenidoValidacion() {
   const [signs, setSigns] = useState([]);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Todas");
@@ -33,20 +33,20 @@ export default function ValidationContent() {
   const [reasonError, setReasonError] = useState("");
   const [feedback, setFeedback] = useState("");
 
-  useEffect(() => { setSigns(getSigns()); }, []);
+  useEffect(() => { setSigns(obtenerSenas()); }, []);
 
-  const filtered = useMemo(() => filterSigns(signs, query, category, status), [signs, query, category, status]);
+  const filtered = useMemo(() => filtrarSenas(signs, query, category, status), [signs, query, category, status]);
   const pendingCount = signs.filter((sign) => sign.status === "Pendiente").length;
 
   function updateStatus(newStatus, rejectionReason = "") {
     if (!selected) return;
-    const updated = changeSignStatus(selected.id, newStatus, "Intérprete", rejectionReason);
+    const updated = cambiarEstadoSena(selected.id, newStatus, "Intérprete", rejectionReason);
     if (!updated) {
       setFeedback("No se pudo actualizar la seña. Recarga la vista e inténtalo de nuevo.");
       return;
     }
 
-    const nextPending = filterSigns(updated, query, category, "Pendiente")
+    const nextPending = filtrarSenas(updated, query, category, "Pendiente")
       .find((sign) => sign.id !== selected.id);
     setSigns(updated);
     setSelected(nextPending || null);
@@ -70,11 +70,11 @@ export default function ValidationContent() {
 
   return (
     <>
-      <PageHeader title="Validar señas" description="Revisa las nuevas señas y decide si deben formar parte del diccionario." />
+      <EncabezadoPagina title="Validar señas" description="Revisa las nuevas señas y decide si deben formar parte del diccionario." />
       <section className="mb-5 flex flex-col gap-3 rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-4 lg:flex-row lg:items-end" aria-label="Filtros de validación">
-        <SearchBar value={query} onChange={setQuery} placeholder="Buscar por palabra..." />
-        <Filter label="Categoría" value={category} onChange={setCategory} options={categoryOptions} />
-        <Filter label="Estado" value={status} onChange={setStatus} options={[{ value: "Pendiente", label: "Pendiente" }, { value: "Todos", label: "Todos" }, { value: "Validada", label: "Validada" }, { value: "Rechazada", label: "Rechazada" }, { value: "Corregida", label: "Corregida" }]} />
+        <BarraBusqueda value={query} onChange={setQuery} placeholder="Buscar por palabra..." />
+        <Filtro label="Categoría" value={category} onChange={setCategory} options={opcionesCategoria} />
+        <Filtro label="Estado" value={status} onChange={setStatus} options={[{ value: "Pendiente", label: "Pendiente" }, { value: "Todos", label: "Todos" }, { value: "Validada", label: "Validada" }, { value: "Rechazada", label: "Rechazada" }, { value: "Corregida", label: "Corregida" }]} />
       </section>
       {feedback && <p className="mb-4 text-sm text-cyan-200" role="status">{feedback}</p>}
       <section className="grid grid-cols-1 gap-5 xl:grid-cols-[1.15fr_0.85fr]" aria-label="Validación de señas">
@@ -87,7 +87,7 @@ export default function ValidationContent() {
             <strong className="rounded-full bg-cyan-400/10 px-3 py-1.5 text-xs text-cyan-300" aria-label={`${pendingCount} señas pendientes`}>{pendingCount}</strong>
           </header>
           <ul className="space-y-2">
-            {filtered.map((sign) => <li key={sign.id}><SignCard sign={sign} selected={selected?.id === sign.id} onSelect={setSelected} /></li>)}
+            {filtered.map((sign) => <li key={sign.id}><TarjetaSena sign={sign} selected={selected?.id === sign.id} onSelect={setSelected} /></li>)}
             {!filtered.length && <li className="py-10 text-center text-sm text-slate-500">No hay señas que coincidan con los filtros.</li>}
           </ul>
         </article>
@@ -99,12 +99,12 @@ export default function ValidationContent() {
           {selected ? (
             <>
               <figure className="grid min-h-52 place-items-center overflow-hidden rounded-2xl border border-dashed border-cyan-400/30 bg-slate-900/90 p-3">
-                <SignResource sign={selected} />
+                <RecursoSena sign={selected} />
               </figure>
               <section className="mt-5">
                 <header className="flex items-center justify-between gap-3">
                   <h2 className="text-xl font-bold">{selected.word}</h2>
-                  <StatusBadge status={selected.status} />
+                  <EtiquetaEstado status={selected.status} />
                 </header>
                 <dl className="mt-3 grid grid-cols-[110px_1fr] text-sm">
                   <dt className="border-b border-cyan-500/20 py-3 text-slate-500">Categoría</dt><dd className="border-b border-cyan-500/20 py-3">{selected.category}</dd>

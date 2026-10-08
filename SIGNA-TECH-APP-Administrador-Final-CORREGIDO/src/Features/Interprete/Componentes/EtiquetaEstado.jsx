@@ -5,6 +5,6 @@ const styles = {
   Corregida: "bg-violet-400/10 text-violet-300"
 };
 
-export default function StatusBadge({ status }) {
+export default function EtiquetaEstado({ status }) {
   return <span className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold ${styles[status] || "bg-white/10 text-slate-300"}`}>{status}</span>;
 }

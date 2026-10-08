@@ -5,7 +5,7 @@ const tones = {
   orange: "text-orange-300 bg-orange-400/10 border-orange-400/15"
 };
 
-export default function StatCard({ label, value, detail, icon, tone = "cyan" }) {
+export default function TarjetaEstadistica({ label, value, detail, icon, tone = "cyan" }) {
   return (
     <article className="rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-6 shadow-[0_0_30px_rgba(34,211,238,0.12)]">
       <header className="flex items-center gap-3 text-sm text-slate-400">
