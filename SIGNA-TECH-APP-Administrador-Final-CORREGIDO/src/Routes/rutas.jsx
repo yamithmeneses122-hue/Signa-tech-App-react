@@ -47,7 +47,7 @@ import {
 // ==========================================
 // OPERADOR
 // ==========================================
-import HomeViewOperador from "../Features/Operador/Vistas/Inicio";
+import HomeViewOperador from "../Features/Operador/Vistas/HomeView";
 import TextoAVozView from "../Features/Operador/Vistas/TextoAVozView";
 import VozATextoView from "../Features/Operador/Vistas/VozATextoView";
 import CameraDetectionView from "../Features/Operador/Vistas/CameraDetectionView";
