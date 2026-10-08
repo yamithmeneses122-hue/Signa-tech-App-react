@@ -1,4 +1,4 @@
-export default function Pagination({ page, totalPages, onChange }) {
+export default function Paginacion({ page, totalPages, onChange }) {
   if (totalPages <= 1) return null;
   return (
     <nav className="mt-5 flex justify-end" aria-label="Paginación">

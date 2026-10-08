@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import MenuLateral from "./MenuLateral";
+import Encabezado from "./Encabezado";
 
-export default function InterpreterLayout() {
+export default function DisenoInterprete() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ export default function InterpreterLayout() {
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
         <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
       </div>
-      <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MenuLateral open={menuOpen} onClose={() => setMenuOpen(false)} />
       {menuOpen && (
         <button
           className="fixed inset-0 z-40 h-full w-full bg-slate-950/70 backdrop-blur-sm md:hidden"
@@ -23,7 +23,7 @@ export default function InterpreterLayout() {
         />
       )}
       <section className="relative z-10 min-h-screen md:ml-64" aria-label="Panel del intérprete">
-        <Header onMenu={() => setMenuOpen(true)} compact />
+        <Encabezado onMenu={() => setMenuOpen(true)} compact />
         <main className="mx-auto w-full max-w-7xl p-5 md:p-10">
           <Outlet />
         </main>
