@@ -1,5 +1,5 @@
-import DashboardContent from "../Componentes/DashboardContent";
+import ContenidoPanel from "../Componentes/ContenidoPanel";
 
 export default function Interprete() {
-  return <DashboardContent />;
+  return <ContenidoPanel />;
 }

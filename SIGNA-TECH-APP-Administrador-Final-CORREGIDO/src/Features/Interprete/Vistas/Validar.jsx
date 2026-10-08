@@ -1,5 +1,5 @@
-import ValidationContent from "../Componentes/ValidationContent";
+import ContenidoValidacion from "../Componentes/ContenidoValidacion";
 
 export default function Validar() {
-  return <ValidationContent />;
+  return <ContenidoValidacion />;
 }

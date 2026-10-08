@@ -5,7 +5,7 @@ const ICONOS = {
     info: 'fa-solid fa-circle-info',
 };
 
-export function ToastRegion({ toasts }) {
+export function RegionNotificaciones({ toasts }) {
     if (!toasts.length) return null;
     return (
         <output className="pointer-events-none fixed bottom-4 right-4 z-[70] flex max-w-[calc(100vw-2rem)] flex-col gap-2" aria-live="polite" aria-atomic="false">

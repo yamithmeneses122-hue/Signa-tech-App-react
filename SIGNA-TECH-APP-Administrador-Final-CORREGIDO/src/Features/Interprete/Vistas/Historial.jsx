@@ -1,5 +1,5 @@
-import HistoryContent from "../Componentes/HistoryContent";
+import ContenidoHistorial from "../Componentes/ContenidoHistorial";
 
 export default function Historial() {
-  return <HistoryContent />;
+  return <ContenidoHistorial />;
 }

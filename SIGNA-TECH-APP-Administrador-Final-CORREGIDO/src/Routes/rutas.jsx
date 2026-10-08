@@ -8,33 +8,33 @@ import {
 // ==========================================
 // PÚBLICO
 // ==========================================
-import HeaderHomeLayout from "../Features/Public/view/HeaderHomeLayout";
-import HeaderProductoLayout from "../Features/Public/view/HeaderProductoLayout";
-import HomeView from "../Features/Public/view/Homeview";
-import ProductView from "../Features/Public/view/Productview";
-import SupportView from "../Features/Public/view/SupportView";
+import DisenoEncabezadoInicio from "../Features/Public/Vistas/DisenoEncabezadoInicio";
+import DisenoEncabezadoProducto from "../Features/Public/Vistas/DisenoEncabezadoProducto";
+import VistaInicio from "../Features/Public/Vistas/VistaInicio";
+import VistaProducto from "../Features/Public/Vistas/VistaProducto";
+import VistaSoporte from "../Features/Public/Vistas/VistaSoporte";
 
 // ==========================================
 // AUTENTICACIÓN
 // ==========================================
-import LoginView from "../Features/Authentication/Vistas/LoginView";
-import Nv_Cuenta_View from "../Features/Authentication/Vistas/Nv_Cuenta_View";
-import ContrasenaView from "../Features/Authentication/Vistas/ContrasenaView";
+import InicioSesionVista from "../Features/Authentication/Vistas/InicioSesionVista";
+import NuevaCuentaVista from "../Features/Authentication/Vistas/NuevaCuentaVista";
+import ContrasenaVista from "../Features/Authentication/Vistas/ContrasenaVista";
 
 // ==========================================
 // ADMINISTRADOR
 // ==========================================
-import DashboardAdmin from "../Features/Administrador/views/DashboardAdmin";
-import GestionUsuarios from "../Features/Administrador/views/GestionUsuarios";
-import GestionRoles from "../Features/Administrador/views/GestionRoles";
-import DiccionarioAdmin from "../Features/Administrador/views/DiccionarioAdmin";
-import AprobacionSenas from "../Features/Administrador/views/AprobacionSenas";
-import Configuracion from "../Features/Administrador/views/Configuracion";
+import PanelAdministracion from "../Features/Administrador/Vistas/PanelAdministracion";
+import GestionUsuarios from "../Features/Administrador/Vistas/GestionUsuarios";
+import GestionRoles from "../Features/Administrador/Vistas/GestionRoles";
+import DiccionarioAdministracion from "../Features/Administrador/Vistas/DiccionarioAdministracion";
+import AprobacionSenas from "../Features/Administrador/Vistas/AprobacionSenas";
+import Configuracion from "../Features/Administrador/Vistas/Configuracion";
 
 // ==========================================
 // INTÉRPRETE
 // ==========================================
-import InterpreterLayout from "../Features/Interprete/Componentes/InterpreterLayout";
+import DisenoInterprete from "../Features/Interprete/Componentes/DisenoInterprete";
 import {
     Interprete,
     Validar,
@@ -47,13 +47,13 @@ import {
 // ==========================================
 // OPERADOR
 // ==========================================
-import HomeViewOperador from "../Features/Operador/Vistas/HomeView";
-import TextoAVozView from "../Features/Operador/Vistas/TextoAVozView";
-import VozATextoView from "../Features/Operador/Vistas/VozATextoView";
-import CameraDetectionView from "../Features/Operador/Vistas/CameraDetectionView";
-import AvatarView from "../Features/Operador/Vistas/AvatarView";
-import DiccionarioView from "../Features/Operador/Vistas/DiccionarioView";
-import ConfiguracionView from "../Features/Operador/Vistas/ConfiguracionView";
+import VistaInicioOperador from "../Features/Operador/Vistas/VistaInicio";
+import VistaTextoAVoz from "../Features/Operador/Vistas/VistaTextoAVoz";
+import VistaVozATexto from "../Features/Operador/Vistas/VistaVozATexto";
+import VistaDeteccionCamara from "../Features/Operador/Vistas/VistaDeteccionCamara";
+import VistaAvatar from "../Features/Operador/Vistas/VistaAvatar";
+import VistaDiccionario from "../Features/Operador/Vistas/VistaDiccionario";
+import VistaConfiguracion from "../Features/Operador/Vistas/VistaConfiguracion";
 
 export default function Rutas() {
     return (
@@ -62,44 +62,44 @@ export default function Rutas() {
                 {/* ==========================================
                     PÁGINA PÚBLICA
                 ========================================== */}
-                <Route element={<HeaderHomeLayout />}>
-                    <Route path="/" element={<HomeView />} />
+                <Route element={<DisenoEncabezadoInicio />}>
+                    <Route path="/" element={<VistaInicio />} />
                 </Route>
 
                 {/* ==========================================
                     PRODUCTO Y SOPORTE
                 ========================================== */}
-                <Route element={<HeaderProductoLayout />}>
-                    <Route path="/product" element={<ProductView />} />
-                    <Route path="/support" element={<SupportView />} />
+                <Route element={<DisenoEncabezadoProducto />}>
+                    <Route path="/product" element={<VistaProducto />} />
+                    <Route path="/support" element={<VistaSoporte />} />
                 </Route>
 
                 {/* ==========================================
                     AUTENTICACIÓN
                 ========================================== */}
-                <Route path="/login" element={<LoginView />} />
-                <Route path="/crear-cuenta" element={<Nv_Cuenta_View />} />
-                <Route path="/recuperar-contrasena" element={<ContrasenaView />} />
+                <Route path="/login" element={<InicioSesionVista />} />
+                <Route path="/crear-cuenta" element={<NuevaCuentaVista />} />
+                <Route path="/recuperar-contrasena" element={<ContrasenaVista />} />
 
                 {/* ==========================================
                     ADMINISTRADOR
                 ========================================== */}
-                {/* Entrada utilizada por LoginComponent */}
+                {/* Entrada utilizada por InicioSesionComponente */}
                 <Route
                     path="/administrador"
                     element={<Navigate to="/inicio_admin" replace />}
                 />
-                <Route path="/inicio_admin" element={<DashboardAdmin />} />
+                <Route path="/inicio_admin" element={<PanelAdministracion />} />
                 <Route path="/gestion_usuarios" element={<GestionUsuarios />} />
                 <Route path="/gestion_roles" element={<GestionRoles />} />
-                <Route path="/diccionario_admin" element={<DiccionarioAdmin />} />
+                <Route path="/diccionario_admin" element={<DiccionarioAdministracion />} />
                 <Route path="/aprobacion_senas" element={<AprobacionSenas />} />
                 <Route path="/configuracion_admin" element={<Configuracion />} />
 
                 {/* ==========================================
                     INTÉRPRETE
                 ========================================== */}
-                <Route path="/interprete" element={<InterpreterLayout />}>
+                <Route path="/interprete" element={<DisenoInterprete />}>
                     <Route index element={<Interprete />} />
                     <Route path="validar" element={<Validar />} />
                     <Route path="registrar" element={<Registrar />} />
@@ -111,13 +111,13 @@ export default function Rutas() {
                 {/* ==========================================
                     OPERADOR
                 ========================================== */}
-                <Route path="/operador" element={<HomeViewOperador />} />
-                <Route path="/texto-voz" element={<TextoAVozView />} />
-                <Route path="/voz-a-texto" element={<VozATextoView />} />
-                <Route path="/camara" element={<CameraDetectionView />} />
-                <Route path="/diccionario" element={<DiccionarioView />} />
-                <Route path="/avatar" element={<AvatarView />} />
-                <Route path="/configuracion" element={<ConfiguracionView />} />
+                <Route path="/operador" element={<VistaInicioOperador />} />
+                <Route path="/texto-voz" element={<VistaTextoAVoz />} />
+                <Route path="/voz-a-texto" element={<VistaVozATexto />} />
+                <Route path="/camara" element={<VistaDeteccionCamara />} />
+                <Route path="/diccionario" element={<VistaDiccionario />} />
+                <Route path="/avatar" element={<VistaAvatar />} />
+                <Route path="/configuracion" element={<VistaConfiguracion />} />
 
                 {/* ==========================================
                     RUTA NO ENCONTRADA

@@ -17,12 +17,25 @@ export const correctionSigns = [
 ];
 
 export const historyRecords = [
+  { id: 18, word: "Comunicar", action: "Validación", user: "Intérprete", status: "Validada", date: "05/10/2026" },
+  { id: 17, word: "Aprender", action: "Corrección", user: "Intérprete", status: "Corregida", date: "02/10/2026" },
   { id: 1, word: "Familia", action: "Validación", user: "Intérprete", status: "Validada", date: "23/09/2026" },
   { id: 2, word: "Aprender", action: "Corrección", user: "Intérprete", status: "Corregida", date: "22/09/2026" },
   { id: 3, word: "Trabajo", action: "Validación", user: "Intérprete", status: "Validada", date: "21/09/2026" },
   { id: 4, word: "Hospital", action: "Revisión", user: "Intérprete", status: "Pendiente", date: "20/09/2026" },
   { id: 5, word: "Escuela", action: "Validación", user: "Intérprete", status: "Validada", date: "19/09/2026" },
-  { id: 6, word: "Comunicar", action: "Corrección", user: "Intérprete", status: "Corregida", date: "18/09/2026" }
+  { id: 6, word: "Comunicar", action: "Corrección", user: "Intérprete", status: "Corregida", date: "18/09/2026" },
+  { id: 16, word: "Familia", action: "Validación", user: "Intérprete", status: "Validada", date: "14/08/2026" },
+  { id: 15, word: "Escuela", action: "Corrección", user: "Intérprete", status: "Corregida", date: "06/08/2026" },
+  { id: 14, word: "Trabajar", action: "Validación", user: "Intérprete", status: "Validada", date: "22/07/2026" },
+  { id: 13, word: "Hospital", action: "Revisión", user: "Intérprete", status: "Validada", date: "09/06/2026" },
+  { id: 12, word: "Comunicar", action: "Corrección", user: "Intérprete", status: "Corregida", date: "18/05/2026" },
+  { id: 11, word: "Aprender", action: "Validación", user: "Intérprete", status: "Validada", date: "12/04/2026" },
+  { id: 10, word: "Familia", action: "Revisión", user: "Intérprete", status: "Validada", date: "21/03/2026" },
+  { id: 9, word: "Escuela", action: "Corrección", user: "Intérprete", status: "Corregida", date: "15/02/2026" },
+  { id: 8, word: "Trabajar", action: "Validación", user: "Intérprete", status: "Validada", date: "19/01/2026" },
+  { id: 7, word: "Hospital", action: "Revisión", user: "Intérprete", status: "Pendiente", date: "11/12/2025" },
+  { id: 19, word: "Comunicar", action: "Validación", user: "Intérprete", status: "Validada", date: "08/11/2025" }
 ];
 
 export const categoryOptions = [
