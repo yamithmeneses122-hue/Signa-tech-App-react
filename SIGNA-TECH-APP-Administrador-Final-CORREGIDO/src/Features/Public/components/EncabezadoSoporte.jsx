@@ -1,4 +1,4 @@
-export default function SupportHero() {
+export default function EncabezadoSoporte() {
     return (
         <section className="mx-auto max-w-[1000px] px-5 py-20 text-center lg:py-28">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Soporte</span>

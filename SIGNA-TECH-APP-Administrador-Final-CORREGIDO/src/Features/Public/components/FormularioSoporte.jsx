@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SupportForm() {
+export default function FormularioSoporte() {
     const [sent, setSent] = useState(false);
 
     function handleSubmit(event) {

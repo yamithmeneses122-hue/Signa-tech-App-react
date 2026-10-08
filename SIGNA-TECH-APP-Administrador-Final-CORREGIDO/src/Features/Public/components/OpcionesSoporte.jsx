@@ -4,7 +4,7 @@ const options = [
     ["Producto", "Revisa el alcance actual y distingue las funciones implementadas de las que requieren integración posterior."],
 ];
 
-export default function SupportOptions() {
+export default function OpcionesSoporte() {
     return (
         <section className="mx-auto max-w-[1200px] px-5 pb-12 lg:px-10">
             <ul className="grid gap-4 md:grid-cols-3">

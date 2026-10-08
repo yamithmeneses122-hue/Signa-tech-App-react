@@ -6,7 +6,7 @@ const items = [
     ["users", "Diseño", "Pensado para distintas formas de comunicar"],
 ];
 
-export default function Statistics() {
+export default function Estadisticas() {
     return (
         <section className="mx-auto max-w-[1400px] px-5 pb-8 lg:px-10">
             <ul className="grid gap-3 md:grid-cols-3">
