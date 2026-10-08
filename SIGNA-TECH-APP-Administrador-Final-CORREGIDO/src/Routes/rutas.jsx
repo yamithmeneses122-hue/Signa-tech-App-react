@@ -34,7 +34,7 @@ import Configuracion from "../Features/Administrador/views/Configuracion";
 // ==========================================
 // INTÉRPRETE
 // ==========================================
-import InterpreterLayout from "../Features/Interprete/Componentes/InterpreterLayout";
+import DisenoInterprete from "../Features/Interprete/Componentes/DisenoInterprete";
 import {
     Interprete,
     Validar,
@@ -42,7 +42,7 @@ import {
     Corregir,
     Historial,
     Perfil,
-} from "../Features/Interprete/Vistas/vista";
+} from "../Features/Interprete/Vistas/vistas";
 
 // ==========================================
 // OPERADOR
@@ -99,7 +99,7 @@ export default function Rutas() {
                 {/* ==========================================
                     INTÉRPRETE
                 ========================================== */}
-                <Route path="/interprete" element={<InterpreterLayout />}>
+                <Route path="/interprete" element={<DisenoInterprete />}>
                     <Route index element={<Interprete />} />
                     <Route path="validar" element={<Validar />} />
                     <Route path="registrar" element={<Registrar />} />
