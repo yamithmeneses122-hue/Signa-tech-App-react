@@ -54,7 +54,7 @@ const AprobacionSenas = () => {
                                         <strong className="font-semibold text-slate-300 theme-light:text-slate-700">Gesticulación:</strong> {sena.gesticulacion}
                                     </span>
                                     <p className="mt-3 flex flex-wrap items-center gap-2">
-                                        <span className="inline-flex rounded-full border border-teal-300/20 bg-teal-300/10 px-2.5 py-1 text-xs font-semibold text-teal-200 theme-light:border-teal-700/20 theme-light:bg-teal-700/10 theme-light:text-teal-800">
+                                        <span className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-xs font-semibold text-cyan-200 theme-light:border-cyan-700/20 theme-light:bg-cyan-700/10 theme-light:text-cyan-800">
                                             {sena.categoria}
                                         </span>
                                         <span className="text-xs text-slate-400 theme-light:text-slate-600">Enviado por: {sena.autor}</span>
@@ -104,8 +104,8 @@ const AprobacionSenas = () => {
                                         <strong className="text-xs font-bold uppercase tracking-wider text-slate-400 theme-light:text-slate-600">Definición Actual Activa</strong>
                                         <p className="mt-2 text-sm leading-relaxed text-slate-300 theme-light:text-slate-700">{corr.actual}</p>
                                     </article>
-                                    <article className="rounded-lg border border-teal-400/30 bg-teal-400/5 p-4 theme-light:border-teal-700/30 theme-light:bg-teal-50">
-                                        <strong className="text-xs font-bold uppercase tracking-wider text-teal-300 theme-light:text-teal-800">Modificación Propuesta</strong>
+                                    <article className="rounded-lg border border-cyan-400/30 bg-cyan-400/5 p-4 theme-light:border-cyan-700/30 theme-light:bg-cyan-50">
+                                        <strong className="text-xs font-bold uppercase tracking-wider text-cyan-300 theme-light:text-cyan-800">Modificación Propuesta</strong>
                                         <p className="mt-2 text-sm leading-relaxed text-slate-300 theme-light:text-slate-700">{corr.propuesta}</p>
                                     </article>
                                 </section>
@@ -123,7 +123,7 @@ const AprobacionSenas = () => {
 
                         {correcciones.length === 0 && (
                             <li className={adminStyles.empty}>
-                                <i className="fa-solid fa-inbox text-2xl text-teal-300" aria-hidden="true" />
+                                <i className="fa-solid fa-inbox text-2xl text-cyan-300" aria-hidden="true" />
                                 <span>No hay correcciones pendientes.</span>
                             </li>
                         )}

@@ -157,7 +157,7 @@ const DiccionarioAdmin = () => {
                                 Formatos PNG, JPG, WEBP o GIF; máximo 5 MB. La imagen se conserva solo durante esta sesión.
                             </p>
                             {formData.imagen && (
-                                <figure className="mt-3 max-w-sm overflow-hidden rounded-xl border border-[#2a3550] bg-[#0a0f1c] p-2 theme-light:border-slate-300 theme-light:bg-slate-50">
+                                <figure className="mt-3 max-w-sm overflow-hidden rounded-xl border border-slate-700 bg-slate-950/80 p-2 theme-light:border-slate-300 theme-light:bg-slate-50">
                                     <img
                                         src={formData.imagen}
                                         alt={`Vista previa de la seña ${formData.palabra || 'nueva'}`}
@@ -260,10 +260,10 @@ const DiccionarioAdmin = () => {
                                         <img
                                             src={sena.imagen}
                                             alt={`Seña de ${sena.palabra}`}
-                                            className="aspect-video w-full rounded-lg border border-[#2a3550] bg-[#0d1117] object-cover theme-light:border-slate-300"
+                                            className="aspect-video w-full rounded-lg border border-slate-700 bg-slate-950 object-cover theme-light:border-slate-300"
                                         />
                                     ) : (
-                                        <figure className="flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#2a3550] bg-[#0d1117] text-cyan-300 theme-light:border-slate-300 theme-light:bg-slate-100">
+                                        <figure className="flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-slate-700 bg-slate-950 text-cyan-300 theme-light:border-slate-300 theme-light:bg-slate-100">
                                             <i className={`${sena.icono} text-2xl`} aria-hidden="true" />
                                             <span className="text-[0.65rem] text-slate-400 theme-light:text-slate-600">Sin imagen</span>
                                         </figure>

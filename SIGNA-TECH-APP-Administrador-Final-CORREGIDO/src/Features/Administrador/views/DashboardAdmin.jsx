@@ -41,13 +41,13 @@ const DashboardAdmin = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/gestion_roles" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                    <Link to="/gestion_roles" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-300/60`}>
                         <span className={`${adminStyles.icon} ${adminStyles.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-shield-halved" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Roles y Permisos</span>
                             <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Auditar la matriz de privilegios y configurar los alcances de acceso para Administradores, Intérpretes y Operadores.</span>
                         </span>
-                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
                     <Link to="/diccionario_admin" className={`${adminStyles.card} ${adminStyles.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
@@ -59,13 +59,13 @@ const DashboardAdmin = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/aprobacion_senas" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                    <Link to="/aprobacion_senas" className={`${adminStyles.card} ${adminStyles.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-300/60`}>
                         <span className={`${adminStyles.icon} ${adminStyles.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-circle-check" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block text-base font-bold ${adminStyles.sectionTitle}`}>Aprobación de Señas</span>
                             <span className={`mt-1 block ${adminStyles.sectionDescription}`}>Validar las nuevas señas cargadas por el intérprete y auditar las correcciones léxicas propuestas en tiempo real.</span>
                         </span>
-                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
+                        <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
                     <Link to="/configuracion_admin" className={`${adminStyles.card} ${adminStyles.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>

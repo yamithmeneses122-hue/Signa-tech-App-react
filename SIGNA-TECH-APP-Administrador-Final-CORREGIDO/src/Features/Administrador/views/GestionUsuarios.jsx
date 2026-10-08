@@ -241,7 +241,7 @@ const GestionUsuarios = () => {
                                         <strong className="truncate text-sm font-semibold text-white theme-light:text-slate-900">{user.nombre}</strong>
                                         <span className={adminStyles.muted}>{user.correo}</span>
                                         <p className="mt-1 flex flex-wrap gap-1.5">
-                                            <span className={`rounded border px-2 py-0.5 text-[0.68rem] font-bold uppercase ${user.claseRol === 'interprete' ? 'border-teal-300/20 bg-teal-300/10 text-teal-300' : 'border-cyan-300/20 bg-cyan-300/10 text-cyan-300'}`}>{user.rol}</span>
+                                            <span className="rounded border border-cyan-300/20 bg-cyan-300/10 px-2 py-0.5 text-[0.68rem] font-bold uppercase text-cyan-300">{user.rol}</span>
                                             <span className={`rounded px-2 py-0.5 text-[0.68rem] font-bold uppercase ${user.activo ? 'bg-emerald-400/10 text-emerald-400' : 'bg-red-400/10 text-red-400'}`}>
                                                 {user.activo ? 'Activo' : 'Inactivo'}
                                             </span>
@@ -250,7 +250,7 @@ const GestionUsuarios = () => {
                                     <footer className="flex shrink-0 gap-2">
                                         <button
                                             type="button"
-                                            className="flex size-9 items-center justify-center rounded-lg border border-[#2a3550] text-slate-400 transition hover:border-cyan-400 hover:text-cyan-300"
+                                            className="flex size-9 items-center justify-center rounded-lg border border-slate-700 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-300"
                                             title={`Editar a ${user.nombre}`}
                                             aria-label={`Editar a ${user.nombre}`}
                                             onClick={() => editarUsuario(user)}

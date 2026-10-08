@@ -1,6 +1,6 @@
 function AdminSearchBar({ value, onChange, placeholder = 'Buscar...' }) {
     return (
-        <label className="flex w-full items-center gap-3 rounded-lg border border-[#2a3550] bg-[#0d1117] px-3.5 text-slate-400 transition focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 theme-light:border-slate-300 theme-light:bg-white">
+        <label className="flex w-full items-center gap-3 rounded-xl border border-slate-700 bg-slate-950/80 px-3.5 text-slate-400 transition focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 theme-light:border-slate-300 theme-light:bg-white">
             <span aria-hidden="true">⌕</span>
             <input
                 className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white outline-none placeholder:text-slate-500 theme-light:text-slate-900"
