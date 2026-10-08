@@ -1,5 +1,5 @@
-import RegistrationContent from "../Componentes/RegistrationContent";
+import ContenidoRegistro from "../Componentes/ContenidoRegistro";
 
 export default function Registrar() {
-  return <RegistrationContent />;
+  return <ContenidoRegistro />;
 }

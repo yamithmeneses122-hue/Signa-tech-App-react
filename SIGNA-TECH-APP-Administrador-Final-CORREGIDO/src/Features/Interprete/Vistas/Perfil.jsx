@@ -1,5 +1,5 @@
-import ProfileContent from "../Componentes/ProfileContent";
+import ContenidoPerfil from "../Componentes/ContenidoPerfil";
 
 export default function Perfil() {
-  return <ProfileContent />;
+  return <ContenidoPerfil />;
 }
