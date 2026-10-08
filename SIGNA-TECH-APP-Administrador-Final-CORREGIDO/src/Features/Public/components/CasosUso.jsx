@@ -6,7 +6,7 @@ const cases = [
     ["message", "Vida cotidiana", "Saludos, frases frecuentes y conversaciones básicas que no deberían sentirse complicadas."],
 ];
 
-export default function UseCases() {
+export default function CasosUso() {
     return (
         <section id="casos" className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <header className="max-w-3xl">

@@ -1,6 +1,6 @@
 import Icon from "../../../components/shared/Icon.jsx";
 
-export default function TrustSection() {
+export default function SeccionConfianza() {
     return (
         <section className="border-y border-white/8 bg-white/[.018]">
             <section className="mx-auto grid max-w-[1400px] gap-10 px-5 py-20 lg:grid-cols-[.8fr_1.2fr] lg:px-10 lg:py-24">

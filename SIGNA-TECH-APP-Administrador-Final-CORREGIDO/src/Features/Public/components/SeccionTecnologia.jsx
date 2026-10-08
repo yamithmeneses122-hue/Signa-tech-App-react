@@ -7,7 +7,7 @@ const items = [
     ["shield", "Diseño responsable", "La interfaz evita promesas técnicas que todavía no estén demostradas."],
 ];
 
-export default function TechnologySection() {
+export default function SeccionTecnologia() {
     return (
         <section id="tecnologias" className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
