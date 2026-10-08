@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import PageHeader from "./PageHeader";
-import { signCategories } from "../data/interpreterData";
-import { registerSign } from "../funcionalidades/interpreterActions";
-import { getRegistrationDraft, saveRegistrationDraft } from "../funcionalidades/interpreterStorage";
-import { validateSignForm } from "../funcionalidades/interpreterUtils";
+import EncabezadoPagina from "./EncabezadoPagina";
+import { categoriasSenas } from "../data/datos";
+import { registrarSena } from "../funcionalidades/acciones";
+import { obtenerBorrador, guardarBorrador } from "../funcionalidades/almacenamiento";
+import { validarFormularioSena } from "../funcionalidades/utilidades";
 
 const initialForm = { word: "", category: "Personas", meaning: "", description: "", attachment: null };
 const maxAttachmentSize = 1024 * 1024;
@@ -18,7 +18,7 @@ function readFile(file) {
   });
 }
 
-function VisualPreview({ attachment }) {
+function VistaPrevia({ attachment }) {
   if (!attachment) return null;
   if (attachment.type === "video/mp4") {
     return <video className="max-h-64 w-full rounded-xl object-contain" controls src={attachment.data}>{attachment.name}</video>;
@@ -26,8 +26,8 @@ function VisualPreview({ attachment }) {
   return <img className="max-h-64 w-full rounded-xl object-contain" src={attachment.data} alt={`Vista previa: ${attachment.name}`} />;
 }
 
-export default function RegistrationContent() {
-  const [form, setForm] = useState(() => ({ ...initialForm, ...(getRegistrationDraft() || {}) }));
+export default function ContenidoRegistro() {
+  const [form, setForm] = useState(() => ({ ...initialForm, ...(obtenerBorrador() || {}) }));
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [draftWarning, setDraftWarning] = useState("");
@@ -36,7 +36,7 @@ export default function RegistrationContent() {
 
   useEffect(() => {
     try {
-      saveRegistrationDraft(form);
+      guardarBorrador(form);
       setDraftWarning("");
     } catch {
       setDraftWarning("No se pudo guardar el borrador en este dispositivo. Revisa el espacio disponible del navegador.");
@@ -84,7 +84,7 @@ export default function RegistrationContent() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const errors = validateSignForm(form);
+    const errors = validarFormularioSena(form);
     if (Object.keys(errors).length) {
       setError(Object.values(errors)[0]);
       setMessage("");
@@ -92,7 +92,7 @@ export default function RegistrationContent() {
     }
 
     try {
-      registerSign(form);
+      registrarSena(form);
       setError("");
       setMessage(`La seña "${form.word}" fue registrada y quedó pendiente de validación.`);
       setForm(initialForm);
@@ -112,7 +112,7 @@ export default function RegistrationContent() {
 
   return (
     <>
-      <PageHeader title="Registrar seña" description="Agrega una nueva seña al diccionario para que pueda ser revisada por el equipo." />
+      <EncabezadoPagina title="Registrar seña" description="Agrega una nueva seña al diccionario para que pueda ser revisada por el equipo." />
       <form className="rounded-3xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-6 shadow-[0_0_30px_rgba(34,211,238,0.12)]" onSubmit={handleSubmit}>
         <fieldset>
           <legend className="mb-5 text-sm font-bold text-cyan-300">Información de la seña</legend>
@@ -124,7 +124,7 @@ export default function RegistrationContent() {
             <label className="grid gap-2">
               <span className="text-xs text-slate-400">Categoría</span>
               <select className="h-11 rounded-xl border border-cyan-500/20 bg-slate-950 px-3 text-sm outline-none focus:border-cyan-400" name="category" value={form.category} onChange={(event) => updateField("category", event.target.value)}>
-                {signCategories.map((category) => <option key={category}>{category}</option>)}
+                {categoriasSenas.map((category) => <option key={category}>{category}</option>)}
               </select>
             </label>
             <label className="grid gap-2 md:col-span-2">
@@ -147,7 +147,7 @@ export default function RegistrationContent() {
           </label>
           {form.attachment && (
             <section className="mt-4 rounded-2xl border border-cyan-500/20 bg-slate-950/60 p-4">
-              <VisualPreview attachment={form.attachment} />
+              <VistaPrevia attachment={form.attachment} />
               <button className="mt-3 text-xs font-semibold text-rose-300 hover:text-rose-200" type="button" onClick={removeAttachment}>Quitar recurso</button>
             </section>
           )}

@@ -18,7 +18,7 @@ const items = [
   { path: "/interprete/perfil", name: "Perfil", icon: UserCircleIcon },
 ];
 
-export default function Sidebar({ open, onClose }) {
+export default function MenuLateral({ open, onClose }) {
   const navigate = useNavigate();
 
   function logout() {

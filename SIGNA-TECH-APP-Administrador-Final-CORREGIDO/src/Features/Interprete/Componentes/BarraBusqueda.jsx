@@ -1,4 +1,4 @@
-export default function SearchBar({ value, onChange, placeholder = "Buscar..." }) {
+export default function BarraBusqueda({ value, onChange, placeholder = "Buscar..." }) {
   return (
     <label className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-xl border border-cyan-500/20 bg-slate-950 px-3 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/10">
       <span className="text-lg text-slate-500" aria-hidden="true">⌕</span>
