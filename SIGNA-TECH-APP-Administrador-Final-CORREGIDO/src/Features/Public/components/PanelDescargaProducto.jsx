@@ -1,4 +1,4 @@
-export default function DownloadPanelProduct() {
+export default function PanelDescargaProducto() {
     return (
         <section id="descarga" className="mx-auto mb-20 max-w-[1000px] px-5">
             <article className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/[.05] p-8 text-center">

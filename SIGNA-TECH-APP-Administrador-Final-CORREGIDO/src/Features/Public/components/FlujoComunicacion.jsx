@@ -13,7 +13,7 @@ const flows = [
     },
 ];
 
-export default function CommunicationFlow() {
+export default function FlujoComunicacion() {
     return (
         <section id="demo" className="border-y border-white/8 bg-gradient-to-b from-cyan-300/[.055] to-transparent">
 

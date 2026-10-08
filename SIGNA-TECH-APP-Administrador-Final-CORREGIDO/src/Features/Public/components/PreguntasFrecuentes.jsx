@@ -8,7 +8,7 @@ const questions = [
     ["¿Puedo conocer más del producto?", "Sí. La sección Producto resume el alcance actual y Soporte reúne la información de ayuda disponible."],
 ];
 
-export default function FAQ() {
+export default function PreguntasFrecuentes() {
     const [open, setOpen] = useState(0);
 
     return (

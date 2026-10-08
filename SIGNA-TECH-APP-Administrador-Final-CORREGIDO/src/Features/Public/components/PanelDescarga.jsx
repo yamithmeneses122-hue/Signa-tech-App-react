@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../../../components/shared/Icon.jsx";
 
-export default function DownloadPanel() {
+export default function PanelDescarga() {
     return (
         <section className="mx-auto max-w-[1200px] px-5 py-10 lg:px-10">
             <article className="flex flex-col gap-6 rounded-[2rem] border border-cyan-300/15 bg-cyan-300/[.045] p-7 sm:p-9 lg:flex-row lg:items-center lg:justify-between">
