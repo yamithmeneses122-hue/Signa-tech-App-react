@@ -1,13 +1,13 @@
-import SupportHero from "../components/SupportHero.jsx";
-import SupportOptions from "../components/SupportOptions.jsx";
-import SupportForm from "../components/SupportForm.jsx";
+import EncabezadoSoporte from "../components/EncabezadoSoporte.jsx";
+import OpcionesSoporte from "../components/OpcionesSoporte.jsx";
+import FormularioSoporte from "../components/FormularioSoporte.jsx";
 
-export default function SupportView() {
+export default function Soporte() {
     return (
         <>
-            <SupportHero />
-            <SupportOptions />
-            <SupportForm />
+            <EncabezadoSoporte />
+            <OpcionesSoporte />
+            <FormularioSoporte />
         </>
     );
 }

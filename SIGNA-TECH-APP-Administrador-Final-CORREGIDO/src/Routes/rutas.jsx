@@ -8,11 +8,11 @@ import {
 // ==========================================
 // PÚBLICO
 // ==========================================
-import HeaderHomeLayout from "../Features/Public/view/HeaderHomeLayout";
-import HeaderProductoLayout from "../Features/Public/view/HeaderProductoLayout";
-import HomeView from "../Features/Public/view/Homeview";
-import ProductView from "../Features/Public/view/Productview";
-import SupportView from "../Features/Public/view/SupportView";
+import DisenoInicio from "../Features/Public/view/DisenoInicio";
+import DisenoProducto from "../Features/Public/view/DisenoProducto";
+import Inicio from "../Features/Public/view/Inicio";
+import Producto from "../Features/Public/view/Producto";
+import Soporte from "../Features/Public/view/Soporte";
 
 // ==========================================
 // AUTENTICACIÓN
@@ -47,7 +47,7 @@ import {
 // ==========================================
 // OPERADOR
 // ==========================================
-import HomeViewOperador from "../Features/Operador/Vistas/HomeView";
+import HomeViewOperador from "../Features/Operador/Vistas/Inicio";
 import TextoAVozView from "../Features/Operador/Vistas/TextoAVozView";
 import VozATextoView from "../Features/Operador/Vistas/VozATextoView";
 import CameraDetectionView from "../Features/Operador/Vistas/CameraDetectionView";
@@ -62,16 +62,16 @@ export default function Rutas() {
                 {/* ==========================================
                     PÁGINA PÚBLICA
                 ========================================== */}
-                <Route element={<HeaderHomeLayout />}>
-                    <Route path="/" element={<HomeView />} />
+                <Route element={<DisenoInicio />}>
+                    <Route path="/" element={<Inicio />} />
                 </Route>
 
                 {/* ==========================================
                     PRODUCTO Y SOPORTE
                 ========================================== */}
-                <Route element={<HeaderProductoLayout />}>
-                    <Route path="/product" element={<ProductView />} />
-                    <Route path="/support" element={<SupportView />} />
+                <Route element={<DisenoProducto />}>
+                    <Route path="/product" element={<Producto />} />
+                    <Route path="/support" element={<Soporte />} />
                 </Route>
 
                 {/* ==========================================
