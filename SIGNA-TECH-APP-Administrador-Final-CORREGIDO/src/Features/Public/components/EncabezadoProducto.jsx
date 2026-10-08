@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../../../components/shared/Icon.jsx";
 
-export default function ProductHeader() {
+export default function EncabezadoProducto() {
     return (
         <header className="mx-auto max-w-[1400px] px-5 py-20 text-center lg:px-10 lg:py-28">
             <span className="text-xs font-bold uppercase tracking-[.2em] text-cyan-300">Producto</span>

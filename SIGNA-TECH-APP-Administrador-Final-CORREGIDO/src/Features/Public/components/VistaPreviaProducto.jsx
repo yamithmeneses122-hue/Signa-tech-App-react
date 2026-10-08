@@ -1,6 +1,6 @@
 import Icon from "../../../components/shared/Icon.jsx";
 
-export default function ProductPreview() {
+export default function VistaPreviaProducto() {
     return (
         <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#10191f] shadow-[0_35px_100px_rgba(0,0,0,.35)]">

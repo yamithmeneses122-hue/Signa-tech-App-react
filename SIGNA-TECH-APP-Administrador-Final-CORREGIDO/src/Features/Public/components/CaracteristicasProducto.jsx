@@ -7,7 +7,7 @@ const features = [
     ["Accesibilidad", "Diseño responsive, contraste visual y una experiencia que prioriza claridad y navegación."],
 ];
 
-export default function ProductFeatures() {
+export default function CaracteristicasProducto() {
     return (
         <section className="mx-auto max-w-[1200px] px-5 pb-20 lg:px-10 lg:pb-28">
             <header className="mb-10 text-center">

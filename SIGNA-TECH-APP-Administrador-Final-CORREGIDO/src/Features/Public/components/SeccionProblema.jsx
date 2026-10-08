@@ -1,4 +1,4 @@
-export default function ProblemSection() {
+export default function SeccionProblema() {
     return (
         <section className="mx-auto max-w-[1400px] px-5 py-20 lg:px-10 lg:py-28">
             <section className="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
