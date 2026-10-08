@@ -1,7 +1,7 @@
 import ContraseñaComponent from "../Componentes/ContrasenaComponent.jsx";
 import { Link } from "react-router-dom";
 
-import fondo from "../../../../Public/images/feactures/fondo.png";
+import fondo from "../../../../Public/images/feactures/fondo2.jpeg";
 import regresar from "../../../../Public/images/feactures/regresar.png";
 
 export default function ContraseñaView() {

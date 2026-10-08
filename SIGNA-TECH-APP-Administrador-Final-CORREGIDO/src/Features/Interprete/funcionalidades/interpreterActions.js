@@ -1,6 +1,6 @@
 import { addHistory, getSigns, saveSigns } from "./interpreterStorage";
 
-export function changeSignStatus(signId, status, user = "Intérprete") {
+export function changeSignStatus(signId, status, user = "Intérprete", reason = "") {
   const signs = getSigns();
   const sign = signs.find((item) => item.id === signId);
   if (!sign) return null;
@@ -15,6 +15,7 @@ export function changeSignStatus(signId, status, user = "Intérprete") {
     action: status === "Validada" ? "Validación" : "Revisión",
     user,
     status,
+    reason: status === "Rechazada" ? reason.trim() : "",
     date: new Date().toLocaleDateString("es-CO")
   });
 
@@ -23,14 +24,27 @@ export function changeSignStatus(signId, status, user = "Intérprete") {
 
 export function updateSign(sign, user = "Intérprete") {
   const signs = getSigns();
-  const updated = signs.map((item) => (item.id === sign.id ? sign : item));
+  const previousSign = signs.find((item) => item.id === sign.id);
+  if (!previousSign) return null;
+
+  const correctedSign = { ...sign, status: "Corregida" };
+  const changedFields = ["word", "category", "meaning", "description"]
+    .filter((field) => (previousSign[field] || "") !== (correctedSign[field] || ""))
+    .map((field) => ({
+      word: "palabra",
+      category: "categoría",
+      meaning: "significado",
+      description: "descripción"
+    })[field]);
+  const updated = signs.map((item) => (item.id === sign.id ? correctedSign : item));
   saveSigns(updated);
   addHistory({
-    word: sign.word,
+    word: correctedSign.word,
     action: "Corrección",
     user,
     status: "Corregida",
-    date: new Date().toLocaleDateString("es-CO")
+    date: new Date().toLocaleDateString("es-CO"),
+    changes: changedFields.length ? `Campos actualizados: ${changedFields.join(", ")}.` : "Contenido revisado."
   });
   return updated;
 }

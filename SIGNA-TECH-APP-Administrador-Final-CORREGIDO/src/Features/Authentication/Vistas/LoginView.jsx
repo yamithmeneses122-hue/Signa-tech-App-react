@@ -17,11 +17,15 @@ export default function LoginView() {
       </Link>
 
       <main className="flex min-h-screen">
-        <section className="hidden w-1/2 lg:block" aria-label="Imagen de comunicación inclusiva">
+        <section className="relative hidden w-1/2 lg:block" aria-label="Imagen de comunicación inclusiva">
           <img
             className="h-screen w-full object-cover object-center"
             src={fondo}
             alt="Personas comunicándose con lengua de señas"
+            style={{
+              maskImage: "linear-gradient(to right, #000 0%, #000 76%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, #000 0%, #000 76%, transparent 100%)",
+            }}
           />
         </section>
 

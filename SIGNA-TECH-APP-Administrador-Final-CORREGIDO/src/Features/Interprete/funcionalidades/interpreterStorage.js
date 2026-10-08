@@ -3,7 +3,8 @@ import { pendingSigns, correctionSigns, historyRecords } from "../data/interpret
 const KEYS = {
   signs: "signa_interpreter_signs",
   history: "signa_interpreter_history",
-  profile: "signa_interpreter_profile"
+  profile: "signa_interpreter_profile",
+  registrationDraft: "signa_interpreter_registration_draft"
 };
 
 function read(key, fallback) {
@@ -55,4 +56,20 @@ export function getProfile() {
 
 export function saveProfile(profile) {
   return write(KEYS.profile, profile);
+}
+
+export function getRegistrationDraft() {
+  return read(KEYS.registrationDraft, null);
+}
+
+export function saveRegistrationDraft(draft) {
+  if (!draft.word && !draft.meaning && !draft.description && !draft.attachment) {
+    localStorage.removeItem(KEYS.registrationDraft);
+    return null;
+  }
+  return write(KEYS.registrationDraft, draft);
+}
+
+export function clearRegistrationDraft() {
+  localStorage.removeItem(KEYS.registrationDraft);
 }
