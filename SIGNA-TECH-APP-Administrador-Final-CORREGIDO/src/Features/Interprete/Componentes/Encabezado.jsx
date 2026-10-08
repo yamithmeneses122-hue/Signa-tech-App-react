@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BellIcon } from "@heroicons/react/24/outline";
-import { getProfile } from "../funcionalidades/interpreterStorage";
-import { getInitials } from "../funcionalidades/interpreterUtils";
+import { obtenerPerfil } from "../funcionalidades/almacenamiento";
+import { obtenerIniciales } from "../funcionalidades/utilidades";
 
-export default function Header({ onMenu, compact = false }) {
+export default function Encabezado({ onMenu, compact = false }) {
   const [notifications, setNotifications] = useState(false);
-  const profile = getProfile();
+  const profile = obtenerPerfil();
 
   if (compact) {
     return (
@@ -30,7 +30,7 @@ export default function Header({ onMenu, compact = false }) {
           </aside>
         )}
         <section className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-cyan-400/30 bg-cyan-400/10 font-bold text-cyan-300">{getInitials(profile.name)}</span>
+          <span className="grid h-10 w-10 place-items-center rounded-full border border-cyan-400/30 bg-cyan-400/10 font-bold text-cyan-300">{obtenerIniciales(profile.name)}</span>
           <span className="hidden sm:block">
             <strong className="block text-sm text-slate-100">{profile.name}</strong>
             <small className="text-xs text-slate-400">Usuario activo</small>

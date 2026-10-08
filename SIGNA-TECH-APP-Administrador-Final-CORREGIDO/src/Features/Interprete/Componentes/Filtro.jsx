@@ -1,4 +1,4 @@
-export default function Filter({ label, value, onChange, options }) {
+export default function Filtro({ label, value, onChange, options }) {
   return (
     <label className="grid min-w-0 gap-2">
       <span className="text-[11px] font-semibold text-slate-400">{label}</span>
