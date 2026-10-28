@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Icono from "../../../componentes/compartidos/Icono.jsx";
 
 function MaquetaProducto() {
@@ -97,7 +97,7 @@ export default function Portada() {
 
                 <nav aria-label="Acciones principales" className="mt-9 flex flex-col gap-3 sm:flex-row">
                     <Link
-                        to="/product"
+                        href="/product"
                         className="inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-7 font-bold text-white shadow-[0_18px_45px_rgba(0,204,255,.2)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(0,204,255,.3)]"
                     >
                         Explorar el producto

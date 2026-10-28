@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Icono from "../../../componentes/compartidos/Icono.jsx";
 
 export default function EncabezadoProducto() {
@@ -13,10 +13,10 @@ export default function EncabezadoProducto() {
             </p>
             
             <nav aria-label="Acciones del producto" className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <Link to="/#demo" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold">
+                <Link href="/#demo" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold">
                     Ver el flujo <Icono name="arrow" className="h-5 w-5" />
                 </Link>
-                <Link to="/support" className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/12 bg-white/[.04] px-6 font-semibold hover:border-cyan-300/40">
+                <Link href="/support" className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/12 bg-white/[.04] px-6 font-semibold hover:border-cyan-300/40">
                     Hablar con soporte
                 </Link>
             </nav>

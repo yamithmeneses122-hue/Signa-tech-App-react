@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import {
   ArrowRightIcon,
   BoltIcon,
@@ -42,7 +42,7 @@ function GraficoTendencia({ data = [], stroke = '#00f7ff' }) {
 }
 
 export default function VistaInicio() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   // Simulated metrics data (would come from API in real app)
@@ -94,7 +94,7 @@ export default function VistaInicio() {
 
   const quickActions = [
     { id: 'start-session', label: 'Iniciar sesión rápida', action: () => alert('Sesión rápida iniciada'), icon: BoltIcon },
-    { id: 'calibrate-camera', label: 'Calibrar cámara', action: () => navigate('/camara'), icon: CameraIcon },
+    { id: 'calibrate-camera', label: 'Calibrar cámara', action: () => router.push('/camara'), icon: CameraIcon },
     { id: 'run-diagnostics', label: 'Diagnósticos', action: () => alert('Diagnósticos ejecutados'), icon: ChartBarSquareIcon },
   ];
 
@@ -273,7 +273,7 @@ export default function VistaInicio() {
               }[module.accent];
 
               return (
-                <button key={module.title} type="button" onClick={() => navigate(module.route)} className={`group flex h-full flex-col justify-between rounded-3xl border bg-gradient-to-br p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(34,211,238,0.18)] ${accentStyle}`}>
+                <button key={module.title} type="button" onClick={() => router.push(module.route)} className={`group flex h-full flex-col justify-between rounded-3xl border bg-gradient-to-br p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(34,211,238,0.18)] ${accentStyle}`}>
                   <section className="space-y-4">
                     <section className="flex items-center justify-between">
                       <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/30 bg-slate-950/60 text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.12)]">

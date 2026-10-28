@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Icono from "../../../componentes/compartidos/Icono.jsx";
 
 export default function LlamadaAccionFinal() {
@@ -17,10 +17,10 @@ export default function LlamadaAccionFinal() {
                 </header>
 
                 <nav aria-label="Acciones principales" className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                    <Link to="/product" className="inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-7 font-bold text-white transition hover:-translate-y-1">
+                    <Link href="/product" className="inline-flex min-h-13 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-7 font-bold text-white transition hover:-translate-y-1">
                         Conocer el producto <Icono name="arrow" className="h-5 w-5" />
                     </Link>
-                    <Link to="/support" className="inline-flex min-h-13 items-center justify-center rounded-2xl border border-white/12 bg-white/[.04] px-7 font-semibold text-white transition hover:-translate-y-1 hover:border-cyan-300/40">
+                    <Link href="/support" className="inline-flex min-h-13 items-center justify-center rounded-2xl border border-white/12 bg-white/[.04] px-7 font-semibold text-white transition hover:-translate-y-1 hover:border-cyan-300/40">
                         Ir a soporte
                     </Link>
                 </nav>

@@ -7,7 +7,8 @@ import {
   PlusCircleIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const items = [
   { path: "/interprete", name: "Inicio", icon: HomeIcon, end: true },
@@ -19,12 +20,13 @@ const items = [
 ];
 
 export default function BarraLateral({ open, onClose }) {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
 
   function logout() {
     localStorage.removeItem("usuario");
     sessionStorage.removeItem("usuario");
-    navigate("/login");
+    router.push("/login");
   }
 
   return (
@@ -52,27 +54,15 @@ export default function BarraLateral({ open, onClose }) {
         <ul className="flex flex-col gap-2">
           {items.map(({ path, name, icon: Icono, end }) => (
             <li key={path}>
-              <NavLink
-                to={path}
-                end={end}
+              <Link
+                href={path}
                 onClick={onClose}
-                className={({ isActive }) => `group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${
-                  isActive
-                    ? "border border-cyan-400/50 bg-cyan-900/40 text-white shadow-[0_0_15px_rgba(34,211,238,0.25)]"
-                    : "text-slate-300 hover:bg-slate-800/80 hover:text-white hover:shadow-[0_0_12px_rgba(34,211,238,0.15)]"
-                }`}
+                aria-current={(end ? pathname === path : pathname.startsWith(path)) ? "page" : undefined}
+                className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${(end ? pathname === path : pathname.startsWith(path)) ? "border border-cyan-400/50 bg-cyan-900/40 text-white shadow-[0_0_15px_rgba(34,211,238,0.25)]" : "text-slate-300 hover:bg-slate-800/80 hover:text-white hover:shadow-[0_0_12px_rgba(34,211,238,0.15)]"}`}
               >
-                {({ isActive }) => (
-                  <>
-                    <Icono className={`h-5 w-5 text-cyan-400 transition-colors ${
-                      isActive
-                        ? "drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]"
-                        : "group-hover:text-cyan-300"
-                    }`} aria-hidden="true" />
-                    <span>{name}</span>
-                  </>
-                )}
-              </NavLink>
+                <Icono className="h-5 w-5 text-cyan-400" aria-hidden="true" />
+                <span>{name}</span>
+              </Link>    </NavLink>
             </li>
           ))}
         </ul>

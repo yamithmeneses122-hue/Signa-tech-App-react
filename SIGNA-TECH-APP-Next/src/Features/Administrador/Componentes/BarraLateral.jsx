@@ -1,5 +1,6 @@
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const NAV_LINKS = [
     { to: '/inicio_admin', icon: 'fa-solid fa-chart-pie', label: 'Panel Global' },
@@ -11,13 +12,13 @@ const NAV_LINKS = [
 ];
 
 function BarraLateral({ menuAbierto, onClose }) {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     const cerrarSesion = () => {
         localStorage.removeItem('usuario');
         sessionStorage.removeItem('usuario');
-        navigate('/login');
+        router.push('/login');
     };
 
     return (
@@ -59,10 +60,10 @@ function BarraLateral({ menuAbierto, onClose }) {
                         {NAV_LINKS.map((link) => (
                             <li key={link.to}>
                                 <Link
-                                    to={link.to}
+                                    href={link.to}
                                     onClick={onClose}
                                     className={`group flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${
-                                        location.pathname === link.to
+                                        pathname === link.to
                                             ? 'border-cyan-400/50 bg-cyan-900/40 text-white shadow-[0_0_15px_rgba(34,211,238,0.25)] theme-light:border-cyan-300 theme-light:bg-cyan-50 theme-light:text-cyan-800'
                                             : 'border-transparent text-slate-300 hover:bg-slate-800/80 hover:text-white hover:shadow-[0_0_12px_rgba(34,211,238,0.15)] theme-light:text-slate-600 theme-light:hover:bg-slate-100 theme-light:hover:text-cyan-700'
                                     }`}

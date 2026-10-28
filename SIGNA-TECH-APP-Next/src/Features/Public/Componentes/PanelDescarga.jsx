@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Icono from "../../../componentes/compartidos/Icono.jsx";
 
 export default function PanelDescarga() {
@@ -14,7 +14,7 @@ export default function PanelDescarga() {
                     </p>
                 </header>
 
-                <Link to="/product#descarga" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold text-white transition hover:-translate-y-1">
+                <Link href="/product#descarga" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-[#00CCFF] to-[#099DCB] px-6 font-bold text-white transition hover:-translate-y-1">
                     Ver ficha del producto <Icono name="arrow" className="h-5 w-5" />
                 </Link>
             </article>
