@@ -1,0 +1,22 @@
+{
+  "name": "signa-tech-app-next",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "next": "^16.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3",
+    "react-router-dom": "^7.18.3"
+  },
+  "devDependencies": {}
+}
