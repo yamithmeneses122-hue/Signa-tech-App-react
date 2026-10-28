@@ -1,8 +1,8 @@
 import ContraseñaComponent from "../Componentes/ContrasenaComponente.jsx";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-import fondo from "../../../../Public/images/feactures/fondo2.jpeg";
-import regresar from "../../../../Public/images/feactures/regresar.png";
+const fondo = "/images/feactures/fondo2.jpeg";
+const regresar = "/images/feactures/regresar.png";
 
 export default function ContraseñaView() {
     return (
@@ -15,7 +15,7 @@ export default function ContraseñaView() {
           aria-hidden="true"
       />
 
-      <Link className="fixed left-5 top-5 z-10 h-[42px] w-[42px]" to="/login" aria-label="Regresar al inicio de sesión">
+      <Link className="fixed left-5 top-5 z-10 h-[42px] w-[42px]" href="/login" aria-label="Regresar al inicio de sesión">
         <img className="h-full w-full" src={regresar} alt="" />
       </Link>
 

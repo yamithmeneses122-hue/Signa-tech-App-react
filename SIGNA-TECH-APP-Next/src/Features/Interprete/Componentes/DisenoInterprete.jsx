@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+
 import BarraLateral from "./BarraLateral";
 import Encabezado from "./Encabezado";
 
-export default function DisenoInterprete() {
+export default function DisenoInterprete({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -25,7 +25,7 @@ export default function DisenoInterprete() {
       <section className="relative z-10 min-h-screen md:ml-64" aria-label="Panel del intérprete">
         <Encabezado onMenu={() => setMenuOpen(true)} compact />
         <main className="mx-auto w-full max-w-7xl p-5 md:p-10">
-          <Outlet />
+          {children}
         </main>
       </section>
     </section>

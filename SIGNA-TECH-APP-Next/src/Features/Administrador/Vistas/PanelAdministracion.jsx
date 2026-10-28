@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import DisenoAdmin from '../Componentes/DisenoAdmin';
 import { estilosAdmin } from '../Componentes/estilosAdmin';
 import TarjetaEstadisticaAdmin from '../Componentes/TarjetaEstadisticaAdmin';
@@ -32,7 +32,7 @@ const PanelAdministracion = () => {
             </section>
 
             <section className="grid w-full grid-cols-1 gap-4 md:grid-cols-2" aria-label="Módulos del panel">
-                    <Link to="/gestion_usuarios" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                    <Link href="/gestion_usuarios" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
                         <span className={estilosAdmin.icon} aria-hidden="true"><i className="fa-solid fa-users-gear" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block ${estilosAdmin.sectionTitle}`}>Gestión de Usuarios</span>
@@ -41,7 +41,7 @@ const PanelAdministracion = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/gestion_roles" className={`${estilosAdmin.card} ${estilosAdmin.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                    <Link href="/gestion_roles" className={`${estilosAdmin.card} ${estilosAdmin.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
                         <span className={`${estilosAdmin.icon} ${estilosAdmin.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-shield-halved" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block ${estilosAdmin.sectionTitle}`}>Roles y Permisos</span>
@@ -50,7 +50,7 @@ const PanelAdministracion = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/diccionario_admin" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                    <Link href="/diccionario_admin" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
                         <span className={estilosAdmin.icon} aria-hidden="true"><i className="fa-solid fa-book-bookmark" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block ${estilosAdmin.sectionTitle}`}>Diccionario LSC</span>
@@ -59,7 +59,7 @@ const PanelAdministracion = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-cyan-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/aprobacion_senas" className={`${estilosAdmin.card} ${estilosAdmin.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
+                    <Link href="/aprobacion_senas" className={`${estilosAdmin.card} ${estilosAdmin.cardTeal} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-teal-300/60`}>
                         <span className={`${estilosAdmin.icon} ${estilosAdmin.iconTeal}`} aria-hidden="true"><i className="fa-solid fa-circle-check" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block ${estilosAdmin.sectionTitle}`}>Aprobación de Señas</span>
@@ -68,7 +68,7 @@ const PanelAdministracion = () => {
                         <i className="fa-solid fa-arrow-right shrink-0 text-slate-500 transition group-hover:translate-x-1 group-hover:text-teal-300" aria-hidden="true" />
                     </Link>
 
-                    <Link to="/configuracion_admin" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
+                    <Link href="/configuracion_admin" className={`${estilosAdmin.card} ${estilosAdmin.cardBlue} group flex items-center gap-4 transition hover:-translate-y-1 hover:border-cyan-400/60`}>
                         <span className={estilosAdmin.icon} aria-hidden="true"><i className="fa-solid fa-sliders" /></span>
                         <span className="min-w-0 flex-1">
                             <span className={`block ${estilosAdmin.sectionTitle}`}>Configuración General</span>

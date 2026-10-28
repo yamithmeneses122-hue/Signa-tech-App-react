@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function ContraseñaComponent() {
   return (
@@ -32,7 +32,7 @@ export default function ContraseñaComponent() {
           Enviar enlace de recuperación
         </button>
 
-        <Link className="mx-auto mt-2 text-center text-base text-slate-100 hover:text-cyan-300 hover:underline" to="/login">
+        <Link className="mx-auto mt-2 text-center text-base text-slate-100 hover:text-cyan-300 hover:underline" href="/login">
           Volver al inicio de sesión
         </Link>
       </form>

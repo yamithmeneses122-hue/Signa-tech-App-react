@@ -1,8 +1,8 @@
 import InicioSesionComponente from "../Componentes/InicioSesionComponente";
-import { Link } from "react-router-dom";
-import fondo from "../../../../Public/images/feactures/fondo1.png";
-import regresar from "../../../../Public/images/feactures/regresar.png";
-import logo from "../../../../Public/images/logo/logoA.jpg";
+import Link from "next/link";
+const fondo = "/images/feactures/fondo1.png";
+const regresar = "/images/feactures/regresar.png";
+const logo = "/images/logo/logoA.jpg";
 
 export default function InicioSesionVista() {
     return (
@@ -10,7 +10,7 @@ export default function InicioSesionVista() {
              <section className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_right,rgba(0,204,255,0.12),transparent_30%),linear-gradient(180deg,rgb(12,18,22),rgb(20,27,31))] font-[Montserrat,Arial,sans-serif]">
       <Link
         className="fixed left-5 top-5 z-10 h-[42px] w-[42px]"
-        to="/"
+        href="/"
         aria-label="Regresar"
       >
         <img className="h-full w-full" src={regresar} alt="" />

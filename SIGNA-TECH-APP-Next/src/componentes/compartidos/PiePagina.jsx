@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Icono from "./Icono.jsx";
 
 export default function PiePagina() {
@@ -19,9 +19,9 @@ export default function PiePagina() {
                 <article>
                     <h2 className="font-bold">Explora</h2>
                     <ul className="mt-4 space-y-3 text-sm text-slate-400">
-                        <li><Link to="/" className="transition hover:text-cyan-300">Inicio</Link></li>
-                        <li><Link to="/product" className="transition hover:text-cyan-300">Producto</Link></li>
-                        <li><Link to="/support" className="transition hover:text-cyan-300">Soporte</Link></li>
+                        <li><Link href="/" className="transition hover:text-cyan-300">Inicio</Link></li>
+                        <li><Link href="/product" className="transition hover:text-cyan-300">Producto</Link></li>
+                        <li><Link href="/support" className="transition hover:text-cyan-300">Soporte</Link></li>
                     </ul>
                 </article>
 

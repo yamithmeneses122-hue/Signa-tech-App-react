@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Logotipo from "./Logotipo.jsx";
 
 export default function EncabezadoProducto() {
@@ -8,13 +8,13 @@ export default function EncabezadoProducto() {
                 <Logotipo />
 
                 <ul className="hidden items-center gap-7 lg:flex">
-                    <li><Link to="/" className="text-sm text-slate-300 transition hover:text-cyan-300">Inicio</Link></li>
-                    <li><Link to="/product" className="text-sm font-semibold text-cyan-300">Producto</Link></li>
-                    <li><Link to="/support" className="text-sm text-slate-300 transition hover:text-cyan-300">Soporte</Link></li>
+                    <li><Link href="/" className="text-sm text-slate-300 transition hover:text-cyan-300">Inicio</Link></li>
+                    <li><Link href="/product" className="text-sm font-semibold text-cyan-300">Producto</Link></li>
+                    <li><Link href="/support" className="text-sm text-slate-300 transition hover:text-cyan-300">Soporte</Link></li>
                 </ul>
 
                 <Link
-                    to="/login"
+                    href="/login"
                     className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-cyan-300/25 bg-white/[.04] px-5 text-sm font-bold text-white transition hover:-translate-y-1 hover:border-cyan-300/60"
                 >
                     Iniciar sesión

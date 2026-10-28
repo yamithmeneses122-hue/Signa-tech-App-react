@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function NuevaCuentaComponente() {
     return (
@@ -93,7 +93,7 @@ export default function NuevaCuentaComponente() {
           Crear cuenta
         </button>
 
-        <Link className="mx-auto text-center text-sm text-slate-100 hover:text-cyan-300 hover:underline sm:col-span-2" to="/login">
+        <Link className="mx-auto text-center text-sm text-slate-100 hover:text-cyan-300 hover:underline sm:col-span-2" href="/login">
           ¿Ya tienes cuenta? Inicia sesión
         </Link>
       </form>

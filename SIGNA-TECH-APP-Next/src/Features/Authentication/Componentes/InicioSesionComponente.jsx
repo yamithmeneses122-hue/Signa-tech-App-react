@@ -1,10 +1,11 @@
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { autenticarUsuario } from "../funcionalidades/funciones";
 
 export default function InicioSesionComponente() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [mensaje, setMensaje] = useState("");
   const [inicioExitoso, setInicioExitoso] = useState(false);
@@ -38,15 +39,15 @@ export default function InicioSesionComponente() {
     // Redireccionar según el rol del usuario
     switch (usuario.rol) {
       case "operador":
-        navigate("/operador");
+        router.push("/operador");
         break;
 
       case "administrador":
-        navigate("/administrador");
+        router.push("/administrador");
         break;
 
       case "interprete":
-        navigate("/interprete");
+        router.push("/interprete");
         break;
 
       default:
@@ -104,7 +105,7 @@ export default function InicioSesionComponente() {
 
               <Link
                 className="text-sm text-cyan-400 hover:underline"
-                to="/recuperar-contrasena"
+                href="/recuperar-contrasena"
               >
                 ¿Olvidaste tu contraseña?
               </Link>
@@ -183,7 +184,7 @@ export default function InicioSesionComponente() {
 
           <Link
             className="block w-full rounded-full border border-slate-100 px-3 py-2 text-center text-base font-medium text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-300"
-            to="/crear-cuenta"
+            href="/crear-cuenta"
           >
             Crear Cuenta
           </Link>
