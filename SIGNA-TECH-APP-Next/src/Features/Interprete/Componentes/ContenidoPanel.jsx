@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import EncabezadoPagina from "./EncabezadoPagina";
 import TarjetaEstadistica from "./TarjetaEstadistica";
 import InsigniaEstado from "./InsigniaEstado";
@@ -86,7 +86,7 @@ export default function ContenidoPanel() {
       {pending > 0 && (
         <Link
           className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-cyan-400/30 bg-cyan-400/[0.06] px-5 py-4 transition-colors hover:border-cyan-300/60 hover:bg-cyan-400/10"
-          to="/interprete/validar"
+          href="/interprete/validar"
         >
           <span>
             <strong className="block text-sm text-cyan-200">
@@ -155,7 +155,7 @@ export default function ContenidoPanel() {
             <h2 className="text-lg font-bold">Últimas modificaciones</h2>
             <p className="mt-1 text-xs text-slate-400">Actividad reciente en el diccionario.</p>
           </section>
-          <Link className="text-xs font-semibold text-cyan-300 hover:underline" to="/interprete/historial">Ver historial</Link>
+          <Link className="text-xs font-semibold text-cyan-300 hover:underline" href="/interprete/historial">Ver historial</Link>
         </header>
         {latestActivity.length ? (
           <ul className="divide-y divide-slate-800">

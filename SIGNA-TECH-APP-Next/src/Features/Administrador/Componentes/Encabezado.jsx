@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 function Encabezado() {
     return (
@@ -29,7 +29,7 @@ function Encabezado() {
                
                 <section className="flex items-center gap-4">
 
-                    <Link to="/home">
+                    <Link href="/home">
                         <img
                             src="/images/logo/logo.jpeg"
                             alt="Logotipo de SIGNA-TECH-APP"
@@ -77,7 +77,7 @@ function Encabezado() {
 
                     <li>
                         <Link
-                            to="/product"
+                            href="/product"
                             className="
                                 text-sm
                                 font-medium
@@ -93,7 +93,7 @@ function Encabezado() {
 
                     <li>
                         <Link
-                            to="#tecnologias"
+                            href="#tecnologias"
                             className="
                                 text-sm
                                 font-medium
@@ -109,7 +109,7 @@ function Encabezado() {
 
                     <li>
                         <Link
-                            to="#comofunciona"
+                            href="#comofunciona"
                             className="
                                 text-sm
                                 font-medium
@@ -125,7 +125,7 @@ function Encabezado() {
 
                     <li>
                         <Link
-                            to="#sobrenosotros"
+                            href="#sobrenosotros"
                             className="
                                 text-sm
                                 font-medium
@@ -152,7 +152,7 @@ function Encabezado() {
                 >
 
                     <Link
-                        to="/register"
+                        href="/register"
                         className="
                             hidden
                             text-sm
@@ -168,7 +168,7 @@ function Encabezado() {
                     </Link>
 
                     <Link
-                        to="/login"
+                        href="/login"
                         className="
                             inline-flex
                             h-[45px]
