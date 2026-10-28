@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { getProfile } from "../funcionalidades/interpreterStorage";
 import { getInitials } from "../funcionalidades/interpreterUtils";
 
 export default function Encabezado({ onMenu, compact = false }) {
   const [notifications, setNotifications] = useState(false);
-  const [profile, setProfile] = useState(null);
-  useEffect(() => { setProfile(getProfile()); }, []);
+  const profile = getProfile();
 
   if (compact) {
     return (
