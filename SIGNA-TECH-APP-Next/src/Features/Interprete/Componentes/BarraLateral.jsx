@@ -1,4 +1,5 @@
 "use client";
+
 import {
   ArrowLeftStartOnRectangleIcon,
   CheckBadgeIcon,
@@ -12,12 +13,12 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const items = [
-  { path: "/interprete", name: "Inicio", icon: HomeIcon, end: true },
-  { path: "/interprete/validar", name: "Validar señas", icon: CheckBadgeIcon },
-  { path: "/interprete/registrar", name: "Registrar", icon: PlusCircleIcon },
-  { path: "/interprete/corregir", name: "Corregir", icon: PencilSquareIcon },
-  { path: "/interprete/historial", name: "Historial", icon: ClockIcon },
-  { path: "/interprete/perfil", name: "Perfil", icon: UserCircleIcon },
+  { href: "/interprete", name: "Inicio", icon: HomeIcon, exact: true },
+  { href: "/interprete/validar", name: "Validar señas", icon: CheckBadgeIcon },
+  { href: "/interprete/registrar", name: "Registrar", icon: PlusCircleIcon },
+  { href: "/interprete/corregir", name: "Corregir", icon: PencilSquareIcon },
+  { href: "/interprete/historial", name: "Historial", icon: ClockIcon },
+  { href: "/interprete/perfil", name: "Perfil", icon: UserCircleIcon },
 ];
 
 export default function BarraLateral({ open, onClose }) {
@@ -25,13 +26,17 @@ export default function BarraLateral({ open, onClose }) {
   const pathname = usePathname();
 
   function logout() {
-    localStorage.removeItem("usuario");
-    sessionStorage.removeItem("usuario");
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem("usuario");
+      window.sessionStorage.removeItem("usuario");
+    }
     router.push("/login");
   }
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-200 shadow-2xl transition-transform duration-300 md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
+    <aside
+      className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-slate-800 bg-slate-900 text-slate-200 shadow-2xl transition-transform duration-300 md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}
+    >
       <header className="flex items-start justify-between border-b border-slate-800 p-6">
         <section className="flex flex-col gap-1">
           <h2 className="font-['Montserrat'] text-xl font-bold tracking-wider text-white">
@@ -51,21 +56,34 @@ export default function BarraLateral({ open, onClose }) {
         </button>
       </header>
 
-      <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Navegación del intérprete">
+      <nav
+        className="flex-1 overflow-y-auto px-3 py-4"
+        aria-label="Navegación del intérprete"
+      >
         <ul className="flex flex-col gap-2">
-          {items.map(({ path, name, icon: Icono, end }) => (
-            <li key={path}>
-              <Link
-                href={path}
-                onClick={onClose}
-                aria-current={(end ? pathname === path : pathname.startsWith(path)) ? "page" : undefined}
-                className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${(end ? pathname === path : pathname.startsWith(path)) ? "border border-cyan-400/50 bg-cyan-900/40 text-white shadow-[0_0_15px_rgba(34,211,238,0.25)]" : "text-slate-300 hover:bg-slate-800/80 hover:text-white hover:shadow-[0_0_12px_rgba(34,211,238,0.15)]"}`}
-              >
-                <Icono className="h-5 w-5 text-cyan-400" aria-hidden="true" />
-                <span>{name}</span>
-              </Link>    </NavLink>
-            </li>
-          ))}
+          {items.map(({ href, name, icon: Icono, exact }) => {
+            const activo = exact
+              ? pathname === href
+              : pathname === href || pathname.startsWith(href + "/");
+
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  onClick={onClose}
+                  aria-current={activo ? "page" : undefined}
+                  className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${
+                    activo
+                      ? "border border-cyan-400/50 bg-cyan-900/40 text-white shadow-[0_0_15px_rgba(34,211,238,0.25)]"
+                      : "text-slate-300 hover:bg-slate-800/80 hover:text-white hover:shadow-[0_0_12px_rgba(34,211,238,0.15)]"
+                  }`}
+                >
+                  <Icono className="h-5 w-5 text-cyan-400" aria-hidden="true" />
+                  <span>{name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
@@ -75,7 +93,10 @@ export default function BarraLateral({ open, onClose }) {
           type="button"
           onClick={logout}
         >
-          <ArrowLeftStartOnRectangleIcon className="h-5 w-5 text-rose-500 dark:text-rose-400" aria-hidden="true" />
+          <ArrowLeftStartOnRectangleIcon
+            className="h-5 w-5 text-rose-500 dark:text-rose-400"
+            aria-hidden="true"
+          />
           <span>Cerrar Sesión</span>
         </button>
       </footer>
